@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Admin from '../views/Admin.vue'
+import Homeadmin from '../admin/Homeadmin.vue'
+import Product from '../admin/Product.vue'
 
 Vue.use(VueRouter)
 
@@ -14,7 +16,19 @@ const routes = [
   {
     path: '/admin',
     name: 'Admin',
-    component: Admin
+    component: Admin,
+    children:[
+      {
+        path: 'home',
+        name: 'Homeadmin',
+        component: Homeadmin,
+      },
+      {
+        path: 'product',
+        name: 'Product',
+        component: Product,
+      },
+    ]
   },
   {
     path: '/about',

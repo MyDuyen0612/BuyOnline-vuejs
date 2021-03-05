@@ -1,6 +1,9 @@
 <template>
 <div class="sidebar">
-    <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-header shadow bg-variant="light" text-variant="light" >
+    <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-header shadow 
+    bg-variant="light" 
+    text-variant="light" 
+    backdrop>
       <template #default="{ hide }">
         <div class="p-3">
           <div class="d-flex align-items-center  flex-column">
@@ -37,7 +40,8 @@
     }
 </script>
 
-<style>
+<style scoped>
+
 .b-sidebar{
   width: 270px;
 }
