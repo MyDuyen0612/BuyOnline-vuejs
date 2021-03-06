@@ -6,20 +6,23 @@
   </div>
 
    <div class="page-content p-5" id="content" :class="isActive==true?'active':''">
-      <button id="sidebarCollapse" type="button" 
-      class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
-      @click="activeMenu">
-      <i class="fa fa-bars mr-2"></i>
-      </button>
+      <nav class="nav">
+        <button id="sidebarCollapse" type="button" 
+          class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
+          @click="activeMenu">
+          <i class="fa fa-bars mr-2"></i>
+        </button>
+        <Inputsearch/>
+      </nav>    
+        <!-- <img src="../assets/img/home_admin.svg" class="rounded mx-auto d-block" alt="">   -->
       <router-view/>
     </div>
-
 </div>
 </template>
 
 <script>
 import Menu from '../admin/Menu.vue'
-// import Adminhome from '../admin/Adminhome.vue'
+import Inputsearch from '../components/InputSearch.vue'
 export default {
   name: 'Admin',
   data(){
@@ -29,6 +32,7 @@ export default {
   },
   components:{
     Menu,
+    Inputsearch,
   },
   methods:{
     activeMenu: function(){
@@ -100,16 +104,4 @@ body {
   overflow-x: hidden;
 }
 
-.separator {
-  margin: 3rem 0;
-  border-bottom: 1px dashed #fff;
-}
-
-.text-uppercase {
-  letter-spacing: 0.1em;
-}
-
-.text-gray {
-  color: #aaa;
-}
 </style>>

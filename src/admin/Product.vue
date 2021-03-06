@@ -1,6 +1,5 @@
 <template>
 <div class="Product">
-  <div>
     <div class="row h-100">
       <div class="col-md-6">
         <h3>Product</h3>
@@ -13,16 +12,21 @@
         </p>
       </div>
       <div class="col-md-6">
-        <img src="../assets/img/product.svg" atl="" class="img-fluid"/>
+      <img src="../assets/img/product.svg" atl="" class="img-fluid"/>
       </div>
     </div>
-  </div>
+    <h5>Danh sách sản phẩm</h5>
+    <Inputtable/>
 </div>
 </template>
 
 <script>
+import Inputtable from '../components/Inputtable.vue'
   export default {
     name: 'Product',
+    components:{
+      Inputtable
+    }
   }
 </script>
 

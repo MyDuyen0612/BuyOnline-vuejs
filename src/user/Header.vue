@@ -15,10 +15,9 @@
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
          <template #button-content>
-            <b-avatar badge badge-variant="success" src="https://placekitten.com/300/300"></b-avatar>
+            <b-avatar></b-avatar>
          </template>
-          <b-dropdown-item href="#">Tài khoản</b-dropdown-item>
-          <b-dropdown-item href="#">Đăng xuất</b-dropdown-item>
+          <b-dropdown-item> <router-link to="/login">Đăng nhập</router-link></b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>

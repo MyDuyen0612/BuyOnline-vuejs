@@ -15,40 +15,34 @@
 
   <ul class="nav flex-column bg-white mb-0">
     <li class="nav-item">
-      <router-link to="/admin/home" class="nav-link text-dark font-italic bg-light">
-        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-          Home
-      </router-link>
-    </li>
-    <li class="nav-item">
-      <router-link to="/admin/product" class="nav-link text-dark font-italic bg-light">
+      <router-link to="/admin/sanpham" class="nav-link text-dark font-italic bg-light">
         <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
          Sản phẩm
       </router-link>
     </li>
     <li class="nav-item">
-      <a href="#" class="nav-link text-dark font-italic bg-light">
+      <router-link to="/admin/donhang" class="nav-link text-dark font-italic bg-light">
         <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
           Đơn hàng
-        </a>
+      </router-link>
     </li>
     <li class="nav-item">
-      <a href="#" class="nav-link text-dark font-italic bg-light">
+      <router-link to="/admin/giaohang" class="nav-link text-dark font-italic bg-light">
         <i class="fas fa-truck-moving mr-3 text-primary fa-fw"></i>
           Giao hàng
-      </a>
+      </router-link>
     </li>
     <li class="nav-item">
-      <a href="#" class="nav-link text-dark font-italic bg-light">
+      <router-link to="/admin/thongbao" class="nav-link text-dark font-italic bg-light">
         <i class="fas fa-bell mr-3 text-primary fa-fw"></i>
           Thông báo
-      </a>
+      </router-link>
     </li>
     <li class="nav-item">
-       <a href="#" class="nav-link text-dark font-italic bg-light">
+       <router-link to="/admin/taikhoan" class="nav-link text-dark font-italic bg-light">
         <i class="fas fa-user mr-3 text-primary fa-fw"></i>
           Tài khoản
-      </a>
+       </router-link>
     </li>
   </ul>
 </div>
