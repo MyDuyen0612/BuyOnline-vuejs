@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import Admin from '../views/Admin.vue'
 import Product from '../admin/Product.vue'
 import Login from '../components/Login.vue'
+import Donhang from '../admin/Donhang.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -30,8 +32,8 @@ const routes = [
       },
       {
         path: 'donhang',
-        name: 'Product',
-        component: Product,
+        name: 'Donhang',
+        component: Donhang,
       },
       {
         path: 'giaohang',

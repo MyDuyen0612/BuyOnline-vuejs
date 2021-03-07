@@ -16,7 +16,7 @@
       </div>
     </div>
     <h5>Danh sách sản phẩm</h5>
-    <Inputtable/>
+    <Inputtable :dataTable="items"/>
 </div>
 </template>
 
@@ -26,6 +26,17 @@ import Inputtable from '../components/Inputtable.vue'
     name: 'Product',
     components:{
       Inputtable
+    },
+      data(){
+        return {
+          items: [
+            { 'Mã sản phẩm': 'sp01', 'Tên sản phẩm': 'Áo khoăc', 'Gía': '2500000'},
+            { 'Mã sản phẩm': 'sp02', 'Tên sản phẩm': 'Áo thun', 'Gía': '2500000'},
+            { 'Mã sản phẩm': 'sp03', 'Tên sản phẩm': 'Áo len', 'Gía': '2500000'},
+            { 'Mã sản phẩm': 'sp04', 'Tên sản phẩm': 'Quần dài', 'Gía': '2500000'},
+            { 'Mã sản phẩm': 'sp05', 'Tên sản phẩm': 'Váy dài', 'Gía': '2500000'},
+          ]
+        }
     }
   }
 </script>
