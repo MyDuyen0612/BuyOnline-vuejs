@@ -34,7 +34,7 @@ export default {
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
     perspective: 1000px;
   }
-  .product-inner.green {
+  /* .product-inner.green {
     background-image: linear-gradient(to bottom right, #24D484, #116432);
   }
   .product-inner.blue {
@@ -42,7 +42,7 @@ export default {
   }
   .product-inner.pink {
     background-image: linear-gradient(to bottom right, #F444A4, #1168D4);
-  }
+  } */
 
   .product-image-wrap {
     position: relative;
