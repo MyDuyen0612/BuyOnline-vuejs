@@ -2,13 +2,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Admin from '../views/Admin.vue'
-import Product from '../admin/Product.vue'
+import Productpage from '../admin/Productpage.vue'
 import Login from '../components/Login.vue'
-import Donhang from '../admin/Donhang.vue'
+import Orders from '../admin/Orders.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  //User
   {
     path: '/',
     name: 'Home',
@@ -19,6 +20,9 @@ const routes = [
     name: 'Login',
     component: Login
   },
+
+
+  //Admin
   {
     path: '/admin',
     name: 'Admin',
@@ -27,28 +31,28 @@ const routes = [
     children:[
       {
         path: 'sanpham',
-        name: 'Product',
-        component: Product,
+        name: 'Productpage',
+        component: Productpage,
       },
       {
         path: 'donhang',
-        name: 'Donhang',
-        component: Donhang,
+        name: 'Orders',
+        component: Orders,
       },
       {
         path: 'giaohang',
-        name: 'Product',
-        component: Product,
+        name: 'Productpage',
+        component: Productpage,
       },
       {
         path: 'thongbao',
-        name: 'Product',
-        component: Product,
+        name: 'Productpage',
+        component: Productpage,
       },
       {
         path: 'taikhoan',
-        name: 'Product',
-        component: Product,
+        name: 'Productpage',
+        component: Productpage,
       },
     ]
   },

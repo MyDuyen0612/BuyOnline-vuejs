@@ -11,7 +11,7 @@
       </div>
     </div>
     <h5>Danh sách đơn hàng</h5>
-    <Inputtable/>
+    <Inputtable :dataTable="items"/>
 </div>
 </template>
 
@@ -21,6 +21,14 @@ import Inputtable from '../components/Inputtable.vue'
     name: 'Donhang',
     components:{
       Inputtable
+    },
+    data(){
+        return {
+          items: [
+            { 'Mã don hang': 'sp01', 'Khach hang': 'Áo khoăc', 'Gía': '2500000'},
+            { 'Mã don hang': 'sp02', 'Khach hang': 'Áo thun', 'Gía': '2500000'},
+          ]
+        }
     }
   }
 </script>

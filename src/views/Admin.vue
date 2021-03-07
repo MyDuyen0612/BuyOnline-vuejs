@@ -10,19 +10,21 @@
         <button id="sidebarCollapse" type="button" 
           class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
           @click="activeMenu">
-          <i class="fa fa-bars mr-2"></i>
+          <i class="fa fa-bars mr-8"></i>
         </button>
         <Inputsearch/>
       </nav>    
         <!-- <img src="../assets/img/home_admin.svg" class="rounded mx-auto d-block" alt="">   -->
       <router-view/>
     </div>
+    <Footer/>>
 </div>
 </template>
 
 <script>
 import Menu from '../admin/Menu.vue'
 import Inputsearch from '../components/InputSearch.vue'
+import Footer from '../components/Footer.vue'
 export default {
   name: 'Admin',
   data(){
@@ -33,6 +35,7 @@ export default {
   components:{
     Menu,
     Inputsearch,
+    Footer
   },
   methods:{
     activeMenu: function(){

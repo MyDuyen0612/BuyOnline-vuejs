@@ -33,10 +33,10 @@
         >
           <b-form-checkbox value="remeber">Remeber me</b-form-checkbox>
         </b-form-checkbox-group>
-      </b-form-group>
+      </b-form-group>&nbsp;
       <div class="d-flex justify-content-between">
         <div>
-          <b-button type="submit" variant="primary">Submit</b-button>&nbsp;
+          <b-button type="submit" variant="primary">Submit</b-button>
           <b-button type="reset" variant="danger">Reset</b-button>
         </div>
         <div>
