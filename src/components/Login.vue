@@ -1,6 +1,8 @@
 <template>
   <div>
+    <Header/>
     <b-container class="login">
+      
       <b-row align-h="center" class="mt-5">
         <b-col cols="5">
           <h3>Login</h3>
@@ -47,18 +49,24 @@
         </b-col>
       </b-row>
     </b-container>
+
       <b-modal id="modal-1" title="Forgot Password">
        <b-img thumbnail fluid src="../assets/img/sad.png" alt="So sad"></b-img>
        <div>
-         <a href="#">Lấy lại password</a>
+         <a href="#">Thằng ngu quên mật khẩu</a>
        </div>
       </b-modal>
   </div>
 </template>
 
 <script>
+import Header from '../user/Header.vue'
   export default {
     name: 'Login',
+    components:{
+    Header, 
+    
+},
    data() {
       return {
         form: {

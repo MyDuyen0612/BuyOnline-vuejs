@@ -5,6 +5,7 @@ import Admin from '../views/Admin.vue'
 import Product from '../admin/Product.vue'
 import Login from '../components/Login.vue'
 import Donhang from '../admin/Donhang.vue'
+import Maintena from '../user/Maintena.vue'
 
 Vue.use(VueRouter)
 
@@ -59,7 +60,12 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  },
+  {
+    path: '/maintena',
+    name: 'Maintena',
+    component: Maintena
+  },
 ]
 
 const router = new VueRouter({
