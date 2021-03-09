@@ -1,41 +1,51 @@
 <template>
-  <div>
-    <div
-      class="page-content p-5"
-      id="content"
-      :class="isActive == true ? 'active' : ''"
-    >
-      <nav class="nav">
-        <button
-          id="sidebarCollapse"
-          type="button"
-          class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
-          @click="activeMenu"
-        >
-          <i class="fa fa-bars mr-2"></i>
-        </button>
-        <input-search />
-      </nav>
-      <Carousel />
-      <section class="products">
-        <Product
+  <b-container>
+    <Carousel />
+    <section class="products">
+      <Product
           v-for="product in products"
           :key="product.color"
           :product="product"
         />
-      </section>
-      <Profile />
-    </div>
-  </div>
+    </section>
+  </b-container>
 </template>
 
 <script>
-import InputSearch from "../components/InputSearch.vue";
-import Profile from "../user/Profile.vue";
 import Carousel from "../components/Carousel.vue";
 import Product from "../components/Product.vue";
 export default {
-  components: { InputSearch, Carousel, Product, Profile },
+  components: { Carousel, Product },
+  data() {
+    return {
+      isActive: true,
+     products: [
+        {
+          title: "Áo Thun",
+          color: "green",
+          price: 2500000,
+          src: require("../assets/img/ao2.jpg"),
+        },
+        {
+          title: "Áo Thun",
+          color: "blue",
+          price: 300000,
+          src: require("../assets/img/ao2.jpg"),
+        },
+        {
+          title: "Áo Thun",
+          color: "pink",
+          price: 500000,
+          src: require("../assets/img/ao2.jpg"),
+        },
+      ],
+    };
+  },
+  methods: {
+    activeMenu: function () {
+      this.isActive = !this.isActive;
+    },
+  },
 };
 </script>
 

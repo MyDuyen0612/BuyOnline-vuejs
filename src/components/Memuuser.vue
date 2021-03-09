@@ -29,9 +29,9 @@
     </div>
     <nav class="mb-3">
       <b-nav vertical>
-        <b-nav-item active>NEW ARRIVALS</b-nav-item>
-        <b-nav-item to="/register">Đăng ký</b-nav-item>
-        <b-nav-item to="/admin/user">xem danh sách </b-nav-item>
+        <b-nav-item to="/">NEW ARRIVALS</b-nav-item>
+        <b-nav-item to="/register">ĐĂNG KÝ</b-nav-item>
+        <b-nav-item to="/admin/user">XEM DANH SÁCH THÀNH VIÊN</b-nav-item>
         <b-nav-item>ĐỒ ĐÔI</b-nav-item>
         <b-nav-item>ÁO KHOÁC</b-nav-item>
       </b-nav>

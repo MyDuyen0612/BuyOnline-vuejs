@@ -1,24 +1,41 @@
 <template>
-  <div>
-    <div class="about">
-      <div
-        class="vertical-nav bg-white"
-        id="sidebar"
-        :class="isActive == true ? 'active' : ''"
-      >
-        <Menuuser />
-      </div>
+   <div class="admin">
+    <div
+      class="vertical-nav bg-white"
+      id="sidebar"
+      :class="isActive == true ? 'active' : ''"
+    >
+      <Menuuser />
+    </div>
 
+    <div
+      class="page-content p-5"
+      id="content"
+      :class="isActive == true ? 'active' : ''"
+    >
+      <nav class="nav">
+        <button
+          id="sidebarCollapse"
+          type="button"
+          class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
+          @click="activeMenu"
+        >
+          <i class="fa fa-bars mr-8"></i>
+        </button>
+        <InputSearch />
+      </nav>
+      <!-- <img src="../assets/img/home_admin.svg" class="rounded mx-auto d-block" alt="">   -->
       <router-view />
     </div>
   </div>
 </template>
 
 <script>
+import InputSearch from '../components/InputSearch.vue';
 import Menuuser from "../components/Memuuser.vue";
 
 export default {
-  name: "Admin",
+  name: "Home",
   data() {
     return {
       isActive: false,
@@ -46,6 +63,7 @@ export default {
   },
   components: {
     Menuuser,
+    InputSearch,
   },
   methods: {
     activeMenu: function () {
