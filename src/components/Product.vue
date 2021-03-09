@@ -1,5 +1,5 @@
 <template>
-  <div class="product">
+  <div class="col-4 product">
     <div :class="'product-inner ' + product.color">
       <div class="product-image-wrap">
         <img :src="product.src" class="image" />

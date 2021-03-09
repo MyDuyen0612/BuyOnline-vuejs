@@ -1,13 +1,15 @@
 <template>
-  <b-container>
-    <Carousel />
-    <section class="products">
+  <b-container fluid>
+    <b-row>
+      <Carousel />
+    </b-row>
+    <b-row>    
       <Product
           v-for="product in products"
           :key="product.color"
           :product="product"
         />
-    </section>
+    </b-row> 
   </b-container>
 </template>
 

@@ -64,7 +64,6 @@
         form: {
           email: '',
           password: '',
-          food: null,
           checked: []
         },
         show: true
