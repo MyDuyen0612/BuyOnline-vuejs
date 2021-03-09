@@ -44,6 +44,12 @@
           Tài khoản
        </router-link>
     </li>
+     <li class="nav-item">
+       <router-link to="/admin/user" class="nav-link text-dark font-italic bg-light">
+        <i class="fas fa-user mr-3 text-primary fa-fw"></i>
+         User
+       </router-link>
+    </li>
   </ul>
 </div>
 </template>

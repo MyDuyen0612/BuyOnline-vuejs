@@ -1,18 +1,19 @@
 <template>
   <div>
-    <b-table striped hover :items="dataTable"></b-table>
+    <b-table :fields="fields" :items="items" ></b-table>
   </div>
 </template>
 
 <script>
   export default {
     props:{
-      dataTable:Array
+      items:Array,
+      fields:Array
     },
     name: 'Inputtable',
     data() {
       return {
-              }
+      }
     }
   }
 </script>

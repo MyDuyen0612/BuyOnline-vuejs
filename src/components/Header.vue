@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import InputSearch from '../components/InputSearch.vue'
+import InputSearch from './InputSearch.vue'
    export default {
       name: 'Header',
       components:{

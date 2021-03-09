@@ -1,48 +1,57 @@
 <template>
- <div class="admin">
-   
-  <div class="vertical-nav bg-white" id="sidebar" :class="isActive==true?'active':''">
-    <Menu/>
-  </div>
+  <div class="admin">
+    <div
+      class="vertical-nav bg-white"
+      id="sidebar"
+      :class="isActive == true ? 'active' : ''"
+    >
+      <Menu />
+    </div>
 
-   <div class="page-content p-5" id="content" :class="isActive==true?'active':''">
+    <div
+      class="page-content p-5"
+      id="content"
+      :class="isActive == true ? 'active' : ''"
+    >
       <nav class="nav">
-        <button id="sidebarCollapse" type="button" 
+        <button
+          id="sidebarCollapse"
+          type="button"
           class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
-          @click="activeMenu">
+          @click="activeMenu"
+        >
           <i class="fa fa-bars mr-8"></i>
         </button>
-        <Inputsearch/>
-      </nav>    
-        <!-- <img src="../assets/img/home_admin.svg" class="rounded mx-auto d-block" alt="">   -->
-      <router-view/>
+        <Inputsearch />
+      </nav>
+      <!-- <img src="../assets/img/home_admin.svg" class="rounded mx-auto d-block" alt="">   -->
+      <router-view />
     </div>
-    <Footer/>>
-</div>
+  </div>
 </template>
 
 <script>
-import Menu from '../admin/Menu.vue'
-import Inputsearch from '../components/InputSearch.vue'
-import Footer from '../components/Footer.vue'
+import Menu from "../admin/Menu.vue";
+import Inputsearch from "../components/InputSearch.vue";
+
 export default {
-  name: 'Admin',
-  data(){
-    return{
+  name: "Admin",
+  data() {
+    return {
       isActive: false,
-    }
+    };
   },
-  components:{
+  components: {
     Menu,
     Inputsearch,
-    Footer
+    
   },
-  methods:{
-    activeMenu: function(){
+  methods: {
+    activeMenu: function () {
       this.isActive = !this.isActive;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style  scoped>
@@ -106,5 +115,4 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
-
 </style>>

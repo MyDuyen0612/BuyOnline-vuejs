@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import User from '../views/Home.vue'
 import Admin from '../views/Admin.vue'
 import Productpage from '../admin/Productpage.vue'
-import Login from '../components/Login.vue'
+import Login from '../user/Login.vue'
 import Orders from '../admin/Orders.vue'
-
+import TableUser from '../admin/TableUser.vue'
+import Home from '../user/Index.vue'
+import Register from '../user/register'
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,12 +15,25 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: Login
+    component: User,
+    children: [
+      {
+        path: '',
+        name: 'index',
+        component: Home
+      },
+      {
+        path: '/login',
+        name: 'Login',
+        component:  Login
+      },
+      {
+        path: 'register',
+        name: 'Register',
+        component: Register
+      }
+      
+    ]
   },
 
 
@@ -28,11 +43,11 @@ const routes = [
     name: 'Admin',
     component: Admin,
     redirect: '/admin/sanpham',
-    children:[
+    children: [
       {
         path: 'sanpham',
         name: 'Productpage',
-        component: Productpage,
+        component:  Productpage,
       },
       {
         path: 'donhang',
@@ -40,29 +55,11 @@ const routes = [
         component: Orders,
       },
       {
-        path: 'giaohang',
-        name: 'Productpage',
-        component: Productpage,
-      },
-      {
-        path: 'thongbao',
-        name: 'Productpage',
-        component: Productpage,
-      },
-      {
-        path: 'taikhoan',
-        name: 'Productpage',
-        component: Productpage,
+        path: 'user',
+        name: 'User',
+        component: TableUser
       },
     ]
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
 ]
 

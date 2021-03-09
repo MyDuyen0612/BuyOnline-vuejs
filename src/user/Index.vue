@@ -1,57 +1,41 @@
 <template>
   <div>
-    <div class="about">
-      <div
-        class="vertical-nav bg-white"
-        id="sidebar"
-        :class="isActive == true ? 'active' : ''"
-      >
-        <Menuuser />
-      </div>
-
-      <router-view />
+    <div
+      class="page-content p-5"
+      id="content"
+      :class="isActive == true ? 'active' : ''"
+    >
+      <nav class="nav">
+        <button
+          id="sidebarCollapse"
+          type="button"
+          class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
+          @click="activeMenu"
+        >
+          <i class="fa fa-bars mr-2"></i>
+        </button>
+        <input-search />
+      </nav>
+      <Carousel />
+      <section class="products">
+        <Product
+          v-for="product in products"
+          :key="product.color"
+          :product="product"
+        />
+      </section>
+      <Profile />
     </div>
   </div>
 </template>
 
 <script>
-import Menuuser from "../components/Memuuser.vue";
-
+import InputSearch from "../components/InputSearch.vue";
+import Profile from "../user/Profile.vue";
+import Carousel from "../components/Carousel.vue";
+import Product from "../components/Product.vue";
 export default {
-  name: "Admin",
-  data() {
-    return {
-      isActive: false,
-      products: [
-        {
-          title: "Áo Thun",
-          color: "green",
-          price: 2500000,
-          src: require("../assets/img/ao2.jpg"),
-        },
-        {
-          title: "Áo Thun",
-          color: "blue",
-          price: 300000,
-          src: require("../assets/img/ao2.jpg"),
-        },
-        {
-          title: "Áo Thun",
-          color: "pink",
-          price: 500000,
-          src: require("../assets/img/ao2.jpg"),
-        },
-      ],
-    };
-  },
-  components: {
-    Menuuser,
-  },
-  methods: {
-    activeMenu: function () {
-      this.isActive = !this.isActive;
-    },
-  },
+  components: { InputSearch, Carousel, Product, Profile },
 };
 </script>
 
