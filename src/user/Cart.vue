@@ -62,25 +62,25 @@
               <td></td>
               <td></td>
               <td></td>
-              <td><h5>Subtotal</h5></td>
+              <td><h6>Subtotal</h6></td>
               <td class="text-right">
-                <h5><strong>$26.11</strong></h5>
+                <h6><strong>$26.11</strong></h6>
               </td>
             </tr>
             <tr>
               <td></td>
               <td></td>
               <td></td>
-              <td><h5>Transport Fee</h5></td>
+              <td><h6>Transport Fee</h6></td>
               <td class="text-right">
-                <h5><strong>$26.11</strong></h5>
+                <h6><strong>$26.11</strong></h6>
               </td>
             </tr>
             <tr>
               <td></td>
               <td></td>
               <td></td>
-              <td><h3>Total</h3></td>
+              <td><h6>Total</h6></td>
               <td class="text-right">
                 <h3><strong>$26.11</strong></h3>
               </td>
