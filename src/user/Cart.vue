@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-container class="cart">
+    <b-container class="cart" id="modal-2">
       <h1>Cart</h1>
       <div class="col-sm-12 col-md-10 col-md-offset-1">
         <table class="table table-hover">
@@ -90,15 +90,15 @@
               <td></td>
               <td></td>
               <td>
-                <b-button id="add" variant="outline-primary">
+                <b-button id="add" variant="outline-primary" to="/">
                   <b-icon-cart-plus></b-icon-cart-plus>
                 </b-button>
-                <b-tooltip target="add" placement="center" variant="primary">
+                <b-tooltip target="add" placement="center" variant="primary" >
                 Continue to shop
                 </b-tooltip>
               </td>
               <td>
-                <b-button id="checkout" variant="outline-success">
+                <b-button id="checkout" variant="outline-success" to="/checkout">
                   <b-icon-cash></b-icon-cash>
                 </b-button></td>
                 <td>

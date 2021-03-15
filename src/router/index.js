@@ -9,6 +9,7 @@ import TableUser from '../admin/TableUser.vue'
 import Home from '../user/Index.vue'
 import Register from '../user/register'
 import Cart from '../user/Cart.vue'
+import Checkout from '../user/Checkout.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -37,6 +38,11 @@ const routes = [
         path: '/cart',
         name: 'Cart',
         component: Cart
+      },
+      {
+        path: '/checkout',
+        name: 'Checkout',
+        component: Checkout
       },
       
     ]
