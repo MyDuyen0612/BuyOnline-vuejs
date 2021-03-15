@@ -33,32 +33,12 @@
 <script>
 import InputSearch from '../components/InputSearch.vue';
 import Menuuser from "../components/Memuuser.vue";
-
 export default {
   name: "Home",
   data() {
     return {
       isActive: false,
-      products: [
-        {
-          title: "Áo Thun",
-          color: "green",
-          price: 2500000,
-          src: require("../assets/img/ao2.jpg"),
-        },
-        {
-          title: "Áo Thun",
-          color: "blue",
-          price: 300000,
-          src: require("../assets/img/ao2.jpg"),
-        },
-        {
-          title: "Áo Thun",
-          color: "pink",
-          price: 500000,
-          src: require("../assets/img/ao2.jpg"),
-        },
-      ],
+     
     };
   },
   components: {

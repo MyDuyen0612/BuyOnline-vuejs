@@ -3,6 +3,7 @@
     <b-row>
       <Carousel />
     </b-row>
+
     <b-row>    
       <Product
           v-for="product in products"
@@ -23,24 +24,18 @@ export default {
       isActive: true,
      products: [
         {
-          title: "Áo Thun",
+          title: "Ao dep",
           color: "green",
           price: 2500000,
-          src: require("../assets/img/ao2.jpg"),
+          src: require("../assets/img/1.jpg"),
         },
         {
-          title: "Áo Thun",
+          title: "ap dep",
           color: "blue",
           price: 300000,
-          src: require("../assets/img/ao2.jpg"),
+          src: require("../assets/img/1.jpg"),
         },
-        {
-          title: "Áo Thun",
-          color: "pink",
-          price: 500000,
-          src: require("../assets/img/ao2.jpg"),
-        },
-      ],
+    ],
     };
   },
   methods: {

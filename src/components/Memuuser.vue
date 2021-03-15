@@ -21,10 +21,11 @@
         Tài khoản
       </b-tooltip>
       <b-tooltip target="button-2" placement="top" variant="light">
-        Sản phẩm yêu thích
+         Sản phẩm yêu thích
       </b-tooltip>
       <b-tooltip  target="button-3" placement="top" variant="light" >
-        Giỏ hàng</b-tooltip>
+        Giỏ hàng
+      </b-tooltip>
     </div>
 
     <nav class="mb-3">
@@ -56,6 +57,6 @@ export default {
   margin-bottom: 15px;
 }
 .btn-icon{
-  margin: 0px 10px 0px 10px;
+  margin: 0px 12px 0px 12px;
 }
 </style>

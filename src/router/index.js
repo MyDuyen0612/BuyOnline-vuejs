@@ -9,6 +9,8 @@ import TableUser from '../admin/TableUser.vue'
 import Home from '../user/Index.vue'
 import Register from '../user/register'
 import Cart from '../user/Cart.vue'
+import Transport from '../admin/Transport.vue'
+import Productdetail from '../components/Productdetail.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -23,6 +25,7 @@ const routes = [
         name: 'index',
         component: Home
       },
+      
       {
         path: '/login',
         name: 'Login',
@@ -38,7 +41,11 @@ const routes = [
         name: 'Cart',
         component: Cart
       },
-      
+      {
+        path: 'productdetail',
+        name: 'productdetail',
+        component: Productdetail
+      },
     ]
   },
 
@@ -59,6 +66,11 @@ const routes = [
         path: 'donhang',
         name: 'Orders',
         component: Orders,
+      },
+      {
+        path: 'giaohang',
+        name: 'Transport',
+        component: Transport,
       },
       {
         path: 'user',

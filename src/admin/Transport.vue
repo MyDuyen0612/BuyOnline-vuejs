@@ -1,35 +1,34 @@
 <template>
-<div class="Donhang">
+<div class="transport">
     <div class="row h-100">
       <div class="col-md-8">
-        <h5>Danh sách đơn hàng</h5>
+        <h3>Giao hàng</h3>
         <Inputtable :fields="fields" :items="items" :isAdd="false"/>
       </div>
       <div class="col-md-4">
-      <img src="../assets/img/orders.svg" atl="" class="img-fluid"/>
+      <img src="../assets/img/transport.svg" atl="" class="img-fluid"/>
       </div>
     </div>
-    
 </div>
 </template>
 
 <script>
 import Inputtable from '../components/Inputtable.vue'
   export default {
-    name: 'Donhang',
+    name: 'Transport',
     components:{
-      Inputtable
+     Inputtable
     },
-    data(){
+      data(){
         return {
           items: [
-            { Madh: 'DH01', Tenkh: 'Mỹ Duyên', 'Price': '2500000'},
-            { Madh: 'DH02', Tenkh: 'Mỹ Duyên', 'Price': '1000000'},
+              { Mavc: 'VC01', Tenkh: 'Mỹ Dyên', Price: '2300000', Status: 'Đang vận chuyển'},
+              { Mavc: 'VC02', Tenkh: 'Thành Đạt', Price: '1100000', Status: 'Đang vận chuyển'},
           ],
           fields  : [
             {
-              key: 'Madh',
-              label:"Mã đơn hàng"
+              key: 'Mavc',
+              label:"Mã vận chuyển"
             },
             {
               key: 'Tenkh',
@@ -40,8 +39,8 @@ import Inputtable from '../components/Inputtable.vue'
               label:"Giá"
             },
             {
-              key: 'action',
-              label:"Hành động"
+              key: 'Status',
+              label:"Tình trạng"
             },
           ],
         }
