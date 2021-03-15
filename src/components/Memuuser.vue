@@ -13,13 +13,9 @@
       <b-button id="button-2" variant="light" class="btn-icon">
         <b-icon-suit-heart></b-icon-suit-heart>
       </b-button>
-<<<<<<< HEAD
-      <b-button id="button-3" variant="light">
-          <b-icon icon="cart"></b-icon>
-=======
       <b-button id="button-3" variant="light" to="/cart">
          <b-icon-cart></b-icon-cart>
->>>>>>> a532a00471beb51c0319bf668fab72281ac4a422
+
       </b-button>
      
       <b-tooltip target="button-1" placement="top" variant="light">
@@ -27,17 +23,10 @@
       </b-tooltip>
       <b-tooltip target="button-2" placement="top" variant="light">
          Sản phẩm yêu thích
-<<<<<<< HEAD
       </b-tooltip>
       <b-tooltip target="button-3" placement="top" variant="light">
         Giỏ hàng
       </b-tooltip>
-=======
-      </b-tooltip>
-      <b-tooltip  target="button-3" placement="top" variant="light" >
-        Giỏ hàng
-      </b-tooltip>
->>>>>>> a532a00471beb51c0319bf668fab72281ac4a422
     </div>
 
     <nav class="mb-3">
