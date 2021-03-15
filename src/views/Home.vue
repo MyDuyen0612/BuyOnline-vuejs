@@ -1,19 +1,39 @@
 <template>
   <div class="admin">
-    <div class="vertical-nav bg-white" id="sidebar" :class="isActive == true ? 'active' : ''">
-      <Menuuser />
+    <div
+      class="vertical-nav bg-white"
+      id="sidebar"
+      :class="isActive == true ? 'active' : ''"
+    >
+      <Menuuser :name="userName" />
     </div>
 
-    <div class="page-content p-5" id="content" :class="isActive == true ? 'active' : ''">
-      <nav class="nav">
+    <div
+      class="page-content p-5"
+      id="content"
+      :class="isActive == true ? 'active' : ''"
+    >
+      <nav class="row">
         <button
           id="sidebarCollapse"
           type="button"
           class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
-          @click="activeMenu">
+          @click="activeMenu"
+        >
           <i class="fa fa-bars mr-8"></i>
         </button>
-        <InputSearch />
+        <div class="col-9">
+          <InputSearch />
+        </div>
+        <button
+          id="sidebarCollapse"
+          type="button"
+          class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
+          @click="logOut"
+          v-show="userName != null && userName != ''"
+        >
+          Đăng xuất
+        </button>
       </nav>
       <!-- <img src="../assets/img/home_admin.svg" class="rounded mx-auto d-block" alt="">   -->
       <router-view />
@@ -24,32 +44,13 @@
 <script>
 import InputSearch from "../components/InputSearch.vue";
 import Menuuser from "../components/Memuuser.vue";
-
+import userApi from "../api/userAPi";
 export default {
   name: "Home",
   data() {
     return {
       isActive: false,
-      products: [
-        {
-          title: "Áo Thun",
-          color: "green",
-          price: 2500000,
-          src: require("../assets/img/ao2.jpg"),
-        },
-        {
-          title: "Áo Thun",
-          color: "blue",
-          price: 300000,
-          src: require("../assets/img/ao2.jpg"),
-        },
-        {
-          title: "Áo Thun",
-          color: "pink",
-          price: 500000,
-          src: require("../assets/img/ao2.jpg"),
-        },
-      ],
+      userName: "",
     };
   },
   components: {
@@ -60,6 +61,41 @@ export default {
     activeMenu: function () {
       this.isActive = !this.isActive;
     },
+    logOut: function () {
+      localStorage.removeItem("jwt");
+      this.$router.push({name:"index"});
+      this.userName = "";
+    },
+  },
+  mounted() {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt != null) {
+      const form = new FormData();
+      form.append("jwt", jwt);
+      userApi
+        .profile(form)
+        .then((response) => {
+          this.userName = response.name;
+        })
+        .catch(() => {
+          this.userName = "";
+        });
+    }
+  },
+  updated() {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt != null) {
+      const form = new FormData();
+      form.append("jwt", jwt);
+      userApi
+        .profile(form)
+        .then((response) => {
+          this.userName = response.name;
+        })
+        .catch(() => {
+          this.userName = "";
+        });
+    }
   },
 };
 </script>

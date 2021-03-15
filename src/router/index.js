@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import User from '../views/Home.vue'
 import Admin from '../views/Admin.vue'
 import Productpage from '../admin/Productpage.vue'
@@ -8,6 +9,16 @@ import Orders from '../admin/Orders.vue'
 import TableUser from '../admin/TableUser.vue'
 import Home from '../user/Index.vue'
 import Register from '../user/register'
+import Cart from '../user/Cart.vue'
+
+import Checkout from '../user/Checkout.vue'
+
+import Transport from '../admin/Transport.vue'
+import Productdetail from '../components/Productdetail.vue'
+import Profile from '../components/Profile.vue'
+
+
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,6 +33,7 @@ const routes = [
         name: 'index',
         component: Home
       },
+
       {
         path: 'login',
         name: 'Login',
@@ -31,7 +43,30 @@ const routes = [
         path: 'register',
         name: 'Register',
         component: Register
-      }
+
+      },
+      {
+        path: '/cart',
+        name: 'Cart',
+        component: Cart
+      },
+      {
+
+        path: '/checkout',
+        name: 'Checkout',
+        component: Checkout
+      },
+
+      {
+        path: 'productdetail',
+        name: 'productdetail',
+        component: Productdetail
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: Profile
+      },
 
     ]
   },
@@ -53,6 +88,11 @@ const routes = [
         path: 'donhang',
         name: 'Orders',
         component: Orders,
+      },
+      {
+        path: 'giaohang',
+        name: 'Transport',
+        component: Transport,
       },
       {
         path: 'user',

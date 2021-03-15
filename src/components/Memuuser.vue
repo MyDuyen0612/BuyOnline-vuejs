@@ -2,39 +2,55 @@
   <div class="menuuser">
     <div class="py-4 px-3 mb-4">
       <div class="media-body">
-        <h4 class="m-0 text-center">{{ name }}</h4>
+        <h4 class="m-0 text-center">
+          {{ name == "" || name == null ? "Đăng nhập" : name }}
+        </h4>
       </div>
     </div>
-
     <div class="list-icon d-flex justify-content-center">
-      <b-button id="button-1" variant="light" @click="$router.push('login')">
+      <b-button
+        id="button-1"
+        variant="light"
+        to="/login"
+        v-show="name == '' || name == null"
+      >
+        <b-icon icon="person"></b-icon>
+      </b-button>
+      <b-button
+        id="button-1"
+        variant="light"
+        to="/profile"
+        v-show="name != '' && name != null"
+      >
         <b-icon icon="person"></b-icon>
       </b-button>
       <b-button id="button-2" variant="light" class="btn-icon">
-        <b-icon icon="suit-heart"></b-icon>
-      </b-button>
-      <b-button id="button-3" variant="light">
-        <b-icon icon="cart"></b-icon>
+        <b-icon-suit-heart></b-icon-suit-heart>
       </b-button>
 
-      <b-tooltip target="button-1" placement="top" variant="light">
+      <b-button id="button-3" variant="light" to="/cart">
+        <b-icon-cart></b-icon-cart>
+      </b-button>
+
+      <b-tooltip target="button-1" variant="light" placement="top">
         Tài khoản
       </b-tooltip>
-      <b-tooltip target="button-2" placement="top" variant="light">
+      <b-tooltip target="button-2" variant="light" placement="top">
         Sản phẩm yêu thích
       </b-tooltip>
-      <b-tooltip target="button-3" placement="top" variant="light">
+      <b-tooltip target="button-3" variant="light" placement="top">
         Giỏ hàng</b-tooltip
       >
     </div>
 
     <nav class="mb-3">
       <b-nav vertical>
-        <b-nav-item to="/">NEW ARRIVALS</b-nav-item>
-        <b-nav-item to="/register">ĐĂNG KÝ</b-nav-item>
-        <b-nav-item to="/admin/user">XEM DANH SÁCH THÀNH VIÊN</b-nav-item>
-        <b-nav-item>ĐỒ ĐÔI</b-nav-item>
-        <b-nav-item>ÁO KHOÁC</b-nav-item>
+        <b-nav-item to="/" class="item">NEW ARRIVALS</b-nav-item>
+        <b-nav-item to="/admin/user" class="item"
+          >XEM DANH SÁCH THÀNH VIÊN</b-nav-item
+        >
+        <b-nav-item class="item">ĐỒ ĐÔI</b-nav-item>
+        <b-nav-item class="item">ÁO KHOÁC</b-nav-item>
       </b-nav>
     </nav>
   </div>
@@ -43,27 +59,39 @@
 <script>
 export default {
   name: "Menuuser",
-  data() {
-    return {
-      name: "",
-    };
-    
+  props: {
+    name: String,
   },
- 
+  data() {
+    return {};
+  },
 };
 </script>
 <style  scoped>
 .nav-item > .nav-link {
-  color: darkslategrey;
+  color: black;
   text-align: center;
 }
 .nav-item > .nav-link:hover {
-  color: rgb(161, 158, 158);
+  color: black;
+
+  box-shadow: 10px 10px 5px ghostwhite;
 }
 .list-icon {
   margin-bottom: 15px;
 }
+
 .btn-icon {
-  margin: 0px 10px 0px 10px;
+  margin: 0px 12px 0px 12px;
+}
+.item {
+  font-size: 15px;
+  color: black;
+  transition-property: width;
+  transition-duration: 2s;
+}
+.item:hover {
+  font-size: 20px;
+ 
 }
 </style>

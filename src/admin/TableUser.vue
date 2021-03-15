@@ -1,6 +1,6 @@
 <template>
   <div>
-    <inputtable :fields="dataTable" :items="items" />
+    <inputtable :items="items" :isAdd="false"/>
   </div>
 </template>
 
@@ -11,8 +11,8 @@ export default {
   components: { Inputtable },
   data() {
     return {
-      fields: ["name", "email", "userName"],
-      items: {},
+      fields: [],
+      items: [],
     };
   },
   created() {

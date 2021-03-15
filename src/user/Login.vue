@@ -2,12 +2,12 @@
   <div>
     <b-container class="login">
       <b-row align-h="center" class="mt-5">
-        <b-col cols="5">
+        <b-col cols="12">
           <h3>Login</h3>
           <b-alert :show="messageAlter.danger.show" variant="danger">{{
             messageAlter.danger.message
           }}</b-alert>
-          <b-form  @reset="onReset" v-if="show" @submit="onSubmit" >
+          <b-form @reset="onReset" v-if="show" @submit="onSubmit">
             <b-form-group
               id="input-group-1"
               label="Username:"
@@ -18,8 +18,8 @@
                 v-model="form.userName"
                 type="text"
                 placeholder="Enter Username"
-                required
-              ></b-form-input>
+              >
+              </b-form-input>
             </b-form-group>
 
             <b-form-group
@@ -51,8 +51,7 @@
                   type="submit"
                   variant="primary"
                   v-show="!messageAlter.showLoad"
-                  
-                  >Submit</b-button
+                  >Đăng nhập</b-button
                 >
                 <b-button
                   variant="primary"
@@ -62,10 +61,12 @@
                   <b-spinner small type="grow"></b-spinner>
                   Loading...
                 </b-button>
-                <b-button type="reset" variant="danger">Reset</b-button>
               </div>
               <div>
-                <a href="#" v-b-modal.modal-1>Forgot Password</a>
+               <b-button variant="warning">Quên mật khẩu</b-button>
+              </div>
+              <div>
+                <b-button to="register" variant="info">Đăng ký</b-button>
               </div>
             </div>
           </b-form>
@@ -111,7 +112,7 @@ export default {
         .login(this.form)
         .then((response) => {
           localStorage.jwt = response.jwt;
-          this.$router.push("/");
+          this.$router.push({ name: "index" });
         })
         .catch((error) => {
           this.messageAlter.showLoad = false;
