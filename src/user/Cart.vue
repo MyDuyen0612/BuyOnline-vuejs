@@ -124,5 +124,7 @@ export default {
 .thumbnail {
   margin-right: 20px;
 }
+
+
 </style>
 
