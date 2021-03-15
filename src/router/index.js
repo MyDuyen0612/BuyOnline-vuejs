@@ -23,16 +23,16 @@ const routes = [
         component: Home
       },
       {
-        path: '/login',
+        path: 'login',
         name: 'Login',
-        component:  Login
+        component: Login
       },
       {
         path: 'register',
         name: 'Register',
         component: Register
       }
-      
+
     ]
   },
 
@@ -47,7 +47,7 @@ const routes = [
       {
         path: 'sanpham',
         name: 'Productpage',
-        component:  Productpage,
+        component: Productpage,
       },
       {
         path: 'donhang',

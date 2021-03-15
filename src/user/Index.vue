@@ -39,6 +39,26 @@ export default {
           color: "pink",
           price: 500000,
           src: require("../assets/img/ao2.jpg"),
+        },{
+          title: "Áo Thun",
+          color: "pink",
+          price: 500000,
+          src: require("../assets/img/ao2.jpg"),
+        },{
+          title: "Áo Thun",
+          color: "pink",
+          price: 500000,
+          src: require("../assets/img/ao2.jpg"),
+        },{
+          title: "Áo Thun",
+          color: "pink",
+          price: 500000,
+          src: require("../assets/img/ao2.jpg"),
+        },{
+          title: "Áo Thun",
+          color: "pink",
+          price: 500000,
+          src: require("../assets/img/ao2.jpg"),
         },
       ],
     };

@@ -56,7 +56,11 @@
             </b-form-group>
             <div class="d-flex justify-content-between">
               <div>
-                <b-button type="submit" variant="primary">Submit</b-button>
+                <b-button type="submit" variant="primary">Submit
+                  <div class="spinner-border text-success" role="status" v-show="isActive">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </b-button>
               </div>
               <div>
                 <b-button type="reset" variant="danger">Reset</b-button>
@@ -93,19 +97,27 @@ export default {
         name: false,
         userName: false,
       },
+      isActive: false,
     };
   },
   methods: {
     async onSubmit(event) {
       event.preventDefault();
-
+      this.isActive = !this.isActive;
       await userApi
         .register(this.form)
         .then((response) => {
-          console.log(response);
+          this.isActive = !this.isActive;
+          if (response != null) {
+            alert("Bạn đăng ký thành công");
+          } else {
+            alert("Bạn đăng ký không thành công");
+          }
         })
         .catch((error) => {
           console.log(error.response);
+          alert("Bạn đăng ký không thành công");
+          this.isActive = !this.isActive;
         });
     },
     onReset(event) {

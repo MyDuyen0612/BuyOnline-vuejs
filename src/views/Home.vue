@@ -1,25 +1,16 @@
 <template>
-   <div class="admin">
-    <div
-      class="vertical-nav bg-white"
-      id="sidebar"
-      :class="isActive == true ? 'active' : ''"
-    >
+  <div class="admin">
+    <div class="vertical-nav bg-white" id="sidebar" :class="isActive == true ? 'active' : ''">
       <Menuuser />
     </div>
 
-    <div
-      class="page-content p-5"
-      id="content"
-      :class="isActive == true ? 'active' : ''"
-    >
+    <div class="page-content p-5" id="content" :class="isActive == true ? 'active' : ''">
       <nav class="nav">
         <button
           id="sidebarCollapse"
           type="button"
           class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
-          @click="activeMenu"
-        >
+          @click="activeMenu">
           <i class="fa fa-bars mr-8"></i>
         </button>
         <InputSearch />
@@ -31,7 +22,7 @@
 </template>
 
 <script>
-import InputSearch from '../components/InputSearch.vue';
+import InputSearch from "../components/InputSearch.vue";
 import Menuuser from "../components/Memuuser.vue";
 
 export default {
@@ -73,7 +64,7 @@ export default {
 };
 </script>
 
-<style  scoped>
+<style scoped>
 .vertical-nav {
   min-width: 17rem;
   width: 17rem;
