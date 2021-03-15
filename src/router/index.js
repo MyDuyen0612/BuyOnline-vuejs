@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import User from '../views/Home.vue'
 import Admin from '../views/Admin.vue'
 import Productpage from '../admin/Productpage.vue'
@@ -11,6 +12,8 @@ import Register from '../user/register'
 import Cart from '../user/Cart.vue'
 import Transport from '../admin/Transport.vue'
 import Productdetail from '../components/Productdetail.vue'
+import Profile from '../components/Profile.vue'
+
 
 Vue.use(VueRouter)
 
@@ -46,6 +49,11 @@ const routes = [
         path: 'productdetail',
         name: 'productdetail',
         component: Productdetail
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: Profile
       },
     ]
   },
