@@ -1,6 +1,6 @@
 <template>
   <div>
-    <inputtable :items="items" :isAdd="false"/>
+    <inputtable :items="items" :isAdd="false" />
   </div>
 </template>
 
@@ -41,5 +41,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

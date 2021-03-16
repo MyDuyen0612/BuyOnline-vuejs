@@ -1,23 +1,25 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+//User
 import User from '../views/Home.vue'
-import Admin from '../views/Admin.vue'
-import Productpage from '../admin/Productpage.vue'
 import Login from '../user/Login.vue'
 import Orders from '../admin/Orders.vue'
-import TableUser from '../admin/TableUser.vue'
 import Home from '../user/Index.vue'
 import Register from '../user/register'
 import Cart from '../user/Cart.vue'
-
-import Checkout from '../user/Checkout.vue'
-
-import Transport from '../admin/Transport.vue'
 import Productdetail from '../components/Productdetail.vue'
 import Profile from '../components/Profile.vue'
 
-
+//Admin
+import Admin from '../views/Admin.vue'
+import Productpage from '../admin/product/Productpage.vue'
+import TableUser from '../admin/TableUser.vue'
+import Category from'../admin/category/Category.vue'
+import Checkout from '../user/Checkout.vue'
+import Transport from '../admin/Transport.vue'
+import Addproduct from "../admin/product/Addproduct.vue"
+import AddCategory from '../admin/category/AddCategory.vue'
 
 Vue.use(VueRouter)
 
@@ -27,8 +29,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: User,
-    children: [
-      {
+    children: [{
         path: '',
         name: 'index',
         component: Home
@@ -78,8 +79,7 @@ const routes = [
     name: 'Admin',
     component: Admin,
     redirect: '/admin/sanpham',
-    children: [
-      {
+    children: [{
         path: 'sanpham',
         name: 'Productpage',
         component: Productpage,
@@ -95,10 +95,26 @@ const routes = [
         component: Transport,
       },
       {
+        path: 'addproduct',
+        name: 'addproduct',
+        component: Addproduct,
+      },
+      {
         path: 'user',
         name: 'User',
         component: TableUser
       },
+      {
+        path:'danhmuc',
+        name:'Category',
+        component: Category,
+      }, 
+      {
+        path: 'addcategory',
+        name: 'addcategory',
+        component: AddCategory,
+      },
+
     ]
   }
 ]

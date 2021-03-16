@@ -73,9 +73,7 @@ export default {
   text-align: center;
 }
 .nav-item > .nav-link:hover {
-  color: black;
-
-  box-shadow: 10px 10px 5px ghostwhite;
+  color: rgb(9, 165, 226);
 }
 .list-icon {
   margin-bottom: 15px;
@@ -83,15 +81,5 @@ export default {
 
 .btn-icon {
   margin: 0px 12px 0px 12px;
-}
-.item {
-  font-size: 15px;
-  color: black;
-  transition-property: width;
-  transition-duration: 2s;
-}
-.item:hover {
-  font-size: 20px;
- 
 }
 </style>

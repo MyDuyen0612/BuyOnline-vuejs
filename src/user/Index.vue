@@ -4,13 +4,13 @@
       <Carousel />
     </b-row>
 
-    <b-row>    
+    <b-row>
       <Product
-          v-for="product in products"
-          :key="product.color"
-          :product="product"
-        />
-    </b-row> 
+        v-for="product in products"
+        :key="product.color"
+        :product="product"
+      />
+    </b-row>
   </b-container>
 </template>
 
@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       isActive: true,
-     products: [
+      products: [
         {
           title: "Ao dep",
           color: "green",
@@ -40,28 +40,32 @@ export default {
           color: "pink1",
           price: 500000,
           src: require("../assets/img/1.jpg"),
-        },{
+        },
+        {
           title: "Áo Thun",
           color: "pink2",
           price: 500000,
           src: require("../assets/img/1.jpg"),
-        },{
+        },
+        {
           title: "Áo Thun",
           color: "pink3",
           price: 500000,
           src: require("../assets/img/1.jpg"),
-        },{
+        },
+        {
           title: "Áo Thun",
           color: "pink4",
           price: 500000,
           src: require("../assets/img/1.jpg"),
-        },{
+        },
+        {
           title: "Áo Thun",
           color: "pink5",
           price: 500000,
           src: require("../assets/img/1.jpg"),
         },
-    ],
+      ],
     };
   },
   methods: {

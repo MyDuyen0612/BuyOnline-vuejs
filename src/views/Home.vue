@@ -63,7 +63,7 @@ export default {
     },
     logOut: function () {
       localStorage.removeItem("jwt");
-      this.$router.push({name:"index"});
+      this.$router.push({ name: "index" });
       this.userName = "";
     },
   },

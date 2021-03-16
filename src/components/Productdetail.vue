@@ -49,7 +49,7 @@ export default {
 };
 </script>
 
-<style  scoped>
+<style scoped>
 .wrapper {
   display: flex;
   align-items: center;
@@ -67,12 +67,12 @@ export default {
   align-items: center;
   border-radius: 10px;
 }
-p{
-    width:280px;
-    font-size: 13px;
-    line-height: 1.4;
-    color:#aaa;
-    margin:20px 0;
+p {
+  width: 280px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #aaa;
+  margin: 20px 0;
 }
 img {
   position: absolute;

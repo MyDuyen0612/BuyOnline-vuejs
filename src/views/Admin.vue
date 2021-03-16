@@ -44,7 +44,6 @@ export default {
   components: {
     Menu,
     Inputsearch,
-    
   },
   methods: {
     activeMenu: function () {

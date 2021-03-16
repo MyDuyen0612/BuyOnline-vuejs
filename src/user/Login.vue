@@ -63,7 +63,7 @@
                 </b-button>
               </div>
               <div>
-               <b-button variant="warning">Quên mật khẩu</b-button>
+                <b-button variant="warning">Quên mật khẩu</b-button>
               </div>
               <div>
                 <b-button to="register" variant="info">Đăng ký</b-button>
