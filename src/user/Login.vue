@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="box">
     <b-container class="login">
       <b-row align-h="center" class="mt-5">
         <b-col cols="12">
@@ -138,7 +138,32 @@ export default {
 </script>
 
 <style scoped>
+body{
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+}
+.box{
+
+    position: relative;
+    left: 50%;    
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 350px;
+    top: 50%;
+    margin-top: 20%;
+    background: rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, .2);
+    border-radius: 20px;
+}
 .login {
-  margin-top: 10%;
+ width: 80%;
+}
+.login  h3{
+ margin-top: 15px
 }
 </style>
