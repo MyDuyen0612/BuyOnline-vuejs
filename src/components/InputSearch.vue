@@ -1,6 +1,6 @@
 <template>
   <div class="search w-100">
-    <b-icon icon="search" @click="search" v-model="inputSearch"></b-icon>
+     <b-icon icon="search" ></b-icon> 
     <input
       type="text"
       class="input-search"

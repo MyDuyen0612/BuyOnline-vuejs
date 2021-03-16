@@ -50,7 +50,7 @@
           >XEM DANH SÁCH THÀNH VIÊN</b-nav-item
         >
         <b-nav-item class="item">ĐỒ ĐÔI</b-nav-item>
-        <b-nav-item class="item">ÁO KHOÁC</b-nav-item>
+        <b-nav-item class="item">PHỤ KIỆN</b-nav-item>
       </b-nav>
     </nav>
   </div>
