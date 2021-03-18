@@ -3,7 +3,7 @@
     <div class="row h-100">
       <div class="col-md-8">
         <h5>Danh sách sản phẩm</h5>
-        <Inputtable :items="items" :fields="fields" style="z-index: 2" :link="link"/>
+        <Inputtable :items="category" :fields="fields" style="z-index: 2" :link="link"/>
       </div>
       <div class="col-md-4">
         <img
@@ -28,15 +28,8 @@ export default {
   data() {
     return {
       link: 'addcategory',
-        items:[
-            {
-                id:1,
-                name:'adfasdfsdf'
-
-            },{
-                id:2,
-                name:'gegege'
-            }
+        category:[
+            
         ],
         fields: [
         {

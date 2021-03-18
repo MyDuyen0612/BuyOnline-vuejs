@@ -3,7 +3,7 @@
     <div class="row h-100">
       <div class="col-md-8">
         <h5>Danh sách sản phẩm</h5>
-        <Inputtable :items="items" :fields="fields" style="z-index: 2" :link="link"/>
+        <Inputtable :items="product" :fields="fields" style="z-index: 2" :link="link"/>
       </div>
       <div class="col-md-4">
         <img
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import productAPI from '../../api/productAPI'
 import Inputtable from "../../components/Inputtable.vue";
 export default {
   name: "Product",
@@ -27,24 +28,20 @@ export default {
   data() {
     return {
       link: 'addproduct',
-      items: [
-        { Masp: "sp01", Tensp: "Áo khoăc", Price: "2500000" },
-        { Masp: "sp02", Tensp: "Áo thun", Price: "2500000" },
-        { Masp: "sp03", Tensp: "Áo len", Price: "2500000" },
-        { Masp: "sp04", Tensp: "Quần dài", Price: "2500000" },
-        { Masp: "sp05", Tensp: "Váy dài", Price: "2500000" },
+      product: [
+    
       ],
       fields: [
         {
-          key: "Masp",
+          key: "id",
           label: "Mã sản phẩm",
         },
         {
-          key: "Tensp",
+          key: "name",
           label: "Tên sản phẩm",
         },
         {
-          key: "Price",
+          key: "price",
           label: "Giá",
         },
         {
@@ -61,6 +58,14 @@ export default {
     };
   },
   methods: {},
+  mounted(){
+      productAPI.getAll().then((response)=>{
+          this.product = response;
+          // console.log(this.product);
+      }).catch((error)=>{
+          console.log(error);
+      });
+  }
 };
 </script>
 

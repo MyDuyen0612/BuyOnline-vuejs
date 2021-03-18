@@ -7,29 +7,32 @@
             <li v-for="error in errors" :key="error">{{ error }}</li>
           </ul>
         </p>
-
-        <b-form-group
-          id="name"
-          label="Tên danh mục:"
-          label-for="name"
-        >
-          <b-form-input
-            id="name"
-            v-model="name"
-            name="name"
-            type="text"
-            placeholder="Nhập tên danh mục"
-            trim
-          ></b-form-input>
-        </b-form-group>
-        <b-button type="submit" variant="primary">Submit</b-button>
+        <b-row>
+          <b-col>
+            <b-form-group
+              id="name"
+              label="Tên danh mục:"
+              label-for="name"
+            >
+              <b-form-input
+                id="name"
+                v-model="name"
+                name="name"
+                type="text"
+                placeholder="Nhập tên danh mục"
+                trim
+              ></b-form-input>
+            </b-form-group>
+            <b-button type="submit" variant="primary">Submit</b-button>
+          </b-col>
+        </b-row>
       </b-form>
     </div>
 </template>
 
 <script>
 export default {
-  name: "Ađproduct",
+  name: "Addproduct",
   data() {
     return {
       errors: [],
