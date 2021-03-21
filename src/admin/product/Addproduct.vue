@@ -199,9 +199,8 @@
 </template>
 
 <script>
-import axios from'axios';
 import categoryAPI from "../../api/categoryAPI";
-// import productAPI from "../../api/productAPI";
+import productAPI from "../../api/productAPI";
 export default {
   name: "Addproduct",
   data() {
@@ -277,22 +276,16 @@ export default {
          formdata.append("file",this.image[index]);
          
        }
-
-        axios.post("http://localhost:8081/api/product",formdata).then((response)=>{
-          alert("thanh cong"+ response);
-        }).catch((error)=>{
-          console.log(error.response)
-        })
-        // productAPI
-        //   .save(formdata)
-        //   .then((response) => {
-        //     alert("thanh cong");
-        //     console.log(response)
-        //   })
-        //   .catch((error) => {
-        //     alert("that bai");
-        //     console.log(error.response);
-        //   });
+        productAPI
+          .save(formdata)
+          .then((response) => {
+            alert("thanh cong");
+            console.log(response)
+          })
+          .catch((error) => {
+            alert("that bai");
+            console.log(error.response);
+          });
       }
       this.errors = [];
 
