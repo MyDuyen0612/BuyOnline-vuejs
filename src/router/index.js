@@ -12,19 +12,23 @@ import Productdetail from '../components/Productdetail.vue'
 import Profile from '../components/Profile.vue'
 
 //Admin
-import Admin from '../views/Admin.vue'
-import Productpage from '../admin/product/Productpage.vue'
-import TableUser from '../admin/TableUser.vue'
-import Category from'../admin/category/Category.vue'
-import Checkout from '../user/Checkout.vue'
-import Transport from '../admin/Transport.vue'
-import Addproduct from "../admin/product/Addproduct.vue"
-import AddCategory from '../admin/category/AddCategory.vue'
+const Admin = () =>import ('../views/Admin.vue')
+const Productpage = () => import( '../admin/product/Productpage.vue')
+const TableUser = () => import('../admin/TableUser.vue')
+const Category = () => import('../admin/category/Category.vue')
+const Checkout = () => import( '../user/Checkout.vue')
+const Transport = () => import( '../admin/Transport.vue')
+const Addproduct = () => import( "../admin/product/Addproduct.vue")
+const AddCategory = () => import( '../admin/category/AddCategory.vue')
 
 Vue.use(VueRouter)
 
 const routes = [
   //User
+  {
+    path: '/test',
+    component: () => import('../admin/test.vue')
+  },
   {
     path: '/',
     name: 'Home',
