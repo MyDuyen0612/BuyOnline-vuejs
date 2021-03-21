@@ -25,10 +25,7 @@ Vue.use(VueRouter)
 
 const routes = [
   //User
-  {
-    path: '/test',
-    component: () => import('../admin/test.vue')
-  },
+ 
   {
     path: '/',
     name: 'Home',

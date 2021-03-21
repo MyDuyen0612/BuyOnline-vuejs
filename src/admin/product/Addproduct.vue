@@ -2,14 +2,6 @@
     <div class="addproduct">
       <h3 class="text-center text-primary">Thêm sản phẩm</h3>
       <b-form @submit="submit" >
-        <b-alert :show="errors.length>-1?false:true" variant="danger">
-        <p v-if="errors.length">
-          <b>Please correct the following error(s):</b>
-          <ul>
-            <li v-for="error in errors" :key="error">{{ error }}</li>
-          </ul>
-        </p>
-        </b-alert>
         <b-container fluid>
           <b-row>
             <b-col >
@@ -25,6 +17,7 @@
                       v-model="product.name"
                       name="name"
                       type="text"
+                      required
                       placeholder="Nhập tên sản phẩm"
                       trim
                     ></b-form-input>
@@ -38,13 +31,15 @@
                     label="Danh mục :"
                     label-for="name" 
                   >
-                      <b-form-select v-model="selectCategory" size="sm" class="mt-3">
+                      <b-form-select v-model="selectCategory" size="sm" class="mt-3"  required>
                         <b-form-select-option v-for="(itemCategory,index) in categorys" :key="index" :value="itemCategory">{{itemCategory.name}}</b-form-select-option>
                       </b-form-select>
                   </b-form-group>
-                  <button @click="themCategory"> Thêm danh mục</button>
+                 
+                    <b-button variant="primary" @click="themCategory">Thêm danh mục</b-button>
+                 
                   <div v-for="(itemCategory,index) in product.category" :key="index">
-                      {{itemCategory.name}}
+                     {{itemCategory.name}}
                   </div>
                 </b-col>
               </b-row>
@@ -57,6 +52,7 @@
                     type="number"
                     name="price"
                     placeholder="Nhập giá sản phẩm"
+                    required
                     min="50000"
                   ></b-form-input>
                 </b-form-group>
@@ -70,6 +66,7 @@
                     type="number"
                     name="discount"
                     placeholder="Nhập giá khuyến mãi"
+                    required
                     min="5000"
                   ></b-form-input>
                 </b-form-group>
@@ -82,6 +79,7 @@
                         v-model="product.shortIntroduction"
                         type="text"
                         placeholder="Mô tả ngắn"
+                        required
                         rows="3"
                         max-rows="6"
                       ></b-form-textarea>
@@ -94,6 +92,7 @@
                         v-model="product.introduce"
                         type="text"
                         placeholder="Mô tả"
+                        required
                         rows="3"
                         max-rows="6"
                       ></b-form-textarea>
@@ -127,7 +126,7 @@
                     </b-form-group>
                     </b-col>   
                     <b-col>               
-                        <b-button variant="danger" @click="deleteColor(indexColor)" style="margin-top:2em">Xoá kích thước</b-button>    
+                        <b-button variant="danger" @click="deleteColor(indexColor)" style="margin-top:2em">Xoá màu sắc</b-button>    
                     </b-col>
                    </b-row>
                    
@@ -143,7 +142,7 @@
                     <b-col >          
                       <b-form-group
                         id="input-size"
-                        label="Tên số lượng:"
+                        label="Tên Size:"
                         label-for="input-size"
                       >
                       
@@ -158,7 +157,7 @@
                     
                     <b-col><b-form-group
                         id="input-soluong"
-                        label="Số lượng:"
+                        label="Số lượng của size:"
                         label-for="input-soluong"
                       >
                       <b-form-input
@@ -171,23 +170,21 @@
                     </b-form-group>
                   </b-col>
                    <b-col >
-                      <b-button variant="danger" @click="deleteSize(indexSize,indexColor)" style="margin-top:2em">Xoá màu sắc</b-button>
+                      <b-button variant="danger" @click="deleteSize(indexSize,indexColor)" style="margin-top:2em">Xoá size</b-button>
                     </b-col>
                 </b-row>
                 <b-row>
                 <b-col> 
-                <b-button variant="primary" @click="newSize(indexColor)">Thêm màu sắc</b-button>
+                <b-button variant="primary" @click="newSize(indexColor)">Thêm Size</b-button>
                 
                 </b-col>
                 </b-row>
                 </b-container>
                
-                
-              
               </b-row>
               <b-row class="mt-3">
                   <b-col>
-                      <b-button variant="primary" @click="newColor()">Thêm kích thước</b-button>
+                      <b-button variant="primary" @click="newColor()">Thêm màu sắc</b-button>
                   </b-col>
               </b-row>
             </b-col>
@@ -205,7 +202,6 @@ export default {
   name: "Addproduct",
   data() {
     return {
-      errors: [],
       image: [],
       product: {
         name: "",
@@ -268,12 +264,12 @@ export default {
         this.product.price &&
         this.product.discount &&
         this.product.shortIntroduction &&
-        this.product.introduce 
+        this.product.introduce && this.product.category
       ) {
         const formdata = new FormData();
         formdata.append("product",JSON.stringify(this.product));
-       for (let index = 0; index < this.image.length; index++) {
-         formdata.append("file",this.image[index]);
+        for (let index = 0; index < this.image.length; index++) {
+        formdata.append("file",this.image[index]);
          
        }
         productAPI
@@ -287,35 +283,7 @@ export default {
             console.log(error.response);
           });
       }
-      this.errors = [];
-
-      if (!this.product.name) {
-        this.errors.push("Nhập tên sản phẩm");
-      }
-      if (!this.product.price) {
-        this.errors.push("Nhập giá");
-      }
-      if (!this.product.discount) {
-        this.errors.push("Nhập mã giảm giá");
-      }
-      if (!this.product.color[0].name) {
-        this.errors.push("Nhập màu sản phẩm");
-      }
-      if (!this.product.color[0].size[0].name) {
-        this.errors.push("Nhập size sản phẩm");
-      }
-      if (!this.product.color[0].size[0].amount) {
-        this.errors.push("Nhập số lượng của size");
-      }
-      if (!this.product.shortIntroduction) {
-        this.errors.push("Nhập mô tả ngắn");
-      }
-      if (!this.product.introduce) {
-        this.errors.push("Nhập mô tả");
-      }
-      if (this.product.color[0].image) {
-        this.errors.push("Chọn hình cho màu sản phẩm");
-      }
+     
     },
     imageChange: function (indexColor, event) {
       for (let index = 0; index < event.target.files.length; index++) {
@@ -344,15 +312,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn-addsp {
-  display: block;
-  background-color: rgb(9, 158, 9);
-  border: 1px solid white;
-  border-radius: 0.2rem;
-  height: 35px;
-  color: white;
-  margin-top: 2%;
-}
 #introduce {
   margin-top: 2%;
 }
