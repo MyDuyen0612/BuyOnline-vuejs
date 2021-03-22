@@ -2,9 +2,9 @@
   <div class="col-md-3 col-sm-6 mt-5">
     <div class="product-grid">
       <div class="product-image">
-        <a href="#">
-          <img class="pic-1" :src="product.src" />
-          <img class="pic-2" :src="product.src" />
+        <a href="#" v-for="(itemColor,indexColor) in product.color" :key="indexColor">
+          <img class="pic-1" :src="product.color[indexColor].image[0].fileDownloadUri" />
+          <img class="pic-2" :src="product.color[indexColor].image[0].fileDownloadUri" />
         </a>
         <ul class="social">
           <li>
@@ -23,8 +23,8 @@
             ></a>
           </li>
         </ul>
-        <span class="product-new-label">Sale</span>
-        <span class="product-discount-label">20%</span>
+        <!-- <span class="product-new-label">Sale</span> -->
+        <span class="product-discount-label">{{ product.discount }}</span>
       </div>
       <ul class="rating">
         <li class="fa fa-star"></li>
@@ -35,7 +35,7 @@
       </ul>
       <div class="product-content">
         <h3 class="title">
-          <a href="#">{{ product.title }}</a>
+          <a href="#">{{ product.name }}</a>
         </h3>
         <div class="price">
           {{ product.price }}

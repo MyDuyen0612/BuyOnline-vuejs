@@ -202,7 +202,7 @@ export default {
   name: "Addproduct",
   data() {
     return {
-      image: [],
+      image: [], //file
       product: {
         name: "",
         price: 0,
@@ -219,7 +219,7 @@ export default {
                 amount: 1,
               },
             ],
-            image: [],
+            image: [], //ten file thuoc color
           },
         ],
       },

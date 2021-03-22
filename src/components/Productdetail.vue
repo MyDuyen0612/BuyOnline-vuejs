@@ -6,13 +6,9 @@
           <div class="outer">
             <div class="content">
               <span class="bg">Khuyến mãi</span>
-              <h1>Tên sản phẩm</h1>
+              <h1></h1>
               <p>
-                ÁO SƠ MI NAM THỜI TRANG GEREFL DÀI TAY NGẮN TAY KẺ CARO MÙA HÈ
-                PHONG CÁCH HÀN QUỐC QUẦN ÁO NAM CHẤT LIỆU HÀNG QUẢNG CHÂU CAO
-                CẤP G01. Lưu ý: Sản phẩm váy, áo, quần cắt may có thể chênh lệch
-                1 – 2 (cm). Do ánh sáng và thiết bị chụp hình, màu sắc hình ảnh
-                và thực tế có thể có chênh lệch nhỏ.
+                {{product.introduce}}
               </p>
               <h4>Color:</h4>
               <div class="colors-wrap">
@@ -29,13 +25,13 @@
                 <span class="size">XL</span>
               </div>
               <div class="button">
-                <a href="#">200.000</a
+                <a href="#">{{product.price}}</a
                 ><a href="#" class="cart-btn"
                   ><i class="fa fa-plus cart-icon"></i> Thêm vào giỏ</a
                 >
               </div>
             </div>
-            <img src="../assets/img/1.jpg" />
+            <img :src="product.image" />
           </div>
         </div>
       </b-col>
@@ -46,6 +42,7 @@
 <script>
 export default {
   name: "Productdetail",
+  props: ['product'],
 };
 </script>
 
