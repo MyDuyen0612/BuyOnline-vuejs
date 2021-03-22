@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import productAPI from '../../api/productAPI'
+import productAPI from '../../api/productAPI';
 import Inputtable from "../../components/Inputtable.vue";
 export default {
   name: "Product",
@@ -61,7 +61,7 @@ export default {
   mounted(){
       productAPI.getAll().then((response)=>{
           this.product = response;
-          // console.log(this.product);
+          // console.log(response);
       }).catch((error)=>{
           console.log(error);
       });

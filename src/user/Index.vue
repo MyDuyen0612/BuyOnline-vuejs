@@ -7,7 +7,7 @@
     <b-row>
       <Product
         v-for="product in products"
-        :key="product.color"
+        :key="product.id"
         :product="product"
       />
     </b-row>
@@ -17,55 +17,13 @@
 <script>
 import Carousel from "../components/Carousel.vue";
 import Product from "../components/Product.vue";
+import productAPI from '../api/productAPI';
 export default {
   components: { Carousel, Product },
   data() {
     return {
       isActive: true,
-      products: [
-        {
-          title: "Ao dep",
-          color: "green",
-          price: 2500000,
-          src: require("../assets/img/1.jpg"),
-        },
-        {
-          title: "ap dep",
-          color: "blue",
-          price: 300000,
-          src: require("../assets/img/1.jpg"),
-        },
-        {
-          title: "Áo Thun",
-          color: "pink1",
-          price: 500000,
-          src: require("../assets/img/1.jpg"),
-        },
-        {
-          title: "Áo Thun",
-          color: "pink2",
-          price: 500000,
-          src: require("../assets/img/1.jpg"),
-        },
-        {
-          title: "Áo Thun",
-          color: "pink3",
-          price: 500000,
-          src: require("../assets/img/1.jpg"),
-        },
-        {
-          title: "Áo Thun",
-          color: "pink4",
-          price: 500000,
-          src: require("../assets/img/1.jpg"),
-        },
-        {
-          title: "Áo Thun",
-          color: "pink5",
-          price: 500000,
-          src: require("../assets/img/1.jpg"),
-        },
-      ],
+      products: [],
     };
   },
   methods: {
@@ -73,6 +31,14 @@ export default {
       this.isActive = !this.isActive;
     },
   },
+   mounted(){
+      productAPI.getAll().then((response)=>{
+          this.products = response;
+          console.log(this.products);
+      }).catch((error)=>{
+          console.log(error);
+      });
+  }
 };
 </script>
 
