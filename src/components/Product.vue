@@ -3,18 +3,33 @@
   <div class="col-md-3 col-sm-6 mt-5">
     <div class="product-grid">
       <div class="product-image">
-        <a href="#" v-for="(itemColor,indexColor) in product.color" :key="indexColor">
-          <img class="pic-1" :src="product.color[indexColor].image[0].fileDownloadUri" />
-          <img class="pic-2" :src="product.color[indexColor].image[0].fileDownloadUri" />
-        </a>
+        <router-link
+          :to="{ name: 'ProductDetail', params: {url:product.url} }"
+          v-for="(itemColor, indexColor) in product.color"
+          :key="indexColor"
+        >
+          <img
+            class="pic-1"
+            :src="product.color[indexColor].image[0].fileDownloadUri"
+          />
+          <img
+            class="pic-2"
+            :src="product.color[indexColor].image[0].fileDownloadUri"
+          />
+        </router-link>
         <ul class="social">
           <li>
-            <router-link to="/productdetail" data-tip="Xem chi tiết"
+            <router-link
+              :to="{ name: 'ProductDetail', params: {url:product.url} }"
+              data-tip="Xem chi tiết"
               ><i class="fa fa-search"></i
             ></router-link>
           </li>
           <li>
-            <router-link to="" data-tip="Yêu thích"
+            
+            <router-link
+              to="#"
+              data-tip="Yêu thích"
               ><i class="fas fa-heart"></i
             ></router-link>
           </li>
@@ -25,7 +40,7 @@
           </li>
         </ul>
         <!-- <span class="product-new-label">Sale</span> -->
-        <span class="product-discount-label">{{ product.discount }}</span>
+        <span class="product-discount-label"></span>
       </div>
       <ul class="rating">
         <li class="fa fa-star"></li>

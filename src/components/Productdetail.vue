@@ -6,7 +6,7 @@
           <div class="outer">
             <div class="content">
               <span class="bg">Khuyến mãi</span>
-              <h1></h1>
+              <h1>{{product.name}}</h1>
               <p>
                 {{product.introduce}}
               </p>
@@ -25,13 +25,15 @@
                 <span class="size">XL</span>
               </div>
               <div class="button">
-                <a href="#">{{product.price}}</a
+                <a href="#">
+                  {{product.price}}
+                  </a
                 ><a href="#" class="cart-btn"
                   ><i class="fa fa-plus cart-icon"></i> Thêm vào giỏ</a
                 >
               </div>
             </div>
-            <img :src="product.image" />
+            <img  :src="product.color[0].image[0].fileDownloadUri"/>
           </div>
         </div>
       </b-col>
@@ -40,9 +42,52 @@
 </template>
 
 <script>
+import productAPI from'../api/productAPI';
 export default {
   name: "Productdetail",
-  props: ['product'],
+  data(){
+    return {
+      colorActive:{
+
+      },
+      sizeAcive:{
+
+      },
+      product:{
+        name:'',
+        price:0,
+        introduce:'',
+        color:[
+          {
+            name:'',
+            size:[
+            {
+              name:'',
+              amount:0
+            }
+            ],
+          image:[
+            {
+              fileDownloadUri:''
+            }
+          ]
+          
+          }
+        ],
+        
+      }
+    }
+  },
+  mounted(){
+    productAPI.find(
+  this.$route.params.url).then((response)=>{
+    console.log(response);
+    this.product = response;
+    
+  }).catch(()=>{
+    alert("Lỗi")
+  })
+  }
 };
 </script>
 

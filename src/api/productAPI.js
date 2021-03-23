@@ -10,12 +10,16 @@ class ProductApi {
         return axiosClient.post(url, params);
     };
     edit = (params) => {
-        const url = '/Authentication';
+        const url = '/product';
         return axiosClient.post(url, params);
     }
     remove = (params) => {
-        const url = '/profile';
+        const url = '/product';
         return axiosClient.post(url, params);
+    }
+    find = (params) => {
+        const url = '/product/' + params;
+        return axiosClient.get(url);
     }
 }
 const productApi = new ProductApi();
