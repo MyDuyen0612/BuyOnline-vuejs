@@ -59,6 +59,7 @@
   </div>
 </template>
 
+
 <script>
 export default {
   name: "product",
@@ -73,6 +74,7 @@ export default {
   text-align: center;
   padding: 0 0 72px;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
   overflow: hidden;
   position: relative;
   z-index: 1;

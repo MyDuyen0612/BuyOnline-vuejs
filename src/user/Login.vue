@@ -44,9 +44,12 @@
               >
                 <b-form-checkbox value="remeber">Remeber me</b-form-checkbox>
               </b-form-checkbox-group> </b-form-group
-            >&nbsp;
+            >
+
+            <a href="#">Lấy lại password ?</a>
+
             <div class="d-flex justify-content-between">
-              <div>
+              <div class="btn">
                 <b-button
                   type="submit"
                   variant="primary"
@@ -62,10 +65,8 @@
                   Loading...
                 </b-button>
               </div>
-              <div>
-                <b-button variant="warning">Forgot Password?</b-button>
-              </div>
-              <div>
+              
+              <div class="btn">
                 <b-button to="register" variant="info">Signup</b-button>
               </div>
             </div>
@@ -73,12 +74,7 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-modal id="modal-1" title="Forgot Password">
-      <b-img thumbnail fluid src="../assets/img/sad.png" alt="So sad"></b-img>
-      <div>
-        <a href="#">Lấy lại password</a>
-      </div>
-    </b-modal>
+    
   </div>
 </template>
 
@@ -152,7 +148,7 @@ body{
     left: 50%;    
     transform: translate(-50%, -50%);
     width: 60%;
-    height: 350px;
+    height: 370px;
     top: 50%;
     margin-top: 20%;
     background: rgba(0, 0, 0, .1);
@@ -165,5 +161,12 @@ body{
 }
 .login  h3{
  margin-top: 15px
+}
+
+.btn{
+  width:150px;
+  margin-left:10px;
+  margin-right:50px;
+  margin-top:5px;
 }
 </style>
