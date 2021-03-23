@@ -17,6 +17,10 @@ class CategoryApi {
         const url = '/category';
         return axiosClient.post(url, params);
     }
+    find = (params) => {
+        const url = '/category/' + params;
+        return axiosClient.get(url);
+    }
 }
 const categoryApi = new CategoryApi();
 export default categoryApi;
