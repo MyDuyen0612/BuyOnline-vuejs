@@ -1,4 +1,5 @@
 <template>
+<div class="box">
   <div class="col-md-3 col-sm-6 mt-5">
     <div class="product-grid">
       <div class="product-image">
@@ -45,7 +46,12 @@
       </div>
     </div>
   </div>
+</div>
 </template>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="tilt.jquery.js"></script>
+	<script>const tilt = $('.box').tilt({scale: 1.2});</script>
 
 <script>
 export default {
@@ -61,6 +67,7 @@ export default {
   text-align: center;
   padding: 0 0 72px;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
   overflow: hidden;
   position: relative;
   z-index: 1;

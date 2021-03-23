@@ -35,6 +35,7 @@
               <b-form-input
                 id="input-email"
                 v-model="form.email"
+                event:blur
                 :state="(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email)) ? true:false"
                 :formatter="format"
                 type="email"
@@ -81,8 +82,24 @@
                 required
               ></b-form-input>            
             </b-form-group>
+
+            <b-form-group
+              id="password2"
+              label="Re-enter Password:"
+              label-for="input-password2"
+            >
+              <b-form-input
+                id="input-password2"
+                type="password2"
+                v-model="form.password2"
+                placeholder="Enter password"
+                :state="form.password2==form.password"
+                required
+              ></b-form-input>            
+            </b-form-group>
+          
             <div class="d-flex justify-content-between">
-              <div>
+              <div class="btn">
                 <b-button type="submit" variant="primary"
                   >Submit
                   <div
@@ -94,10 +111,10 @@
                   </div>
                 </b-button>
               </div>
-              <div>
+              <div  class="btn">
                 <b-button type="reset" variant="danger">Reset</b-button>
               </div>
-              <div>
+              <div  class="btn">
                 <b-button to="Login" variant="info">Login</b-button>
               </div>
             </div>
@@ -105,12 +122,7 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-modal id="modal-1" title="Forgot Password">
-      <b-img thumbnail fluid src="../assets/img/sad.png" alt="So sad"></b-img>
-      <div>
-        <a href="#">Lấy lại password</a>
-      </div>
-    </b-modal>
+    
   </div>
 </template>
 
@@ -125,6 +137,7 @@ export default {
         name: "",
         userName: "",
         password: "",
+        password2: "",
         email: "",
       },
       validation: {
@@ -214,5 +227,10 @@ body{
 }
 .login  h3{
  margin-top: 15px
+}
+.btn {
+  width:130px;
+  margin-left:5px;
+  margin-right:35px;
 }
 </style>
