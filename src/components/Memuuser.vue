@@ -1,4 +1,4 @@
-<template>
+npm <template>
   <div class="menuuser">
     <div class="py-4 px-3 mb-4">
       <div class="media-body">
@@ -68,6 +68,10 @@ export default {
 };
 </script>
 <style  scoped>
+body{
+  background: black;
+}
+
 .nav-item > .nav-link {
   color: black;
   text-align: center;

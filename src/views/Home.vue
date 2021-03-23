@@ -101,6 +101,9 @@ export default {
 </script>
 
 <style scoped>
+body{
+  background-color: black;
+}
 .vertical-nav {
   min-width: 17rem;
   width: 17rem;

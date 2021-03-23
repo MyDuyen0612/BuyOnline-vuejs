@@ -51,7 +51,7 @@
                   type="submit"
                   variant="primary"
                   v-show="!messageAlter.showLoad"
-                  >Đăng nhập</b-button
+                  >Login</b-button
                 >
                 <b-button
                   variant="primary"
@@ -63,10 +63,10 @@
                 </b-button>
               </div>
               <div>
-                <b-button variant="warning">Quên mật khẩu</b-button>
+                <b-button variant="warning">Forgot Password?</b-button>
               </div>
               <div>
-                <b-button to="register" variant="info">Đăng ký</b-button>
+                <b-button to="register" variant="info">Signup</b-button>
               </div>
             </div>
           </b-form>

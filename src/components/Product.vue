@@ -69,6 +69,8 @@ export default {
 };
 </script>
 
+
+
 <style>
 .product-grid {
   text-align: center;
