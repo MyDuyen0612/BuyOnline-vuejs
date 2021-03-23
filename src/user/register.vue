@@ -35,14 +35,21 @@
               <b-form-input
                 id="input-email"
                 v-model="form.email"
+                :state="
+                  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+                    form.email
+                  )
+                    ? true
+                    : false
+                "
                 event:blur
-                :state="(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email)) ? true:false"
+              
                 :formatter="format"
                 type="email"
                 placeholder="Enter email"
                 required
               ></b-form-input>
-             </b-form-group>
+            </b-form-group>
             <b-form-group id="Name" label="Name:" label-for="input-name">
               <b-form-input
                 id="input-name"
@@ -61,7 +68,7 @@
               <b-form-input
                 id="input-username"
                 v-model="form.userName"
-                :state="form.userName.length > 6" 
+                :state="form.userName.length > 6"
                 :formatter="format"
                 type="text"
                 placeholder="Enter username"
@@ -80,7 +87,7 @@
                 v-model="form.password"
                 placeholder="Enter password"
                 required
-              ></b-form-input>            
+              ></b-form-input>
             </b-form-group>
 
             <b-form-group
@@ -151,12 +158,12 @@ export default {
       success: [],
     };
   },
-  
+
   methods: {
     async onSubmit(event) {
       event.preventDefault();
       this.isActive = !this.isActive;
-      
+
       await userApi.register(this.form).then((response) => {
         this.isActive = !this.isActive;
         if (response != null) {
@@ -170,20 +177,6 @@ export default {
           return;
         }
       });
-      await userApi
-        .register(this.form)
-        .then((response) => {
-          this.success.push("Đăng ký thành công!");
-          console.log(response);
-          this.errors = [];
-          this.onReset(event);
-        })
-        .catch((error) => {
-          this.errors.push(error);
-          console.log(error.response);
-          alert("Bạn đăng ký không thành công");
-          this.isActive = !this.isActive;
-        });
     },
     onReset(event) {
       event.preventDefault();
@@ -194,39 +187,35 @@ export default {
       this.form.username = "";
     },
     format(value) {
-        return value.toLowerCase()
-      }
-   
+      return value.toLowerCase();
+    },
   },
-  
 };
 </script>
 
 <style scoped>
-body{
-    margin: 0;
-    padding: 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    width: 100%;
+body {
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
 }
-.box{
-
-    position: relative;
-    left: 50%;    
-    transform: translate(-50%, -50%);
-    width: 62%;
-    height: 460px;
-    top: 50%;
-    margin-top: 20%;
-
+.box {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 62%;
+  height: 460px;
+  top: 50%;
+  margin-top: 20%;
 }
 .login {
- width: 80%;
+  width: 80%;
 }
-.login  h3{
- margin-top: 15px
+.login h3 {
+  margin-top: 15px;
 }
 .btn {
   width:130px;

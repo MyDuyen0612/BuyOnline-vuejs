@@ -1,10 +1,6 @@
 <template>
   <b-container fluid>
     <b-row>
-      <Carousel />
-    </b-row>
-
-    <b-row>
       <Product
         v-for="product in products"
         :key="product.id"
@@ -15,11 +11,11 @@
 </template>
 
 <script>
-import Carousel from "../components/Carousel.vue";
+import Search from "../api/searchAPI";
 import Product from "../components/Product.vue";
-import productAPI from '../api/productAPI';
+
 export default {
-  components: { Carousel, Product },
+  components: { Product },
   data() {
     return {
       isActive: true,
@@ -31,13 +27,25 @@ export default {
       this.isActive = !this.isActive;
     },
   },
-   mounted(){
-      productAPI.getAll().then((response)=>{
-          this.products = response;
-      }).catch((error)=>{
-          console.log(error);
-      });
+  mounted() {
+    
+      const params = this.$route.params.search;
+    Search.findProduct(params).then((response) => {
+      this.products=response;
+    }).catch((error)=>{
+        console.log(error);
+    });
+
+  },
+  beforeUpdate(){
+      const params = this.$route.params.search;
+    Search.findProduct(params).then((response) => {
+      this.products=response;
+    }).catch((error)=>{
+        console.log(error);
+    });
   }
+
 };
 </script>
 
@@ -93,5 +101,11 @@ body {
   background: linear-gradient(to right, #599fd9, #c2e59c);
   min-height: 100vh;
   overflow-x: hidden;
+}
+.products {
+  display: flex;
+  max-width: 1280px;
+  padding: 25px;
+  margin: 0 auto;
 }
 </style>

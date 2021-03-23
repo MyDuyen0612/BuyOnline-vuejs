@@ -35,6 +35,11 @@ const routes = [
       name: 'index',
       component: Home
     },
+    {
+      path: 'shop',
+      name: 'Shop',
+      component: () => import('../user/Contai')
+    },
 
     {
       path: 'login',
@@ -59,6 +64,11 @@ const routes = [
       component: Checkout
     },
     {
+      path: '/category/:urlCategory',
+      name: 'Category',
+      component: () => import('../user/Category.vue')
+    },
+    {
       path: 'profile',
       name: 'Profile',
       component: Profile
@@ -68,6 +78,12 @@ const routes = [
       name: 'ProductDetail',
       component: Productdetail
     },
+    {
+      path: 'search/:search',
+      name: "search",
+      component: () => import('../user/SearchProduct.vue')
+    }
+
     ]
   },
 

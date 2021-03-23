@@ -26,7 +26,7 @@
               </div>
               <div class="button">
                 <a href="#">
-                  {{product.price}}
+                  {{product.price.toLocaleString()}}
                   </a
                 ><a href="#" class="cart-btn"
                   ><i class="fa fa-plus cart-icon"></i> Thêm vào giỏ</a
@@ -85,7 +85,7 @@ export default {
     this.product = response;
     
   }).catch(()=>{
-    alert("Lỗi")
+    this.$route.push('404')
   })
   }
 };

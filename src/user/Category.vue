@@ -1,10 +1,6 @@
 <template>
   <b-container fluid>
     <b-row>
-      <Carousel />
-    </b-row>
-
-    <b-row>
       <Product
         v-for="product in products"
         :key="product.id"
@@ -15,11 +11,11 @@
 </template>
 
 <script>
-import Carousel from "../components/Carousel.vue";
-import Product from "../components/Product.vue";
-import productAPI from '../api/productAPI';
+import categoryAPI from '../api/categoryAPI';
+import Product from '../components/Product.vue';
+
 export default {
-  components: { Carousel, Product },
+  components: { Product },
   data() {
     return {
       isActive: true,
@@ -31,11 +27,25 @@ export default {
       this.isActive = !this.isActive;
     },
   },
-   mounted(){
-      productAPI.getAll().then((response)=>{
-          this.products = response;
-      }).catch((error)=>{
-          console.log(error);
+  mounted() {
+    categoryAPI
+      .find(this.$route.params.urlCategory)
+      .then((response) => {
+        this.products = response.product;
+        console.log(this.products);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  beforeUpdate(){
+       categoryAPI
+      .find(this.$route.params.urlCategory)
+      .then((response) => {
+        this.products = response.product;
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }
 };
@@ -93,5 +103,11 @@ body {
   background: linear-gradient(to right, #599fd9, #c2e59c);
   min-height: 100vh;
   overflow-x: hidden;
+}
+.products {
+  display: flex;
+  max-width: 1280px;
+  padding: 25px;
+  margin: 0 auto;
 }
 </style>

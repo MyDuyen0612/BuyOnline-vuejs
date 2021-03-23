@@ -5,7 +5,7 @@
       id="sidebar"
       :class="isActive == true ? 'active' : ''"
     >
-      <Menuuser :name="userName" />
+      <Menuuser :name="userName" :category="category"/>
     </div>
 
     <div
@@ -45,12 +45,14 @@
 import InputSearch from "../components/InputSearch.vue";
 import Menuuser from "../components/Memuuser.vue";
 import userApi from "../api/userAPi";
+import categoryAPI from "../api/categoryAPI";
 export default {
   name: "Home",
   data() {
     return {
       isActive: false,
       userName: "",
+      category: [],
     };
   },
   components: {
@@ -68,6 +70,9 @@ export default {
     },
   },
   mounted() {
+    categoryAPI.getAll().then((response)=>{
+      this.category=response
+    })
     const jwt = localStorage.getItem("jwt");
     if (jwt != null) {
       const form = new FormData();
@@ -101,7 +106,7 @@ export default {
 </script>
 
 <style scoped>
-body{
+body {
   background-color: black;
 }
 .vertical-nav {

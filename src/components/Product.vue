@@ -3,7 +3,7 @@
     <div class="product-grid">
       <div class="product-image">
         <router-link
-          :to="{ name: 'ProductDetail', params: {url:product.url} }"
+          :to="{ name: 'ProductDetail', params: { url: product.url } }"
           v-for="(itemColor, indexColor) in product.color"
           :key="indexColor"
         >
@@ -19,16 +19,13 @@
         <ul class="social">
           <li>
             <router-link
-              :to="{ name: 'ProductDetail', params: {url:product.url} }"
+              :to="{ name: 'ProductDetail', params: { url: product.url } }"
               data-tip="Xem chi tiết"
               ><i class="fa fa-search"></i
             ></router-link>
           </li>
           <li>
-            
-            <router-link
-              to="#"
-              data-tip="Yêu thích"
+            <router-link to="#" data-tip="Yêu thích"
               ><i class="fas fa-heart"></i
             ></router-link>
           </li>
@@ -53,8 +50,8 @@
           <a href="#">{{ product.name }}</a>
         </h3>
         <div class="price">
-          {{ product.price }}
-          <span> {{ product.price }}</span>
+          {{ product.price.toLocaleString() }} đ
+          <span> {{ product.discount.toLocaleString() }} đ</span>
         </div>
         <a class="add-to-cart" href="">+ Thêm vào giỏ</a>
       </div>
