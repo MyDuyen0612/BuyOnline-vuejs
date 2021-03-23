@@ -1,10 +1,12 @@
 <template>
   <div class="search w-90">
-    <b-icon icon="search" @click="search" v-model="inputSearch"></b-icon>
+    <b-icon icon="search" @click="search" ></b-icon>
     <input
       type="text"
       class="input-search"
       placeholder="Tìm kiếm sản phẩm, mã sản phẩm ..."
+      @keypress="enter"
+      v-model="inputSearch"
     />
   </div>
 </template>
@@ -21,7 +23,13 @@ export default {
     search() {
       console.log("Test");
     },
+    enter(event){
+      if(event.keyCode==13){
+        this.$router.push({name:'search',params:{search:this.inputSearch}});
+      }
+    }
   },
+  
 };
 </script>
 

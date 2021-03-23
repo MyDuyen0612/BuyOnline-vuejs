@@ -35,6 +35,11 @@ const routes = [
       name: 'index',
       component: Home
     },
+    {
+      path: 'shop',
+      name: 'Shop',
+      component: () => import('../user/Contai')
+    },
 
     {
       path: 'login',
@@ -65,10 +70,20 @@ const routes = [
       component: Productdetail
     },
     {
+      path: '/category/:urlCategory',
+      name: 'Category',
+      component: () => import('../user/Category.vue')
+    },
+    {
       path: 'profile',
       name: 'Profile',
       component: Profile
     },
+    {
+      path: 'search/:search',
+      name: "search",
+      component: () => import('../user/SearchProduct.vue')
+    }
 
     ]
   },

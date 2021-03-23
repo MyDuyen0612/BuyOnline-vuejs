@@ -49,8 +49,16 @@ npm <template>
         <b-nav-item to="/admin/user" class="item"
           >XEM DANH SÁCH THÀNH VIÊN</b-nav-item
         >
-        <b-nav-item class="item">ĐỒ ĐÔI</b-nav-item>
-        <b-nav-item class="item">PHỤ KIỆN</b-nav-item>
+
+        <b-nav-item
+          v-for="(itemCategory, indexCategory) in category"
+          :key="indexCategory"
+          :to="{ name: 'Category', params: {urlCategory:itemCategory.url} }"
+          class="item"
+          v-show="itemCategory.product.length > 0"
+          >{{ itemCategory.name.toUpperCase() }}</b-nav-item
+        >
+        <b-nav-item to="/shop" class="item">CỬA HÀNG</b-nav-item>
       </b-nav>
     </nav>
   </div>
@@ -61,6 +69,7 @@ export default {
   name: "Menuuser",
   props: {
     name: String,
+    category: Array,
   },
   data() {
     return {};
@@ -68,7 +77,7 @@ export default {
 };
 </script>
 <style  scoped>
-body{
+body {
   background: black;
 }
 
