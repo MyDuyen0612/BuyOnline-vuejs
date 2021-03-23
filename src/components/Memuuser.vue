@@ -1,4 +1,4 @@
-npm <template>
+<template>
   <div class="menuuser">
     <div class="py-4 px-3 mb-4">
       <div class="media-body">

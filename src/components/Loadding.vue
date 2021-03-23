@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <div class="container page-loader" v-if="!isloaded">
     <div class="row">
       <div class="col-md-12">
-        <div class="loader7">
+        <div class="loader7" >
           <span class="loader-inner-1"></span>
           <span class="loader-inner-2"></span>
           <span class="loader-inner-3"></span>
@@ -15,14 +15,35 @@
 
 <script>
 export default {
-
-    mounted(){
-        
+  name: 'Loading',
+  data(){
+    return{
+      isloaded: false,
     }
+  },
+   mounted() {
+      document.onreadystatechange = () => {
+        if (document.readyState == "complete") { 
+          this.isloaded = true;
+        } 
+      }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.page-loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  z-index: 999;
+}
 .loader7 {
   width: 100px;
   height: 100px;

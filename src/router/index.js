@@ -58,18 +58,16 @@ const routes = [
       name: 'Checkout',
       component: Checkout
     },
-
-    {
-      path: '/:url',
-      name: 'ProductDetail',
-      component: Productdetail
-    },
     {
       path: 'profile',
       name: 'Profile',
       component: Profile
     },
-
+    {
+      path: '/:url',
+      name: 'ProductDetail',
+      component: Productdetail
+    },
     ]
   },
 

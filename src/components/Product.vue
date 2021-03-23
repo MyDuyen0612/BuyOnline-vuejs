@@ -1,5 +1,4 @@
 <template>
-<div class="box">
   <div class="col-md-3 col-sm-6 mt-5">
     <div class="product-grid">
       <div class="product-image">
@@ -61,22 +60,13 @@
       </div>
     </div>
   </div>
-</div>
 </template>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="tilt.jquery.js"></script>
-	<script>const tilt = $('.box').tilt({scale: 1.2});</script>
-
 <script>
 export default {
   name: "product",
   props: ["product"],
 };
 </script>
-
-
-
 <style>
 .product-grid {
   text-align: center;

@@ -7,4 +7,3 @@
 </template>
 <style>
 </style>
-./components/Carousel.vue./components/Product.vue
