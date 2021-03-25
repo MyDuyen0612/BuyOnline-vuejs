@@ -16,7 +16,7 @@
             >
               <b-form-input
                 id="name"
-                v-model="name"
+                v-model="category.name"
                 name="name"
                 type="text"
                 placeholder="Nhập tên danh mục"
@@ -31,7 +31,10 @@
 </template>
 
 <script>
-  import axios from 'axios'
+
+
+import categoryAPI from'../../api/categoryAPI';
+
 export default {
 
   name: "Addproduct",
@@ -40,35 +43,35 @@ export default {
       errors: [],
       category:{
 
+
       name: '',
       product:null
+
       }
     };
   },
   methods: {
-    checkForm: function (e) {
+
+    checkForm: function (e) { 
       e.preventDefault();
- 
 
       this.errors = [];
-
-      if (!this.name) {
+      if (!this.category.name) {
         this.errors.push("Nhập tên danh mục");
         return;
       }
+
  
-      const config = {
-        'content-type': 'application/json',
-        'Authorization': 'Bearer '+ localStorage.getItem(("jwt"))
-      }
-      axios.post("http://103.146.23.233/api/category",this.category,config).then((response)=>{
-        console.log(response);
-      }).catch((error)=>{
-        console.log(error.response);
-      })
-    },
+
+
+      categoryAPI.save(this.category).then(()=>{
+        return this.$route.push({name:'category'});
+        });
+    
   },
-};
+  }
+
+}
 </script>
 
 <style lang="scss" scoped>
@@ -81,4 +84,6 @@ export default {
   color: white;
   margin-top: 2%;
 }
+  
 </style>
+

@@ -30,9 +30,9 @@
             ></router-link>
           </li>
           <li>
-            <a href="" data-tip="Thêm vào giỏ"
+            <button  @click="add(product)" data-tip="Thêm vào giỏ"
               ><i class="fa fa-shopping-cart"></i
-            ></a>
+            ></button>
           </li>
         </ul>
         <!-- <span class="product-new-label">Sale</span> -->
@@ -62,6 +62,12 @@
 export default {
   name: "product",
   props: ["product"],
+  methods: {
+    add(product){
+      this.$store.commit('addToCart',product);
+      console.log(this.$store.state.cartItems);
+    },
+  }
 };
 </script>
 <style>

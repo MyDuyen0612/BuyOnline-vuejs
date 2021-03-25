@@ -8,10 +8,7 @@ export const store = new Vuex.Store({
         cartItems:{
             quanlity:0,
             product:[
-                
-                    {id: 2, name:'Dat',price: 500000,quanlity:1},
-
-                
+            
             ],
             monney:0,
             phivanchuyen:0
@@ -22,8 +19,8 @@ export const store = new Vuex.Store({
         addToCart(state, payload){
            
         let item = payload;
-        
-        if(!item){
+        console.log(item);
+        if(item){
             let bool = state.cartItems.product.some(i=>i.id === payload.id);
             if(bool){
                 let index = state.cartItems.product.findIndex(el => el.id ==payload.id);
@@ -63,9 +60,9 @@ export const store = new Vuex.Store({
         }
     },
     actions:{
-        // addToCart: (context,payload) =>{
-        //     context.commit("addToCart",payload)
-        // },
+        addToCart: (context,payload) =>{
+            context.commit("addToCart",payload)
+        },
         // removeItem: (context,payload) => {
         //     context.commit("removeItem",payload)
         // }
