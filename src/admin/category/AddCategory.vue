@@ -31,27 +31,41 @@
 </template>
 
 <script>
+  import axios from 'axios'
 export default {
+
   name: "Addproduct",
   data() {
     return {
       errors: [],
+      category:{
+
       name: '',
+      product:null
+      }
     };
   },
   methods: {
     checkForm: function (e) {
-      if (this.name) {
-        return true;
-      }
+      e.preventDefault();
+ 
 
       this.errors = [];
 
       if (!this.name) {
         this.errors.push("Nhập tên danh mục");
+        return;
       }
-      
-      e.preventDefault();
+ 
+      const config = {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer '+ localStorage.getItem(("jwt"))
+      }
+      axios.post("http://103.146.23.233/api/category",this.category,config).then((response)=>{
+        console.log(response);
+      }).catch((error)=>{
+        console.log(error.response);
+      })
     },
   },
 };
