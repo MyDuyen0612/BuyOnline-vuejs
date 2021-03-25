@@ -43,8 +43,8 @@
                 :aria-describedby="ariaDescribedby"
               >
                 <b-form-checkbox value="remeber">Remeber me</b-form-checkbox>
-              </b-form-checkbox-group> </b-form-group
-            >
+              </b-form-checkbox-group>
+            </b-form-group>
 
             <a href="#">Lấy lại password ?</a>
 
@@ -56,6 +56,7 @@
                   v-show="!messageAlter.showLoad"
                   >Login</b-button
                 >
+
                 <b-button
                   variant="primary"
                   disabled
@@ -65,7 +66,7 @@
                   Loading...
                 </b-button>
               </div>
-              
+
               <div class="btn">
                 <b-button to="register" variant="info">Signup</b-button>
               </div>
@@ -74,7 +75,6 @@
         </b-col>
       </b-row>
     </b-container>
-    
   </div>
 </template>
 
@@ -117,6 +117,7 @@ export default {
           console.log(error);
         });
     },
+
     onReset(event) {
       event.preventDefault();
       // Reset our form values
@@ -128,45 +129,45 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
+    
     },
   },
 };
 </script>
 
 <style scoped>
-body{
-    margin: 0;
-    padding: 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    width: 100%;
+body {
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
 }
-.box{
-
-    position: relative;
-    left: 50%;    
-    transform: translate(-50%, -50%);
-    width: 60%;
-    height: 370px;
-    top: 50%;
-    margin-top: 20%;
-    background: rgba(0, 0, 0, .1);
-    box-sizing: border-box;
-    box-shadow: rgba(0, 0, 0, .2);
-    border-radius: 20px;
+.box {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 370px;
+  top: 50%;
+  margin-top: 20%;
+  background: rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
 }
 .login {
- width: 80%;
+  width: 80%;
 }
-.login  h3{
- margin-top: 15px
+.login h3 {
+  margin-top: 15px;
 }
 
-.btn{
-  width:150px;
-  margin-left:10px;
-  margin-right:50px;
-  margin-top:5px;
+.btn {
+  width: 150px;
+  margin-left: 10px;
+  margin-right: 50px;
+  margin-top: 5px;
 }
 </style>
