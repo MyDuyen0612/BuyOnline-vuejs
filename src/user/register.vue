@@ -90,21 +90,7 @@
               ></b-form-input>
             </b-form-group>
 
-            <b-form-group
-              id="password2"
-              label="Re-enter Password:"
-              label-for="input-password2"
-            >
-              <b-form-input
-                id="input-password2"
-                type="password2"
-                v-model="form.password2"
-                placeholder="Enter password"
-                :state="form.password2==form.password"
-                required
-              ></b-form-input>            
-            </b-form-group>
-          
+                      
             <div class="d-flex justify-content-between">
               <div class="btn">
                 <b-button type="submit" variant="primary"
