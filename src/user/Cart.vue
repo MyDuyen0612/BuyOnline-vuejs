@@ -1,129 +1,165 @@
 <template>
-  <div>
-    <b-container class="cart" id="modal-2">
-      <h1>Cart</h1>
-      <div class="col-sm-12 col-md-10 col-md-offset-1">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Product</th>
-        
-              <th>Quantity</th>
-              <th class="text-center">Price</th>
-              <th class="text-center">Total</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="col-sm-8 col-md-6">
-                <div class="media">
-                  <a class="thumbnail pull-left" href="#">
-                    <img
-                      class="media-object"
-                      src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.0-1/p240x240/133437680_389234648816948_2640037853581718702_o.jpg?_nc_cat=106&ccb=1-3&_nc_sid=7206a8&_nc_ohc=-6XqufQNoOAAX_NCdTZ&_nc_ht=scontent.fsgn4-1.fna&tp=6&oh=1357ccc98e984d0e6ca0ed5a24f5bc00&oe=607106FF"
-                      style="width: 72px; height: 72px"
-                    />
-                  </a>
-                  <div class="media-body">
-                    <h5 class="media-heading"><a href="#">Product Name</a></h5>
-                    
-                    <span>Status: </span
-                    ><span class="text-warning"><strong>In Stock</strong></span>
+  <div class="d-flex cart-outer-div">
+    <div class="cart-body">
+      <div v-if="totalPrice !==0 " class="container mb-5">
+        <h4 class="my-4 my-cart">My Cart</h4>
+        <div class="d-flex my-3" style="justify-content: space-between;" >
+          <h4 class="fw-600">Summary</h4>
+          <h4 class="fw-600" style="margin-right: 49%;">Cart</h4>
+        </div>
+        <div class="d-flex">
+        <Summary v-bind:totalPrice="totalPrice" />
+        <div class="row" style="width=50%">
+          <div style="max-width: 70%" class="col-md-12">
+            <ul style="padding:0">
+              <li v-for="items in cartItems" :key="items.id" style="list-style: none;">
+                <div class="cart-items">
+                  <img width="50px" height="50px" style="border-radius:50%"/>
+                  <h6 class="mt-15"><!--{{items.name}}--></h6>
+                  <div class="d-flex mt-10">
+                    <button v-on:click="addItem" class="add" type="button">-</button>
+                    <span class="cart-quanlity"><!--{{items.quanlity}}--></span>
+                    <button v-on:click="removeItem" class="remove" type="button">+</button>
                   </div>
+                  <h6 class="mt-15"><!--{{items.price}}--></h6>
                 </div>
-              </td>
-              
-              <td class="col-sm-1 col-md-1" style="text-align: center">
-                <input
-                  type="email"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  value="8"
-                />
-              </td>
-              <td class="col-sm-1 col-md-1 text-center">
-                <strong>$26.11</strong>
-              </td>
-              <td class="col-sm-1 col-md-1 text-center">
-                <strong>$26.11</strong>
-              </td>
-              <td class="col-sm-1 col-md-1">
-                <b-button id="del" variant="outline-danger">
-                  <b-icon-trash></b-icon-trash>
-                </b-button>
-                <b-tooltip target="del" placement="center" variant="danger">
-                Delete
-                </b-tooltip>
-              </td>
-            </tr>
-            
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><h6>Subtotal</h6></td>
-              <td class="text-right">
-                <h6><strong>$26.11</strong></h6>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><h6>Transport Fee</h6></td>
-              <td class="text-right">
-                <h6><strong>$26.11</strong></h6>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><h6>Total</h6></td>
-              <td class="text-right">
-                <h3><strong>$26.11</strong></h3>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <b-button id="add" variant="outline-primary" to="/">
-                  <b-icon-cart-plus></b-icon-cart-plus>
-                </b-button>
-                <b-tooltip target="add" placement="center" variant="primary" >
-                Continue to shop
-                </b-tooltip>
-              </td>
-              <td>
-                <b-button id="checkout" variant="outline-success" to="/checkout">
-                  <b-icon-cash></b-icon-cash>
-                </b-button></td>
-                <td>
-                <b-tooltip target="checkout" placement="center" variant="success">
-                Checkout
-                </b-tooltip>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                <div class="line"></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        </div>
+        <div class="d-flex justify-content-end" style="width: 80%; margin-top:2%">
+            <button v-on:click="checkout" class="btn btn-primary" type="button">Checkout</button>
+        </div>
       </div>
-    </b-container>
+       <EmptyCart v-else/>
+    </div>
+     
+   
   </div>
 </template>
 
 <script>
+import EmptyCart from "../user/EmptyCart";
+import Summary from "../user/Summary";
+// import swal from "sweetalert";
 export default {
   name: "Cart",
+  components:{
+    EmptyCart,
+    Summary,
+  },
+  methods:{
+    addItems(items){
+      this.$store.dispatch("addToCart",items)
+    },
+    removeItem(items){
+      this.$store.dispatch("removeItem",items)
+    },
+    // checkout(){
+    //   swal("Good Job!","Your order is placed successfuly!","success").then(
+    //     value => {
+    //       window.location.href ="/cart";
+    //     }
+    //   );
+    // }
+  },
+
+  computed:{
+    cartItems(){
+     
+      return this.$store.state.cartItems;
+     
+    },
+    totalPrice(){
+      let price = 0;
+      this.$store.commit('addToCart',el => {
+        price += el["quanlity"] * el["price"];
+      });
+      return price;
+    }
+  },
 };
 </script>
 
 <style scoped>
-.thumbnail {
-  margin-right: 20px;
+.cart-out-div{
+  flex-direction: column;
+  height: 100vh;
 }
+.cart-body{
+  background: darkgrey;
+  flex: 1;
+  overflow: auto;
+}
+.cart-quanlity{
+  display: inline-block;
+  padding: 3px 6px;
+  width: 46px;
+  height: 28px;
+  border-radius: 2px;
+  background-color: #fff;
+  margin: 0 5px;
+  text-align: center;
+}
+.cart-items{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: while;
+}
+.my-cart{
+  color: orange;
+  font-weight: 600;
+}
+input[type="text"] {
+  border: none;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  vertical-align: middle;
+  text-align: center;
+  outline: none;
+}
+.fw-600{
+  font-weight: 600;
+}
+.line{
+  height: 1px;
+  border-bottom: 1px solid black;
+}
+.w-120{
+  width:  120%;
+}
+.w-60{
+  width: 60%;
+}
+.add,
+.remove{
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(#fff,#f9f9f9);
+  border: 1px solid #c2c2c2;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 7px;
+  padding-top: 1px;
+  outline: none;
+}
+.mt-10{
+  margin-top: 10px;
+}
+.mt-15{
+  margin-top: 15px;
+}
+.orange-red{
+  color: orangered;
+}
+.darkblue{
+  color: darkblue;
+}
+
 
 
 </style>

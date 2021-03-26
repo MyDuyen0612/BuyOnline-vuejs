@@ -16,7 +16,7 @@
             >
               <b-form-input
                 id="name"
-                v-model="name"
+                v-model="category.name"
                 name="name"
                 type="text"
                 placeholder="Nhập tên danh mục"
@@ -31,30 +31,47 @@
 </template>
 
 <script>
+
+
+import categoryAPI from'../../api/categoryAPI';
+
 export default {
+
   name: "Addproduct",
   data() {
     return {
       errors: [],
+      category:{
+
+
       name: '',
+      product:null
+
+      }
     };
   },
   methods: {
-    checkForm: function (e) {
-      if (this.name) {
-        return true;
-      }
+
+    checkForm: function (e) { 
+      e.preventDefault();
 
       this.errors = [];
-
-      if (!this.name) {
+      if (!this.category.name) {
         this.errors.push("Nhập tên danh mục");
+        return;
       }
-      
-      e.preventDefault();
-    },
+
+ 
+
+
+      categoryAPI.save(this.category).then(()=>{
+        return this.$route.push({name:'category'});
+        });
+    
   },
-};
+  }
+
+}
 </script>
 
 <style lang="scss" scoped>
@@ -67,4 +84,6 @@ export default {
   color: white;
   margin-top: 2%;
 }
+  
 </style>
+
