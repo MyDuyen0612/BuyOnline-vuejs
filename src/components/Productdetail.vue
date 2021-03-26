@@ -19,10 +19,15 @@
               </div>
               <h4>Size:</h4>
               <div class="size-wrap">
-                <span class="size">S</span>
-                <span class="size">M</span>
-                <span class="size selected">L</span>
-                <span class="size">XL</span>
+                <b-form-group v-slot="{ ariaDescribedby }">
+                  <b-form-radio-group
+                    id="radio-group-1"
+                    v-model="selected"
+                    :options="options"
+                    :aria-describedby="ariaDescribedby"
+                    name="radio-options"
+                  ></b-form-radio-group>
+                </b-form-group>
               </div>
               <div class="button">
                 <a href="#">
@@ -43,10 +48,18 @@
 
 <script>
 import productAPI from'../api/productAPI';
-export default {
+export default
+{
   name: "Productdetail",
   data(){
     return {
+      selected: "S",
+      options: [
+          { text: 'S', value: 'S' },
+          { text: 'M', value: 'M' },
+          { text: 'L', value: 'L', disabled: true },
+          { text: 'XL', value: 'XL' }
+        ],
       colorActive:{
 
       },
@@ -80,14 +93,14 @@ export default {
   },
   mounted(){
     productAPI.find(
-  this.$route.params.url).then((response)=>{
-    console.log(response);
+    this.$route.params.url).then((response)=>{
+    // console.log(response);
     this.product = response;
     
-  }).catch(()=>{
-    this.$route.push('404')
-  })
-  }
+    }).catch(()=>{
+      this.$route.push('404')
+    })
+    },
 };
 </script>
 
@@ -207,8 +220,7 @@ img {
   background: #8b8def;
   margin: 0 15px;
 }
-.colors:hover,
-.size:hover {
+.colors:hover{
   transform: scale(1.2);
   box-shadow: 0 0 0 8px rgba(173, 173, 170, 0.3);
   cursor: pointer;
@@ -229,8 +241,7 @@ img {
 .selected {
   box-shadow: 0 0 0 4px #fff, 0 0 0 8px rgba(173, 173, 170, 0.3);
 }
-.colors-wrap,
-.size-wrap {
+.colors-wrap{
   width: 100%;
   margin: 5px auto;
   padding: 10px;
@@ -238,16 +249,5 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.size {
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 15px;
-  cursor: pointer;
-  transition: all 0.3s;
 }
 </style>

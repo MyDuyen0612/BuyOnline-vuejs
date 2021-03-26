@@ -121,9 +121,6 @@
               <div  class="btn">
                 <b-button type="reset" variant="danger">Reset</b-button>
               </div>
-              <div  class="btn">
-                <b-button to="Login" variant="info">Login</b-button>
-              </div>
             </div>
           </b-form>
         </b-col>

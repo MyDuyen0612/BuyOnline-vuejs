@@ -50,8 +50,8 @@
           <a href="#">{{ product.name }}</a>
         </h3>
         <div class="price">
-          {{ product.price.toLocaleString() }} đ
-          <span> {{ product.discount.toLocaleString() }} đ</span>
+          {{ product.discount.toLocaleString() }} đ     
+          <span>  {{ product.price.toLocaleString() }} đ</span>
         </div>
         <a class="add-to-cart" href="">+ Thêm vào giỏ</a>
       </div>
