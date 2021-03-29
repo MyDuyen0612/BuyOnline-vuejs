@@ -70,6 +70,10 @@ export default {
     },
   },
   mounted() {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    this.$store.state = cart;
+    
+    console.log(this.$state); 
     categoryAPI.getAll().then((response)=>{
       this.category=response
     })

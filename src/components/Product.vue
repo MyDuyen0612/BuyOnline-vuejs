@@ -64,8 +64,12 @@ export default {
   props: ["product"],
   methods: {
     add(product){
-      this.$store.commit('addToCart',product);
-      console.log(this.$store.state.cartItems);
+      const cartItem = {
+            product:product,
+            amount:1,
+            price:product.price
+        };
+      this.$store.commit('addToCart',cartItem);
     },
   }
 };
