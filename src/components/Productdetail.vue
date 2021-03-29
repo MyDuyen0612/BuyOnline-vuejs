@@ -1,21 +1,24 @@
 <template>
-  <b-container fluid="md">
+  <b-container fluid>
     <b-row>
-      <b-col>
+      <div class="col-lg-6 col-md-12 col-sm-12">
+        <img  :src="product.color[0].image[0].fileDownloadUri"/>
+      </div>
+      <div class="col-lg-6 col-md-12 col-sm-12">
         <div class="wrapper">
           <div class="outer">
             <div class="content">
-              <span class="bg">Khuyến mãi</span>
-              <h1>{{product.name}}</h1>
+              <span class="bg">Khuyến mãi</span><br>
+              <span class="product__content">{{product.name}}</span>
               <p>
                 {{product.introduce}}
               </p>
-              <h5>Color:</h5>
+              <h6>Color:</h6>
               <div class="colors-wrap">
                 <span class="colors"></span>
                 <span class="color"  v-for="(colorItem, colorIndex) in colors" :key="colorIndex">{{colorItem.name}}</span>
               </div>
-              <h5>Size:</h5>
+              <h6>Size:</h6>
               <div class="size-wrap">
                 <span class="size" v-for="(itemSize,itemIndex) in sizes" 
                 :key="itemIndex" 
@@ -31,18 +34,17 @@
                 >
               </div>
             </div>
-            <img  :src="product.color[0].image[0].fileDownloadUri"/>
           </div>
         </div>
-      </b-col>
+      </div>
+      
     </b-row>
   </b-container>
 </template>
 
 <script>
-import productAPI from'../api/productAPI';
-export default
-{
+import productAPI from'../api/productAPI'
+export default {
   name: "Productdetail",
   data(){
     return {
@@ -72,8 +74,7 @@ export default
           ]
           
           }
-        ],
-        
+        ],        
       }
     }
   },
@@ -114,6 +115,7 @@ export default
   display: flex;
   align-items: center;
   border-radius: 10px;
+  margin-top: -40px;
 }
 p {
   width: 280px;
@@ -123,11 +125,11 @@ p {
   margin: 20px 0;
 }
 img {
-  position: absolute;
+  /* position: absolute; */
   top: 0px;
   right: -30px;
   z-index: 0;
-  width: 50%;
+  width: 100%;
 }
 .content {
   position: relative;
@@ -156,7 +158,7 @@ img {
   font-size: 15px;
   color: #111;
   text-decoration: none;
-  padding: 10px 15px;
+  padding: 10px 12px;
   border: 1px solid #aaa;
   font-weight: bold;
 }
@@ -172,6 +174,9 @@ img {
   transition: width 0.3s ease-in-out;
   transform: skew(-25deg);
   transform-origin: right;
+}
+.product__content{
+  font-size:2.5em
 }
 .button a:hover:after {
   width: 150%;
@@ -192,16 +197,22 @@ img {
 .cart-icon {
   padding-right: 8px;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .outer {
     width: 95%;
+    margin-top: 0;
   }
   .content {
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-40%);
   }
   img {
-    display: none;
+    /* display: none; */
+    width: 100%;
+    margin-top: 0px !important;
+  }
+  .product__content{
+  font-size: 1.0em
   }
 }
 .colors{
@@ -244,4 +255,6 @@ img {
     cursor: pointer;
     transition: all .3s;
 }
+
+
 </style>

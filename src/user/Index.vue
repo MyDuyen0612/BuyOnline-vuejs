@@ -3,9 +3,8 @@
     <b-row>
       <Carousel />
     </b-row>
-
     <b-row>
-      <Product
+      <Product 
         v-for="product in products"
         :key="product.id"
         :product="product"
@@ -19,7 +18,7 @@ import Carousel from "../components/Carousel.vue";
 import Product from "../components/Product.vue";
 import productAPI from '../api/productAPI';
 export default {
-  components: { Carousel, Product },
+  components: { Carousel, Product},
   data() {
     return {
       isActive: true,

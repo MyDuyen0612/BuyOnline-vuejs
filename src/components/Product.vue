@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-3 col-sm-6 mt-5">
+  <div class="col-md-3 col-6 mt-4">
     <div class="product-grid">
       <div class="product-image">
         <router-link
