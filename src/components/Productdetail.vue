@@ -10,19 +10,17 @@
               <p>
                 {{product.introduce}}
               </p>
-              <h4>Color:</h4>
+              <h5>Color:</h5>
               <div class="colors-wrap">
                 <span class="colors"></span>
-                <span class="colors selected"></span>
-                <span class="colors"></span>
-                <span class="colors"></span>
+                <span class="color"  v-for="(colorItem, colorIndex) in colors" :key="colorIndex">{{colorItem.name}}</span>
               </div>
-              <h4>Size:</h4>
+              <h5>Size:</h5>
               <div class="size-wrap">
-                <span class="size">S</span>
-                <span class="size">M</span>
-                <span class="size selected">L</span>
-                <span class="size">XL</span>
+                <span class="size" v-for="(itemSize,itemIndex) in sizes" 
+                :key="itemIndex" 
+                :value="itemSize" @click="SizeActive(itemSize)"
+                :class="sizeAcive.id==itemSize.id ? 'selected' : ''">{{itemSize.name}}</span>
               </div>
               <div class="button">
                 <a href="#">
@@ -43,15 +41,16 @@
 
 <script>
 import productAPI from'../api/productAPI';
-export default {
+export default
+{
   name: "Productdetail",
   data(){
     return {
+      colors:[],
+      sizes:[],
       colorActive:{
-
       },
       sizeAcive:{
-
       },
       product:{
         name:'',
@@ -78,16 +77,23 @@ export default {
       }
     }
   },
+  methods: {
+    SizeActive: function (itemSize) {
+      // console.log(itemSize);
+      this.sizeAcive = itemSize;
+    },
+  },
   mounted(){
     productAPI.find(
-  this.$route.params.url).then((response)=>{
-    console.log(response);
+    this.$route.params.url).then((response)=>{
+    // console.log(response);
     this.product = response;
-    
-  }).catch(()=>{
-    this.$route.push('404')
-  })
-  }
+    this.colors = this.product.color;
+    this.sizes = this.product.color[0].size
+    // console.log(this.colors);
+    }).catch(()=>{
+    })
+    },
 };
 </script>
 
@@ -95,7 +101,7 @@ export default {
 .wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   width: 100%;
   height: 100vh;
 }
@@ -132,7 +138,7 @@ img {
 .bg {
   display: inline-block;
   color: #fff;
-  background-color: cornflowerblue;
+  background-color: red;
   padding: 5px 10px;
   border-radius: 50px;
   font-size: 1em;
@@ -198,56 +204,44 @@ img {
     display: none;
   }
 }
-.colors {
-  width: 15px;
-  height: 15px;
-  display: inline-block;
-  transition: 0.3s all;
-  border-radius: 50%;
-  background: #8b8def;
-  margin: 0 15px;
+.colors{
+    width:20px;
+    height:20px;
+    display:inline-block;
+    transition:0.3s all;
+    border-radius:50%;
+    background:#f43542; 
+    margin: 0 15px;
 }
-.colors:hover,
-.size:hover {
-  transform: scale(1.2);
-  box-shadow: 0 0 0 8px rgba(173, 173, 170, 0.3);
-  cursor: pointer;
+.colors:hover, .size:hover{
+    transform: scale(1.2);
+    box-shadow: 0 0 0 8px rgba(173, 173, 170, .3);
+    cursor: pointer;
 }
-.colors:active,
-.size:active {
-  transform: scale(0.8);
+.colors:active, .size:active{
+    transform: scale(.8);
 }
-.colors:nth-child(2) {
-  background: #a1050f;
+.selected{
+    box-shadow: 0 0 0 4px #fff, 0 0 0 8px rgba(173, 173, 170, .3);
 }
-.colors:nth-child(3) {
-  background: #5e4f03;
+.colors-wrap, .size-wrap{
+    width: 100%;
+    margin: 5px auto;
+    padding: 10px;
+    border-radius: 70px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
-.colors:nth-child(4) {
-  background: #011401;
-}
-.selected {
-  box-shadow: 0 0 0 4px #fff, 0 0 0 8px rgba(173, 173, 170, 0.3);
-}
-.colors-wrap,
-.size-wrap {
-  width: 100%;
-  margin: 5px auto;
-  padding: 10px;
-  border-radius: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.size {
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 15px;
-  cursor: pointer;
-  transition: all 0.3s;
+.size{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 15px;
+    cursor: pointer;
+    transition: all .3s;
 }
 </style>

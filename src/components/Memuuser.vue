@@ -46,9 +46,6 @@
     <nav class="mb-3">
       <b-nav vertical>
         <b-nav-item to="/" class="item">NEW ARRIVALS</b-nav-item>
-        <b-nav-item to="/admin/user" class="item"
-          >XEM DANH SÁCH THÀNH VIÊN</b-nav-item
-        >
 
         <b-nav-item
           v-for="(itemCategory, indexCategory) in category"

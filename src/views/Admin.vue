@@ -33,7 +33,6 @@
 <script>
 import Menu from "../admin/Menu.vue";
 import Inputsearch from "../components/InputSearch.vue";
-
 export default {
   name: "Admin",
   data() {
