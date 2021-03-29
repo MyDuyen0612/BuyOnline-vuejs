@@ -13,6 +13,10 @@ export const store = new Vuex.Store({
             monney:0,
             phivanchuyen:0
         },
+        user: {
+            name: '',
+            auth:[]
+        }
        
     },
     mutations: {
@@ -40,8 +44,6 @@ export const store = new Vuex.Store({
                 state.cartItems.quanlity++;
             }
         }
-
-
         }, 
         removeItem(){
             // if(state.cartItems.length > 0){

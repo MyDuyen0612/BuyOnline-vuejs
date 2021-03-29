@@ -11,12 +11,15 @@ const axiosClient = axios.create({
     headers: {
 
         'content-type': 'application/json',
-        
+
 
     },
     paramsSerializer: params => queryString.stringify(params),
 });
 axiosClient.interceptors.request.use(async (config) => {
+    if (localStorage.getItem('date')==Date.now()) {
+        localStorage.removeItem('jwt');
+    }
     if (localStorage.getItem('jwt')) {
         config.headers.Authorization = 'Bearer ' + localStorage.getItem('jwt')
     }

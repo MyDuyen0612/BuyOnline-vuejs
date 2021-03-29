@@ -5,7 +5,7 @@
       id="sidebar"
       :class="isActive == true ? 'active' : ''"
     >
-      <Menuuser :name="userName" :category="category"/>
+      <Menuuser :name="userName" :category="category" />
     </div>
 
     <div
@@ -70,9 +70,9 @@ export default {
     },
   },
   mounted() {
-    categoryAPI.getAll().then((response)=>{
-      this.category=response
-    })
+    categoryAPI.getAll().then((response) => {
+      this.category = response;
+    });
     const jwt = localStorage.getItem("jwt");
     if (jwt != null) {
       const form = new FormData();
