@@ -1,27 +1,29 @@
 <template>
   <div class="d-flex cart-outer-div">
     <div class="cart-body">
-      <div v-if="totalPrice !==0 " class="container mb-5">
+      <div  class="container mb-5">
         <h4 class="my-4 my-cart">My Cart</h4>
         <div class="d-flex my-3" style="justify-content: space-between;" >
           <h4 class="fw-600">Summary</h4>
           <h4 class="fw-600" style="margin-right: 49%;">Cart</h4>
         </div>
         <div class="d-flex">
-        <Summary v-bind:totalPrice="totalPrice" />
-        <div class="row" style="width=50%">
+     <Summary v-bind:totalPrice="totalPrice" />
+      
+        <div class="row" style="width=50%" >
           <div style="max-width: 70%" class="col-md-12">
             <ul style="padding:0">
-              <li v-for="items in cartItems" :key="items.id" style="list-style: none;">
+              <li v-for="(itemProduct,indexProduct) in cartItems" :key="indexProduct" style="list-style: none;">
                 <div class="cart-items">
                   <img width="50px" height="50px" style="border-radius:50%"/>
-                  <h6 class="mt-15"><!--{{items.name}}--></h6>
-                  <div class="d-flex mt-10">
-                    <button v-on:click="addItem" class="add" type="button">-</button>
-                    <span class="cart-quanlity"><!--{{items.quanlity}}--></span>
-                    <button v-on:click="removeItem" class="remove" type="button">+</button>
+                  <h6 class="mt-15">{{itemProduct.product.name}}</h6>
+                  <div class="d-flex mt-10" id="example-1">
+                    <button v-on:click="itemProduct.amount++" class="add" type="button">+</button>
+                    <span class="cart-quanlity">{{itemProduct.amount}}</span>
+                    <button v-on:click="itemProduct.amount--" class="remove" type="button">-</button>
                   </div>
-                  <h6 class="mt-15"><!--{{items.price}}--></h6>
+                  <h6 class="mt-15">{{itemProduct.price}}</h6>
+                  <h6 class="mt-15">{{totalPrice}}</h6>
                 </div>
                 <div class="line"></div>
               </li>
@@ -30,10 +32,10 @@
         </div>
         </div>
         <div class="d-flex justify-content-end" style="width: 80%; margin-top:2%">
-            <button v-on:click="checkout" class="btn btn-primary" type="button">Checkout</button>
+            <button  class="btn btn-primary" type="button">Checkout</button>
         </div>
       </div>
-       <EmptyCart v-else/>
+        <!-- <EmptyCart v-else/>  -->
     </div>
      
    
@@ -41,44 +43,53 @@
 </template>
 
 <script>
-import EmptyCart from "../user/EmptyCart";
+// import EmptyCart from "../user/EmptyCart";
 import Summary from "../user/Summary";
 // import swal from "sweetalert";
 export default {
   name: "Cart",
   components:{
-    EmptyCart,
+    // EmptyCart,
     Summary,
   },
+  
+
+ 
+  data(){
+    return {
+      cartItems:[],
+      lengthCart:0,
+      priceCart:0,
+      
+    }
+    
+  },
+  
   methods:{
+    
     addItems(items){
       this.$store.dispatch("addToCart",items)
+
     },
+   
     removeItem(items){
       this.$store.dispatch("removeItem",items)
     },
-    // checkout(){
-    //   swal("Good Job!","Your order is placed successfuly!","success").then(
-    //     value => {
-    //       window.location.href ="/cart";
-    //     }
-    //   );
-    // }
-  },
+    
+   
+    
 
-  computed:{
-    cartItems(){
-     
-      return this.$store.state.cartItems;
-     
-    },
-    totalPrice(){
-      let price = 0;
-      this.$store.commit('addToCart',el => {
-        price += el["quanlity"] * el["price"];
-      });
-      return price;
-    }
+  },
+  
+  mounted(){
+    
+     this.cartItems= this.$store.state.cartItems;
+   
+    
+     this.lengthCart =this.$store.state.lengthCart;
+   
+     this.priceCart =  this.$store.state.priceCart;
+      
   },
 };
 </script>

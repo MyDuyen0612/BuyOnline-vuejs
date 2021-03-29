@@ -73,6 +73,13 @@ export default {
     categoryAPI.getAll().then((response) => {
       this.category = response;
     });
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    this.$store.state = cart;
+
+    console.log(this.$state);
+    categoryAPI.getAll().then((response) => {
+      this.category = response;
+    });
     const jwt = localStorage.getItem("jwt");
     if (jwt != null) {
       const form = new FormData();
