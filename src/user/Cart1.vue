@@ -52,7 +52,7 @@
                 <strong >{{itemProduct.price}}</strong>
               </td>
               <td class="col-sm-1 col-md-1 text-center">
-                <strong >Tổng tiền nằm đây nè</strong>
+                <strong >{{itemProduct.price * itemProduct.amount}}</strong>
               </td>
               <td class="col-sm-1 col-md-1">
                 <b-button id="del" pill variant="outline-danger" @click="clean">
@@ -141,6 +141,9 @@ export default {
       cartItems:[],
       lengthCart:0,
       priceCart:0,
+      
+      
+      
       
     }
     
