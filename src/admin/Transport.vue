@@ -6,7 +6,7 @@
         <Inputtable :fields="fields" :items="items" :isAdd="false" />
       </div>
       <div class="col-md-4">
-        <img src="../assets/img/transport.svg" atl="" class="img-fluid" />
+        <img src="../assets/img/transport.svg" atl="" class="img-fluid"/>
       </div>
     </div>
   </div>

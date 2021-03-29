@@ -28,6 +28,7 @@ export default {
   data() {
     return {
       link: 'addproduct',
+      isLoaded: false,
       product: [
     
       ],
@@ -61,11 +62,12 @@ export default {
   mounted(){
       productAPI.getAll().then((response)=>{
           this.product = response;
+          this.isLoaded = true
           // console.log(response);
       }).catch((error)=>{
           console.log(error);
       });
-  }
+  },
 };
 </script>
 

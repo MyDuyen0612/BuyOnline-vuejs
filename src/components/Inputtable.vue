@@ -5,8 +5,8 @@
         <b-icon icon="plus" scale="2" variant="white"></b-icon>
       </b-avatar>
     </router-link>
-
-    <b-table striped hover :items="items" :fields="fields">
+    
+    <b-table striped hover :items="items" :fields="fields" v-if="items.length != 0">
       <template v-slot:cell(action)="data">
         <!-- `data` -->
         <b-button variant="primary" size="sm" class="mr-1">Xem</b-button>
@@ -16,10 +16,13 @@
         >
       </template>
     </b-table>
+
+    <Loading v-else /> 
   </div>
 </template>
 
 <script>
+import Loading from '@/components/Loading';
 export default {
   props: {
     items: Array,
@@ -41,5 +44,6 @@ export default {
       this.items.splice(index, 1);
     },
   },
+  components: {Loading}
 };
 </script>

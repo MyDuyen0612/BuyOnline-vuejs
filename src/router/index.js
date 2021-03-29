@@ -26,7 +26,6 @@ Vue.use(VueRouter)
 
 const routes = [
   //User
-
   {
     path: '/',
     name: 'Home',
@@ -80,9 +79,9 @@ const routes = [
       component: Profile
     },
     {
-      path: '/:url',
+      path: 'sanpham/:url',
       name: 'ProductDetail',
-      component: Productdetail
+      component:  Productdetail
     },
     {
       path: 'search/:search',
