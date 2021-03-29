@@ -73,40 +73,42 @@ export default {
     categoryAPI.getAll().then((response) => {
       this.category = response;
     });
-    const cart = JSON.parse(localStorage.getItem("cart"));
-    this.$store.state = cart;
 
-    console.log(this.$state);
-    categoryAPI.getAll().then((response) => {
-      this.category = response;
-    });
-    const jwt = localStorage.getItem("jwt");
-    if (jwt != null) {
-      const form = new FormData();
-      form.append("jwt", jwt);
-      userApi
-        .profile(form)
-        .then((response) => {
-          this.userName = response.name;
-        })
-        .catch(() => {
-          this.userName = "";
-        });
+    if (localStorage.getItem("cart")) {
+      const cart = JSON.parse(localStorage.getItem("cart"));
+      this.$store.state = cart;
+    }
+    if (localStorage.getItem("jwt")) {
+      const jwt = {
+        jwt : localStorage.getItem("jwt")
+      } 
+      if (jwt != null) {
+        userApi
+          .profile(jwt)
+          .then((response) => {
+            this.userName = response.name;
+          })
+          .catch(() => {
+            this.userName = "";
+          });
+      }
     }
   },
   updated() {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt != null) {
-      const form = new FormData();
-      form.append("jwt", jwt);
-      userApi
-        .profile(form)
-        .then((response) => {
-          this.userName = response.name;
-        })
-        .catch(() => {
-          this.userName = "";
-        });
+    if (localStorage.getItem("jwt")) {
+       const jwt = {
+        jwt : localStorage.getItem("jwt")
+      } 
+      if (jwt != null) {
+        userApi
+          .profile(jwt)
+          .then((response) => {
+            this.userName = response.name;
+          })
+          .catch(() => {
+            this.userName = "";
+          });
+      }
     }
   },
 };
