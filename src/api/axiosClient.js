@@ -11,14 +11,20 @@ const axiosClient = axios.create({
     headers: {
 
         'content-type': 'application/json',
-        
+
 
     },
     paramsSerializer: params => queryString.stringify(params),
 });
 axiosClient.interceptors.request.use(async (config) => {
+   
     if (localStorage.getItem('jwt')) {
-        config.headers.Authorization = 'Bearer ' + localStorage.getItem('jwt')
+        if (localStorage.getItem('date') == Date.now() || !localStorage.getItem('date')) {
+            localStorage.removeItem('jwt');
+        } else {
+            console.log("tao ne")
+            config.headers.Authorization = 'Bearer ' + localStorage.getItem('jwt');
+        }
     }
     return config;
 })

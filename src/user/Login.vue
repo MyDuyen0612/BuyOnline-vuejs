@@ -108,6 +108,7 @@ export default {
         .login(this.form)
         .then((response) => {
           localStorage.jwt = response.jwt;
+          localStorage.date = response.date;
           this.$router.push({ name: "index" });
         })
         .catch((error) => {
