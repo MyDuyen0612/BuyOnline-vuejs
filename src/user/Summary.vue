@@ -8,11 +8,11 @@
           <h6>Subtotal:</h6>
       </div>
       <div class="col-md-4">
-          <h6>{{totalPrice}}VND</h6>
-          <h6>DatDepTrai</h6>
-          <h6>50000 VND</h6>
+          <h6>Tổng tiền ở đây nèVND</h6>
+          <h6>Đây là mã discount</h6>
+          <h6>đây là phí VC VND</h6>
           <div class="my-3 line w-60"></div>
-          <h6>{{totalPrice + 50000}}VND</h6>
+          <h6>Đây là tổng cộng sau khi cộng VCVND</h6>
       </div>
   </div>
 </template>

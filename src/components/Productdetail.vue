@@ -15,8 +15,8 @@
               </p>
               <h6>Color:</h6>
               <div class="colors-wrap">
-                <span class="colors"></span>
-                <span class="color"  v-for="(colorItem, colorIndex) in colors" :key="colorIndex">{{colorItem.name}}</span>
+                <span class="colors" style="background:#f43542"></span>
+                <span class="colors"  v-for="(colorItem, colorIndex) in colors" :key="colorIndex">{{colorItem.name}}</span>
               </div>
               <h6>Size:</h6>
               <div class="size-wrap">
@@ -61,6 +61,7 @@ export default {
         color:[
           {
             name:'',
+            code: '',
             size:[
             {
               name:'',
@@ -223,7 +224,7 @@ img {
     display:inline-block;
     transition:0.3s all;
     border-radius:50%;
-    background:#f43542; 
+    /* background:#f43542;  */
     margin: 0 15px;
 }
 .colors:hover, .size:hover{

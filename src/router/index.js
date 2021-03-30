@@ -8,6 +8,7 @@ import Orders from '../admin/Orders.vue'
 import Home from '../user/Index.vue'
 import Register from '../user/register'
 import Cart from '../user/Cart.vue'
+import Cart1 from '../user/Cart1.vue'
 import Productdetail from '../components/Productdetail.vue'
 import Profile from '../components/Profile.vue'
 
@@ -55,6 +56,11 @@ const routes = [
       path: '/cart',
       name: 'Cart',
       component: Cart
+    },
+    {
+      path: '/cart1',
+      name: 'Cart1',
+      component: Cart1
     },
     {
 

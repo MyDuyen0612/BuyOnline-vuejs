@@ -17,6 +17,10 @@ class UserApi {
         const url = '/product/' + params;
         return axiosClient.get(url);
     }
+    profile = (params) => {
+        const url = '/profile';
+        return axiosClient.post(url, params);
+    }
 }
 const userApi = new UserApi();
 export default userApi;

@@ -1,3 +1,35 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@MyDuyen0612 
+MyDuyen0612
+/
+BuyOnline-vuejs
+1
+00
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+BuyOnline-vuejs/src/user/register.vue
+@MyDuyen0612
+MyDuyen0612 Merge branch 'master' of https://github.com/MyDuyen0612/BuyOnline-vuejs
+Latest commit a11acb9 2 days ago
+ History
+ 3 contributors
+@ndhuy30111@MyDuyen0612@hieu3004
+208 lines (196 sloc)  5.09 KB
+  
 <template>
   <div class="box">
     <b-container class="login">
@@ -120,14 +152,12 @@
 import userApi from "../api/userAPi";
 export default {
   name: "Register",
-
   data() {
     return {
       form: {
         name: "",
         userName: "",
         password: "",
-        password2: "",
         email: "",
       },
       validation: {
@@ -141,12 +171,10 @@ export default {
       success: [],
     };
   },
-
   methods: {
     async onSubmit(event) {
       event.preventDefault();
       this.isActive = !this.isActive;
-
       await userApi.register(this.form).then((response) => {
         this.isActive = !this.isActive;
         if (response != null) {

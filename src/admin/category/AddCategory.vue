@@ -60,10 +60,6 @@ export default {
         this.errors.push("Nhập tên danh mục");
         return;
       }
-
- 
-
-
       categoryAPI.save(this.category).then(()=>{
         return this.$route.push({name:'category'});
         });

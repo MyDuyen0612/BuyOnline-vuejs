@@ -28,7 +28,7 @@
         <b-icon-suit-heart></b-icon-suit-heart>
       </b-button>
 
-      <b-button id="button-3" variant="light" to="/cart">
+      <b-button id="button-3" variant="light" to="/cart1">
         <b-icon-cart></b-icon-cart>
       </b-button>
 

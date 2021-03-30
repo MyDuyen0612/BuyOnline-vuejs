@@ -5,45 +5,45 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        cartItems:{
-            quanlity:0,
-            product:[
-            
-            ],
-            monney:0,
-            phivanchuyen:0
+        user: {
+            name: '',
+            auth: []
         },
-       
+        cartItems: [],
+        priceCart: 0,
+        lengthCart: 0
     },
     mutations: {
-        addToCart(state, payload){
-           
-        let item = payload;
-        console.log(item);
-        if(item){
-            let bool = state.cartItems.product.some(i=>i.id === payload.id);
-            if(bool){
-                let index = state.cartItems.product.findIndex(el => el.id ==payload.id);
-                state.cartItems.product[index].quanlity = payload.quanlity;
-                 let sum = 0;
-                state.cartItems.product.forEach(element => {
-                    sum += element.price
-                });
-                state.cartItems.monney = sum - state.cartItems.phivanchuyen;
-            }else{
-                state.cartItems.product.push(item);
-                let sum = 0;
-                state.cartItems.product.forEach(element => {
-                    sum += element.price
-                });
-                state.cartItems.monney = sum - state.cartItems.phivanchuyen;
-                state.cartItems.quanlity++;
+        addToCart(state, payload) {
+
+            let item = payload;
+
+            if (item) {
+                let bool = state.cartItems.some(i => i.product.id === payload.product.id);
+                if (bool) {
+                    let index = state.cartItems.findIndex(el => el.product.id == payload.product.id);
+                    state.cartItems[index].amount = payload.amount;
+                    let sum = 0;
+                    state.cartItems.forEach(element => {
+                        sum += element.price * element.amount
+                    });
+                    state.priceCart = sum;
+                } else {
+                    state.cartItems.push(item);
+                    let sum = 0;
+                    state.cartItems.forEach(element => {
+                        sum += element.price * element.amount
+                    });
+                    state.priceCart = sum;
+                }
+                state.lengthCart = state.cartItems.length;
+                localStorage.cart = JSON.stringify(state)
             }
-        }
+        },
 
 
-        }, 
-        removeItem(){
+
+        removeItem() {
             // if(state.cartItems.length > 0){
             //     let bool = state.cartItems.some(i => i.id === payload.id)
             //     if (bool){
@@ -59,10 +59,11 @@ export const store = new Vuex.Store({
             // }
         }
     },
-    actions:{
-        addToCart: (context,payload) =>{
-            context.commit("addToCart",payload)
+    actions: {
+        addToCart: (context, payload) => {
+            context.commit("addToCart", payload)
         },
+
         // removeItem: (context,payload) => {
         //     context.commit("removeItem",payload)
         // }
