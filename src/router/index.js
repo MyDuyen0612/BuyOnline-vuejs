@@ -20,7 +20,7 @@ const Checkout = () => import('../user/Checkout.vue')
 const Transport = () => import('../admin/Transport.vue')
 const Addproduct = () => import("../admin/product/Addproduct.vue")
 const AddCategory = () => import('../admin/category/AddCategory.vue')
-
+const Updateproduct = () => import('../admin/product/Updateproduct.vue')
 Vue.use(VueRouter)
 
 const routes = [
@@ -128,11 +128,14 @@ const routes = [
       name: 'addcategory',
       component: AddCategory,
     },
-
+    {
+      path: ':url',
+      name: 'updateproduct',
+      component: Updateproduct,
+    },
     ]
   }
 ]
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,

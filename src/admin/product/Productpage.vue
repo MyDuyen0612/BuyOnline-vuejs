@@ -42,6 +42,10 @@ export default {
           label: "Tên sản phẩm",
         },
         {
+          key: "name",
+          label: "Tên sản phẩm",
+        },
+        {
           key: "price",
           label: "Giá",
         },

@@ -1,6 +1,6 @@
 <template>
-    <div class="addproduct">
-      <h3 class="text-center text-primary">Thêm sản phẩm</h3>
+    <div class="updateproduct">
+      <h3 class="text-center text-primary">Sửa thông tin sản phẩm</h3>
       <b-form @submit="submit" >
         <b-container fluid>
           <b-row>
@@ -18,7 +18,7 @@
                       name="name"
                       type="text"
                       required
-                      placeholder="Nhập tên sản phẩm"
+                      :placeholder="product.name"
                       trim
                     ></b-form-input>
                   </b-form-group>
@@ -31,7 +31,7 @@
                     label="Danh mục :"
                     label-for="name" 
                   >
-                      <b-form-select v-model="selectCategory" size="sm" class="mt-3"  required>
+                      <b-form-select v-model="selectCategory" size="sm" class="mt-3" required>
                         <b-form-select-option v-for="(itemCategory,index) in categorys" :key="index" :value="itemCategory">{{itemCategory.name}}</b-form-select-option>
                       </b-form-select>
                   </b-form-group>
@@ -51,7 +51,7 @@
                     v-model="product.price"
                     type="number"
                     name="price"
-                    placeholder="Nhập giá sản phẩm"
+                    :value="product.price"
                     required
                     min="50000"
                   ></b-form-input>
@@ -65,7 +65,7 @@
                     v-model="product.discount"
                     type="number"
                     name="discount"
-                    placeholder="Nhập giá khuyến mãi"
+                    :value="product.discount"
                     required
                     min="5000"
                   ></b-form-input>
@@ -78,7 +78,7 @@
                         id="shortIntroduction"
                         v-model="product.shortIntroduction"
                         type="text"
-                        placeholder="Mô tả ngắn"
+                        :placeholder="product.shortIntroduction"
                         required
                         rows="3"
                         max-rows="6"
@@ -91,7 +91,7 @@
                         id="introduce"
                         v-model="product.introduce"
                         type="text"
-                        placeholder="Mô tả"
+                        :placeholder="product.introduce"
                         required
                         rows="3"
                         max-rows="6"
@@ -99,123 +99,99 @@
                 </b-col>
               </b-row>  
               <b-row>
-                
-                  <b-button id="btnThem" type="submit" variant="primary" >Thêm sản phẩm</b-button>  
+                  <b-button id="btnThem" type="submit" variant="primary" >Sửa thông tin sản phẩm</b-button>  
               </b-row>
             </b-col>
             <b-col>
               <b-row v-for="(itemColor,indexColor) in product.color" :key="indexColor">
-                 <b-container >
+                  <b-container >
                    <b-row>
-
                       <b-col > 
-                  <b-form-group
-                  id="input-color"
-                  label="Tên màu sắc:"
-                  label-for="input-color"
-                >
-                
-                <b-form-input
-                v-model="itemColor.name"
-                  id="input-color"
-                  type="text"
-                  required
-                >
-                  </b-form-input>
-                
-                    </b-form-group>
-                    </b-col>   
-                    <b-col>               
-                        <b-button variant="danger" @click="deleteColor(indexColor)" style="margin-top:2em">Xoá màu sắc</b-button>    
-                    </b-col>
-                   </b-row>
-                    <b-row cols-md="3">
-                      <b-col> 
                         <b-form-group
-                        id="input-color-code"
-                        label="Mã màu sắc:"
-                        label-for="input-color-code"
+                        id="input-color"
+                        label="Tên màu sắc:"
+                        label-for="input-color"
                         >
                           <b-form-input
-                          v-model="itemColor.code"
-                            id="input-color-code"
+                          v-model="itemColor.name"
+                            id="input-color"
                             type="text"
                             required
                           >
                           </b-form-input>
                         </b-form-group>
-                      </b-col>    
-                    </b-row>
-                    <b-row>
-                      <b-col>
-                        
-                          <input type="file" @change="imageChange(indexColor,$event)" multiple accept="image/jpeg, image/png, image/gif"/>
+                      </b-col>
+                      <b-col>               
+                        <b-button variant="danger" @click="deleteColor(indexColor)" style="margin-top:2em">Xoá màu sắc</b-button>    
                       </b-col>
                     </b-row>
-                 </b-container>
-                <b-container >  
-                  <b-row v-for="(itemSize,indexSize) in itemColor.size" :key="indexSize">
-                    <b-col >          
-                      <b-form-group
-                        id="input-size"
-                        label="Tên Size:"
-                        label-for="input-size"
-                      >
+                    <b-row v-for="(itemimage,indeximage) in itemColor.image" :key="indeximage">
+                      <b-col>
+                        <input type="file" @change="imageChange(indexColor,$event)" multiple 
+                        accept="image/jpeg, image/png, image/gif"/>
+                      </b-col>
+                    </b-row>
+                  </b-container>
+                  <b-container >  
+                    <b-row v-for="(itemSize,indexSize) in itemColor.size" :key="indexSize">
+                      <b-col >          
+                        <b-form-group
+                          id="input-size"
+                          label="Tên Size:"
+                          label-for="input-size"
+                        >
+                        
+                        <b-form-input
+                          id="input-size"
+                          type="text"
+                          required
+                          v-model="itemSize.name"
+                        ></b-form-input>
+                        
+                      </b-form-group></b-col>
                       
-                      <b-form-input
-                        id="input-size"
-                        type="text"
-                        required
-                        v-model="itemSize.name"
-                      ></b-form-input>
-                      
-                    </b-form-group></b-col>
-                    
-                    <b-col><b-form-group
-                        id="input-soluong"
-                        label="Số lượng của size:"
-                        label-for="input-soluong"
-                      >
-                      <b-form-input
-                        id="input-soluong"
-                        type="number"
-                        min=1
-                        required
-                        v-model="itemSize.amount"
-                      ></b-form-input>
-                    </b-form-group>
-                  </b-col>
-                   <b-col >
-                      <b-button variant="danger" @click="deleteSize(indexSize,indexColor)" style="margin-top:2em">Xoá size</b-button>
+                      <b-col><b-form-group
+                          id="input-soluong"
+                          label="Số lượng của size:"
+                          label-for="input-soluong"
+                        >
+                        <b-form-input
+                          id="input-soluong"
+                          type="number"
+                          :value="itemSize.amount"
+                          required
+                          v-model="itemSize.amount"
+                          min=1
+                        ></b-form-input>
+                      </b-form-group>
                     </b-col>
-                </b-row>
-                <b-row>
-                <b-col> 
-                <b-button variant="primary" @click="newSize(indexColor)">Thêm Size</b-button>
-                
-                </b-col>
-                </b-row>
-                </b-container>
-               
+                    <b-col >
+                        <b-button variant="danger" @click="deleteSize(indexSize,indexColor)" style="margin-top:2em">Xoá size</b-button>
+                      </b-col>
+                  </b-row>
+                  <b-row>
+                    <b-col> 
+                      <b-button variant="primary" @click="newSize(indexColor)">Thêm Size</b-button>
+                    </b-col>
+                  </b-row>
+                </b-container>        
               </b-row>
               <b-row class="mt-3">
-                  <b-col>
-                      <b-button variant="primary" @click="newColor()">Thêm màu sắc</b-button>
-                  </b-col>
+                <b-col>
+                  <b-button variant="primary" @click="newColor()">Thêm màu sắc</b-button>
+                </b-col>
               </b-row>
             </b-col>
-
           </b-row>
         </b-container>
       </b-form>
     </div>
 </template>
-
 <script>
 import categoryAPI from "../../api/categoryAPI";
 import productAPI from "../../api/productAPI";
 export default {
-  name: "Addproduct",
+  name: "Updateproduct",
   data() {
     return {
       image: [], //file
@@ -229,6 +205,7 @@ export default {
         color: [
           {
             name: "",
+            code: "",
             size: [
               {
                 name: "",
@@ -323,10 +300,18 @@ export default {
     categoryAPI.getAll().then((response) => {
       this.categorys = response;
     });
+    productAPI.find(
+    this.$route.params.url).then((response)=>{
+    // console.log(response);
+    this.product = response;
+    this.colors = this.product.color;
+    this.sizes = this.product.color[0].size
+    // console.log(this.colors);
+    }).catch(()=>{
+    })
   },
 };
 </script>
-
 <style lang="scss" scoped>
 #introduce {
   margin-top: 2%;

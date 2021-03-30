@@ -130,6 +130,8 @@ img {
   right: -30px;
   z-index: 0;
   width: 100%;
+  margin-top: -15px;
+  height: 85%;
 }
 .content {
   position: relative;
@@ -158,7 +160,7 @@ img {
   font-size: 15px;
   color: #111;
   text-decoration: none;
-  padding: 10px 12px;
+  padding: 10px 10px;
   border: 1px solid #aaa;
   font-weight: bold;
 }
