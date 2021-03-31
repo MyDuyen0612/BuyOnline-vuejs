@@ -79,17 +79,18 @@ export default {
       this.$store.state = cart;
     }
     if (localStorage.getItem("jwt")) {
-      const jwt = {
+      const jwtKey = {
         jwt : localStorage.getItem("jwt")
       } 
-      if (jwt != null) {
+      if (jwtKey != null) {
         userApi
-          .profile(jwt)
+          .profile(jwtKey)
           .then((response) => {
             this.userName = response.name;
           })
-          .catch(() => {
+          .catch((error) => {
             this.userName = "";
+            console.log(error);
           });
       }
     }
@@ -97,7 +98,8 @@ export default {
   updated() {
     if (localStorage.getItem("jwt")) {
        const jwt = {
-        jwt : localStorage.getItem("jwt")
+        jwt : localStorage.getItem("jwt"),
+         date: localStorage.getItem("date")
       } 
       if (jwt != null) {
         userApi

@@ -146,38 +146,57 @@
                     >
                   </b-col>
                 </b-row>
-
+                <b-row cols-md="3">
+                  <b-col> 
+                    <b-form-group
+                      id="input-color-code"
+                      label="Mã màu sắc:"
+                      label-for="input-color-code"
+                    >
+                      <b-form-input
+                        v-model="itemColor.code"
+                        id="input-color-code"
+                        type="color"
+                        required
+                      >
+                      </b-form-input>
+                    </b-form-group>
+                    </b-col>
+                  {{itemColor.code}}    
+                </b-row>
                 <b-row>
                   <b-col>
-                    <input
+                    <b-form-file class="mt-3" plain 
+                      @change="imageChange(indexColor, $event)"
+                      multiple
+                      accept="image/jpeg, image/jpeg, image/png, image/gif"
+                      required></b-form-file>
+                    <!-- <input
                       type="file"
                       @change="imageChange(indexColor, $event)"
                       multiple
-                    />
+                    /> -->
                   </b-col>
                 </b-row>
               </b-container>
-              <b-container>
-                <b-row
-                  v-for="(itemSize, indexSize) in itemColor.size"
-                  :key="indexSize"
-                >
-                  <b-col>
-                    <b-form-group
-                      id="input-size"
-                      label="Tên Size:"
-                      label-for="input-size"
-                    >
+                <b-container >  
+                  <b-row v-for="(itemSize,indexSize) in itemColor.size" :key="indexSize">
+                    <b-col>          
+                      <b-form-group
+                        id="input-size"
+                        label="Tên Size:"
+                        label-for="input-size"
+                      >
                       <b-form-input
                         id="input-size"
                         type="text"
                         required
                         v-model="itemSize.name"
                       ></b-form-input> </b-form-group
-                  ></b-col>
+                    ></b-col>
 
-                  <b-col
-                    ><b-form-group
+                  <b-col>
+                    <b-form-group
                       id="input-soluong"
                       label="Số lượng của size:"
                       label-for="input-soluong"
@@ -241,6 +260,7 @@ export default {
         color: [
           {
             name: "",
+            code: "",
             size: [
               {
                 name: "",
