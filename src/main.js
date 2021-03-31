@@ -15,7 +15,7 @@ import VueSidebarMenu from 'vue-sidebar-menu'
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
 import VueSweetalert2 from 'vue-sweetalert2';
-
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 
 // const gauthOption = {
