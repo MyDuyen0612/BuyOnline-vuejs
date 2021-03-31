@@ -127,8 +127,13 @@
                     </b-row>
                     <b-row v-for="(itemimage,indeximage) in itemColor.image" :key="indeximage">
                       <b-col>
-                        <input type="file" @change="imageChange(indexColor,$event)" multiple 
-                        accept="image/jpeg, image/png, image/gif"/>
+                        <b-form-file :v-model="itemimage" class="mt-3" plain 
+                          @change="imageChange(indexColor, $event)"
+                          multiple
+                          accept="image/jpeg, image/jpg, image/png, image/gif"
+                          required></b-form-file>
+                        <!-- <input type="file" @change="imageChange(indexColor,$event)" multiple 
+                        accept="image/jpeg, image/jpg, image/png, image/gif" required/> -->
                       </b-col>
                     </b-row>
                   </b-container>

@@ -13,10 +13,7 @@ class UserApi {
         const url = '/Authentication';
         return axiosClient.post(url, params);
     }
-    find = (params) => {
-        const url = '/product/' + params;
-        return axiosClient.get(url);
-    }
+
     profile = (params) => {
         const url = '/profile';
         return axiosClient.post(url, params);

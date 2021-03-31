@@ -15,8 +15,9 @@
               </p>
               <h6>Color:</h6>
               <div class="colors-wrap">
-                <span class="colors" style="background:#f43542"></span>
-                <span class="colors"  v-for="(colorItem, colorIndex) in colors" :key="colorIndex">{{colorItem.name}}</span>
+                <span class="colors" v-for="(colorItem, colorIndex) in colors" :key="colorIndex"
+                :style="{ background:colorItem.code}" @click="ColorActive(colorItem)"
+                :class="colorActive.code==colorItem.code ? 'selected' : ''"></span>
               </div>
               <h6>Size:</h6>
               <div class="size-wrap">
@@ -27,7 +28,7 @@
               </div>
               <div class="button">
                 <a href="#">
-                  {{product.price.toLocaleString()}}
+                  {{product.discount.toLocaleString()}}
                   </a
                 ><a href="#" class="cart-btn"
                   ><i class="fa fa-plus cart-icon"></i> Thêm vào giỏ</a
@@ -83,6 +84,10 @@ export default {
     SizeActive: function (itemSize) {
       // console.log(itemSize);
       this.sizeAcive = itemSize;
+    },
+    ColorActive: function (colorItem) {
+      // console.log(colorItem);
+      this.colorActive = colorItem;
     },
   },
   mounted(){
@@ -224,7 +229,7 @@ img {
     display:inline-block;
     transition:0.3s all;
     border-radius:50%;
-    /* background:#f43542;  */
+    border: 1px solid black;
     margin: 0 15px;
 }
 .colors:hover, .size:hover{

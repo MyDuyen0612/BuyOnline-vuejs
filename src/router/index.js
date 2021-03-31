@@ -6,7 +6,7 @@ import User from '../views/Home.vue'
 import Login from '../user/Login.vue'
 import Orders from '../admin/Orders.vue'
 import Home from '../user/Index.vue'
-import Register from '../user/register'
+import Register from '../user/Register'
 import Cart from '../user/Cart.vue'
 import Cart1 from '../user/Cart1.vue'
 import Productdetail from '../components/Productdetail.vue'
@@ -126,7 +126,7 @@ const routes = [
     },
     {
       path: 'danhmuc',
-      name: 'Category',
+      name: 'CategoryAdmin',
       component: Category,
     },
     {

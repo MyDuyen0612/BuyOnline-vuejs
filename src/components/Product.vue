@@ -7,14 +7,12 @@
           v-for="(itemColor, indexColor) in product.color"
           :key="indexColor"
         >
-          <img
-            class="pic-1"
-            :src="product.color[indexColor].image[0].fileDownloadUri"
-          />
-          <img
-            class="pic-2"
-            :src="product.color[indexColor].image[0].fileDownloadUri"
-          />
+        <div  v-if="indexColor == 0">
+            <img
+              class="pic-1"
+              :src="product.color[indexColor].image[0].fileDownloadUri"
+            />
+        </div>
         </router-link>
         <ul class="social">
           <li>
