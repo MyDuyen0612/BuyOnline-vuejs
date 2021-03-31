@@ -14,6 +14,10 @@ import 'bootstrap-vue/dist/bootstrap-vue-icons.min.css'
 import VueSidebarMenu from 'vue-sidebar-menu'
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
+import VueSweetalert2 from 'vue-sweetalert2';
+
+
+
 // const gauthOption = {
 //   clientId: 'AIzaSyCwSxJ34jYRegxB4-Ki8GvBxWtfYMgraFA.apps.googleusercontent.com',
 //   scope: 'profile email',
@@ -26,7 +30,7 @@ Vue.use(VueSidebarMenu)
 Vue.use(BootstrapVueIcons)
 Vue.config.productionTip = false
 
-
+Vue.use(VueSweetalert2);
 
 
 new Vue({

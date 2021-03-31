@@ -18,6 +18,7 @@
     "vue-navigation-bar": "^4.1.0",
     "vue-router": "^3.2.0",
     "vue-sidebar-menu": "^4.7.4",
+    "vue-sweetalert2": "^4.2.1",
     "vuex": "^3.6.2"
   },
   "devDependencies": {

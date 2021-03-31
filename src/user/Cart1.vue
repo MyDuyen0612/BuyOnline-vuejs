@@ -87,7 +87,7 @@
               <td></td>
               <td></td>
               <td></td>
-              <td><b-button pill variant="outline-info">Apply</b-button></td>
+              <td><b-button pill variant="outline-info" v-on:click="alertDisplay">Apply</b-button></td>
               <td class="text-right">
                 <b-form-input id="input" v-model="text" placeholder="Discount Code"></b-form-input>
               </td>
@@ -150,7 +150,10 @@ export default {
   },
   
   methods:{
-    
+    alertDisplay() {
+        // $swal function calls SweetAlert into the application with the specified configuration.
+        this.$swal('Heading', 'this is a Heading', 'OK');
+      },
     addItems(items){
       this.$store.dispatch("addToCart",items)
 
