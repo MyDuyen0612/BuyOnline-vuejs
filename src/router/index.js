@@ -6,7 +6,7 @@ import User from '../views/Home.vue'
 import Login from '../user/Login.vue'
 import Orders from '../admin/Orders.vue'
 import Home from '../user/Index.vue'
-import Register from '../user/register'
+import Register from '../user/Register'
 import Cart from '../user/Cart.vue'
 import Cart1 from '../user/Cart1.vue'
 import Productdetail from '../components/Productdetail.vue'
@@ -21,7 +21,7 @@ const Checkout = () => import('../user/Checkout.vue')
 const Transport = () => import('../admin/Transport.vue')
 const Addproduct = () => import("../admin/product/Addproduct.vue")
 const AddCategory = () => import('../admin/category/AddCategory.vue')
-
+const Updateproduct = () => import('../admin/product/Updateproduct.vue')
 Vue.use(VueRouter)
 
 const routes = [
@@ -81,7 +81,7 @@ const routes = [
     {
       path: 'sanpham/:url',
       name: 'ProductDetail',
-      component:  Productdetail
+      component: Productdetail
     },
     {
       path: 'search/:search',
@@ -126,7 +126,7 @@ const routes = [
     },
     {
       path: 'danhmuc',
-      name: 'Category',
+      name: 'CategoryAdmin',
       component: Category,
     },
     {
@@ -134,11 +134,14 @@ const routes = [
       name: 'addcategory',
       component: AddCategory,
     },
-
+    {
+      path: ':url',
+      name: 'updateproduct',
+      component: Updateproduct,
+    },
     ]
   }
 ]
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,

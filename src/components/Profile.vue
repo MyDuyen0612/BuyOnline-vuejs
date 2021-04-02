@@ -11,7 +11,7 @@
             </div>
           </div>
           <div class="col-sm-8 bg-white rounded-right">
-            <h3 class="mt-3 text-center">Information</h3>
+            <h3 class="mt-3 text-center">Thong tin</h3>
             <hr class="bg-primary mt-0 w-25" />
             <div class="row">
               <div class="col-sm-6">

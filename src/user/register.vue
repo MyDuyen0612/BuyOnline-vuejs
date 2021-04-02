@@ -120,14 +120,12 @@
 import userApi from "../api/userAPi";
 export default {
   name: "Register",
-
   data() {
     return {
       form: {
         name: "",
         userName: "",
         password: "",
-        password2: "",
         email: "",
       },
       validation: {
@@ -141,24 +139,17 @@ export default {
       success: [],
     };
   },
-
   methods: {
     async onSubmit(event) {
       event.preventDefault();
       this.isActive = !this.isActive;
-
       await userApi.register(this.form).then((response) => {
         this.isActive = !this.isActive;
         if (response != null) {
           alert("Bạn đăng ký thành công");
-        } else {
-          alert("Bạn đăng ký không thành công");
         }
-        if (this.form.password.length < 6) {
-          this.errors.push("Password ít gì cũng 6 ký tự chứ nhở");
-          console.log(this.errors);
-          return;
-        }
+      }).catch((error)=>{
+        console.log(error.message);
       });
     },
     onReset(event) {

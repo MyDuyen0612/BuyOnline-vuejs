@@ -61,7 +61,9 @@ export default {
         return;
       }
       categoryAPI.save(this.category).then(()=>{
-        return this.$route.push({name:'category'});
+         this.$router.push({name:'CategoryAdmin'});
+        }).catch((err) => {
+          console.log(err)
         });
     
   },

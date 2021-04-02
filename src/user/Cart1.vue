@@ -49,10 +49,10 @@
                   </div>
               </td>
               <td class="col-sm-1 col-md-1 text-center" >
-                <strong >{{itemProduct.price}}</strong>
+                <strong >{{itemProduct.price.toLocaleString()}}</strong>
               </td>
               <td class="col-sm-1 col-md-1 text-center">
-                <strong >{{itemProduct.price * itemProduct.amount}}</strong>
+                <strong >{{(itemProduct.price * itemProduct.amount).toLocaleString()}}</strong>
               </td>
               <td class="col-sm-1 col-md-1">
                 <b-button id="del" pill variant="outline-danger" @click="clean">
