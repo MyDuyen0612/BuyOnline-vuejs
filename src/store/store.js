@@ -43,20 +43,21 @@ export const store = new Vuex.Store({
 
 
 
-        removeItem() {
-            // if(state.cartItems.length > 0){
-            //     let bool = state.cartItems.some(i => i.id === payload.id)
-            //     if (bool){
-            //         let index = state.cartItems.findIndex(el => el.id === payload.id)
-            //         if (state.cartItems[index]["quanlity"]!==0){
-            //             state.cartItems[index]["quanlity"] -= 1
-            //             state.cartItemCount--
-            //         }
-            //         if (state.cartItems[index]["quanlity"]===0){
-            //             state.cartItems.splice(index,1)
-            //         }
-            //     }
-            // }
+        removeItem(state,payload) {
+            if(state.cartItems.length > 0){
+                let bool = state.cartItems.some(i => i.id === payload.id)
+                if (bool){
+                    let index = state.cartItems.findIndex(el => el.id === payload.id)
+                    if (state.cartItems[index]["quanlity"]!==0){
+                        state.cartItems[index]["quanlity"] -= 1
+                        state.cartItemCount--
+                    }
+                    if (state.cartItems[index]["quanlity"]===0){
+                        state.cartItems.splice(index,1)
+                    }
+                }
+            }
+
         }
     },
     actions: {
