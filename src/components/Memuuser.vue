@@ -52,7 +52,7 @@
           :key="indexCategory"
           :to="{ name: 'Category', params: {urlCategory:itemCategory.url} }"
           class="item"
-          v-show="itemCategory.product != null"
+          v-show="itemCategory.product.length >0"
           >{{ itemCategory.name.toUpperCase() }}</b-nav-item
         >
         <b-nav-item to="/shop" class="item">CỬA HÀNG</b-nav-item>

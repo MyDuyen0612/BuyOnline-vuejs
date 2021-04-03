@@ -327,12 +327,11 @@ export default {
             this.image = [];
             this.$route.push({
               name: "ProductDetail",
-
               params: { url: response.url },
             });
           })
           .catch((error) => {
-            alert("that bai", error.response);
+            alert("that bai", error);
           });
       }
     },

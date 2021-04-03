@@ -31,8 +31,9 @@ export default {
     categoryAPI
       .find(this.$route.params.urlCategory)
       .then((response) => {
+        
         this.products = response.product;
-        console.log(this.products);
+        // console.log(this.products);
       })
       .catch((error) => {
         console.log(error);

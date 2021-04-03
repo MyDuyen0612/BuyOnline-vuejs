@@ -5,7 +5,7 @@ import queryString from 'query-string';
 
 // Please have a look at here `https://github.com/axios/axios#request- config` for the full list of configs`
 
-
+// axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 const axiosClient = axios.create({
     baseURL: process.env.VUE_APP_API_URL,
     headers: {

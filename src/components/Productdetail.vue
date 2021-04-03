@@ -26,11 +26,19 @@
                 :value="itemSize" @click="SizeActive(itemSize)"
                 :class="sizeAcive.id==itemSize.id ? 'selected' : ''">{{itemSize.name}}</span>
               </div>
+              <h6>Quantity:</h6>
+              <b-form-input
+                id="input-amount"
+                v-model="amount"
+                type="number"
+                min="1"
+                required
+              ></b-form-input>
               <div class="button">
                 <a href="#">
                   {{product.discount.toLocaleString()}}
                   </a
-                ><a href="#" class="cart-btn"
+                ><a  @click="add(product)" class="cart-btn"
                   ><i class="fa fa-plus cart-icon"></i> Thêm vào giỏ</a
                 >
               </div>
@@ -49,6 +57,7 @@ export default {
   name: "Productdetail",
   data(){
     return {
+      amount: 1,
       colors:[],
       sizes:[],
       colorActive:{
@@ -88,6 +97,14 @@ export default {
     ColorActive: function (colorItem) {
       // console.log(colorItem);
       this.colorActive = colorItem;
+    },
+    add(product){
+      const cartItem = {
+            product:product,
+            amount:1,
+            price:product.price
+        };
+      this.$store.commit('addToCart',cartItem);
     },
   },
   mounted(){
@@ -153,6 +170,10 @@ img {
   border-radius: 50px;
   font-size: 1em;
   margin-bottom: 20px;
+}
+#input-amount{
+  width: 80px;
+  border: 1px solid  #aaa;
 }
 .button {
   width: fit-content;
