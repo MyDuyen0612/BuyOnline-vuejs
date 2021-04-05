@@ -2,7 +2,13 @@
   <b-container fluid>
     <b-row>
       <div class="col-lg-6 col-md-12 col-sm-12">
-        <img  :src="product.color[0].image[0].fileDownloadUri"/>
+        <image-magnifier  :src="product.color[0].image[0].fileDownloadUri"
+        :zoom-src="product.color[0].image[0].fileDownloadUri"
+        width="90%"
+        height="90%"
+        zoom-width="450"
+        zoom-height="350"
+        />
       </div>
       <div class="col-lg-6 col-md-12 col-sm-12">
         <div class="wrapper">
@@ -45,8 +51,10 @@
 
 <script>
 import productAPI from'../api/productAPI'
+
 export default {
   name: "Productdetail",
+ 
   data(){
     return {
       colors:[],

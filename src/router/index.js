@@ -12,6 +12,7 @@ import Cart1 from '../user/Cart1.vue'
 import Productdetail from '../components/Productdetail.vue'
 import Profile from '../components/Profile.vue'
 
+
 //Admin
 const Admin = () => import('../views/Admin.vue')
 const Productpage = () => import('../admin/product/Productpage.vue')
