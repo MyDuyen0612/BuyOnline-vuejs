@@ -38,7 +38,7 @@
                 <a href="#">
                   {{product.discount.toLocaleString()}}
                   </a
-                ><a  @click="add(product)" class="cart-btn"
+                ><a class="cart-btn"
                   ><i class="fa fa-plus cart-icon"></i> Thêm vào giỏ</a
                 >
               </div>
