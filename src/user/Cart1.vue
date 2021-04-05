@@ -5,8 +5,10 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th></th>
+            <th class="text-center1">Image</th>
             <th class="text-center1">Product</th>
+            <th class="text-center1">Size</th>
+            <th class="text-center1">Color</th>
             <th class="text-center1">Quantity</th>
             <th class="text-center1">Price</th>
             <th class="text-center1">Total</th>
@@ -18,17 +20,15 @@
             v-for="(itemProduct, indexProduct) in cartItems"
             :key="indexProduct"
           >
-            <td></td>
+            <td>
+              <img
+                class="media-object"
+                :src="itemProduct.product.color[0].image[0].fileDownloadUri"
+                style="width: 72px; height: 72px; border-radius: 5px"
+              />
+            </td>
             <td class="col-sm-8 col-md-6">
               <div class="media">
-                <a class="thumbnail pull-left" href="#">
-                  <img
-                    class="media-object"
-                    src=""
-                    style="width: 72px; height: 72px"
-                  />
-                </a>
-
                 <div class="media-body">
                   <router-link
                     :to="{
@@ -45,36 +45,84 @@
                 </div>
               </div>
             </td>
-
+            <!-- <td>
+              <div >
+                <b-dropdown size="sm" variant="primary" text="Size" class="m-2" >
+                  <b-dropdown-item-button > {{itemProduct.product.color[0].size[0].name}}</b-dropdown-item-button>
+                </b-dropdown>
+              </div>
+            </td> -->
+            <td>
+              <div id="ex9">
+                <select
+                  v-model="selected"
+                  :value="itemSize"
+                  @click="SizeActive(itemSize)"
+                  
+                >
+                  <option>
+                    <!--v-for="(itemProduct, indexProduct) in cartItems"
+            :key="indexProduct"-->
+                    <!--v-for="(itemSize,itemIndex) in cart.cartItems" 
+                :key="itemIndex" -->
+                    {{ itemProduct.product.color[0].size[0].name }}
+                  </option>
+                </select>
+              </div>
+            </td>
+            <td>
+              <div id="ex9">
+                <select v-model="selected" :value="colorItem" @click="ColorActive(colorItem)">
+                  <option>
+                    <!--v-for="(itemProduct, indexProduct) in cartItems"
+            :key="indexProduct"-->
+                    {{ itemProduct.product.color[0].name }}
+                  </option>
+                </select>
+              </div>
+            </td>
             <td class="col-sm-1 col-md-1" style="text-align: center">
               <div class="d-flex mt-10" id="example-1">
-                <button
+                <!-- <button
                   v-on:click="itemProduct.amount--"
                   class="add"
                   type="button"
                 >
                   -
-                </button>
-                <div class="cart-quanlity">{{ itemProduct.amount }}</div>
-                <button
+                </button> -->
+                <b-form-input
+                  id="input-amount"
+                  v-model="itemProduct.amount"
+                  type="number"
+                  min="1"
+                  >{{ itemProduct.amount }}</b-form-input
+                >
+                <!-- <button
                   v-on:click="itemProduct.amount++"
                   class="remove"
                   type="button"
                 >
                   +
-                </button>
+                </button> -->
               </div>
             </td>
             <td class="col-sm-1 col-md-1 text-center">
-              <strong>{{ itemProduct.price.toLocaleString() }}</strong>
+              <strong>{{ itemProduct.product.price.toLocaleString() }}</strong>
             </td>
             <td class="col-sm-1 col-md-1 text-center">
               <strong>{{
-                (itemProduct.price * itemProduct.amount).toLocaleString()
+                (
+                  itemProduct.product.price * itemProduct.amount
+                ).toLocaleString()
               }}</strong>
             </td>
             <td class="col-sm-1 col-md-1">
-              <b-button id="del" pill variant="outline-danger" @click="removeItem">
+              <b-button
+                id="del"
+                pill
+                variant="outline-danger"
+                @click="removeItem"
+              >
                 <b-icon-trash></b-icon-trash>
               </b-button>
               <b-tooltip target="del" placement="center" variant="danger">
@@ -87,13 +135,19 @@
             <td></td>
             <td></td>
             <td></td>
-
+            <td></td>
+            <td></td>
             <td><h6>Subtotal</h6></td>
             <td class="text-right">
-              <h6><strong>$26.11</strong></h6>
+              <!-- <input v-model="cart.priceCart" value="itemProduct.product.price * itemProduct.amount"> -->
+              <h6>
+                <strong>{{ priceCart.toLocaleString() }}</strong>
+              </h6>
             </td>
           </tr>
           <tr>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -103,6 +157,8 @@
             </td>
           </tr>
           <tr>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -123,12 +179,17 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
             <td><h6>Total</h6></td>
             <td class="text-right">
-              <h3><strong>$26.11</strong></h3>
+              <h3>
+                <strong>{{ (priceCart + 50000).toLocaleString() }}</strong>
+              </h3>
             </td>
           </tr>
           <tr>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -169,16 +230,27 @@ export default {
   name: "Cart1",
   data() {
     return {
-      cartItems: [],
-      lengthCart: 0,
-      priceCart: 0,
+      // ticket: {
+      //   products: null,
+      //   total: 0,
+      // },
+      colorActive: {},
+      sizeAcive: {},
+      sumCart: 0,
+     
+        cartItems: [],
+
+        lengthCart: 0,
+        priceCart: 0,
+      
+    
     };
   },
 
   methods: {
     alertDisplay() {
       // $swal function calls SweetAlert into the application with the specified configuration.
-    
+
       this.$swal({
         title: "Thành công!",
         text: "Hãy mua sắm thật nhiều để nhận được nhiều ưu đãi nhé!",
@@ -186,6 +258,14 @@ export default {
         button: "OK",
       });
       //this.$swal('Thành công!', 'Mã giảm của bạn đang được áp dụng. </br>Hãy mua sắm thật nhiều để nhận được nhiều sự ưu đãi hơn nhé!', 'OK');
+    },
+    SizeActive: function (itemSize) {
+      // console.log(itemSize);
+      this.sizeAcive = itemSize;
+    },
+    ColorActive: function (colorItem) {
+      // console.log(colorItem);
+      this.colorActive = colorItem;
     },
     addItems(items) {
       this.$store.dispatch("addToCart", items);
@@ -203,6 +283,9 @@ export default {
 
     this.priceCart = this.$store.state.priceCart;
   },
+  // render: function (sumPrice) {
+  //   return sumPrice.state.cart.cartItems.amount * sumPrice.state.cart.cartItems.discount;
+  // },
 };
 </script>
 
