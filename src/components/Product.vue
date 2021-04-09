@@ -28,7 +28,7 @@
             ></router-link>
           </li>
           <li>
-            <button  @click="add(product)" data-tip="Thêm vào giỏ"
+            <button v-on:click="alertDisplay" @click="add(product)" data-tip="Thêm vào giỏ"
               ><i class="fa fa-shopping-cart"></i
             ></button>
           </li>
@@ -50,9 +50,9 @@
         <div class="price">
           {{ product.discount.toLocaleString() }} đ     
           <span>  {{ product.price.toLocaleString() }} đ</span>
-        </div>
-        <a class="add-to-cart" href="">+ Thêm vào giỏ</a>
-      </div>
+        </div >
+        <a v-on:click="alertDisplay" class="add-to-cart"  @click="add(product)">+ Thêm vào giỏ</a>
+      </div >
     </div>
   </div>
 </template>
@@ -61,6 +61,17 @@ export default {
   name: "product",
   props: ["product"],
   methods: {
+    alertDisplay() {
+     // Hàm $swal gọi SweetAlert vào ứng dụng với cấu hình được chỉ định
+
+      this.$swal({
+        title: "Thành công!",
+        text: "Sản phẩm đã được thêm vào giỏ hàng!",
+        icon: "success",
+        button: "OK",
+      });
+      //this.$swal('Thành công!', 'Mã giảm của bạn đang được áp dụng. </br>Hãy mua sắm thật nhiều để nhận được nhiều sự ưu đãi hơn nhé!', 'OK');
+    },
     add(product){
       const cartItem = {
             product:product,
