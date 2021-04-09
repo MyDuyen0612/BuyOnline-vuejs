@@ -16,7 +16,9 @@
           <div class="outer" >
             <div class="content" >
               <span class="bg" >Khuyến mãi</span><br />
-              <span class="product__content"> {{product.name}}</span>
+
+              <span class="product__content"> {{ product.name }}</span>
+
 
               <h6>Color: </h6>
               <div class="colors-wrap" >
@@ -38,12 +40,16 @@
                   :value="itemSize"
                   @click="SizeActive(itemSize)"
                   :class="sizeAcive.id == itemSize.id ? 'selected' : ''"
-                  >{{itemSize.name}}</span
+
+                  >{{ itemSize.name }}</span
                 >
               </div>
               <div class="button" >
-                <a href="#" >{{(product.discount).toLocaleString()}}</a>
-                <a @click="add(product)" class="cart-btn" v-on:click="alertDisplay"><i class="fa fa-plus cart-icon" ></i>Thêm vào giỏ</a>
+                <a href="#" > {{ product.discount.toLocaleString() }} </a
+                ><a @click="add(product)" class="cart-btn" v-on:click="alertDisplay"
+                  ><i class="fa fa-plus cart-icon" ></i>Thêm vào giỏ</a
+                >
+
               </div >
             </div >
           </div >
@@ -83,7 +89,9 @@
 </template>
 
 <script>
+
 import productAPI from '../api/productAPI';
+
 
 export default {
   name: "Productdetail" ,
@@ -95,6 +103,7 @@ export default {
       colorActive: {},
       sizeAcive: {},
       product: {
+
         name: '',
         price: 0,
         introduce: '',
@@ -105,12 +114,15 @@ export default {
             size: [
               {
                 name: '',
+
                 amount: 0,
               },
             ],
             image: [
               {
+
                 fileDownloadUri: '',
+
               },
             ],
           },
@@ -136,6 +148,8 @@ export default {
     SizeActive: function(itemSize){
       this.SizeActive = itemSize;
     },
+
+   
     
     add(product) {
       const cartItem = {
@@ -146,16 +160,23 @@ export default {
       this.$store.commit("addToCart", cartItem);
     },
   },
+
   mounted() {
-    productAPI.find(this.$route.params.url).then((response) => {
+    productAPI
+      .find(this.$route.params.url)
+      .then((response) => {
+
        
         this.product = response;
         this.colors = this.product.color;
         this.sizes = this.product.color[0].size;
   
       })
+
       .catch(() => {})
+
   },
+
 };
 </script>
 
@@ -275,8 +296,9 @@ img {
     margin-top: 0px !important;
   }
   .product__content {
+
     font-size: 1.0em;
-  }
+}
 }
 .colors
 {
@@ -296,7 +318,9 @@ img {
 }
 .colors:active,
 .size:active {
+
   transform: scale(.8);
+
 }
 .selected {
   box-shadow: 0 0 0 4px #fff, 0 0 0 8px rgba(173, 173, 170, 0.3);
