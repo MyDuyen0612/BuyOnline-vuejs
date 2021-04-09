@@ -55,7 +55,7 @@
                 id="input-name"
                 v-model="form.name"
                 type="text"
-                :state="form.name.length > 8"
+                
                 placeholder="Enter Name"
                 required
               ></b-form-input>

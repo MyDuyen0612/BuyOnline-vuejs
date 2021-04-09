@@ -238,7 +238,31 @@ export default {
       sizeAcive: {},
       sumCart: 0,
      
-        cartItems: [],
+        cartItems: [{
+          product:{
+        name:'',
+        price:0,
+        introduce:'',
+        color:[
+          {
+            name:'',
+            code: '',
+            size:[
+            {
+              name:'',
+              amount:0
+            }
+            ],
+          image:[
+            {
+              fileDownloadUri:''
+            }
+          ]
+          
+          }
+        ],        
+      }}
+        ],
 
         lengthCart: 0,
         priceCart: 0,

@@ -87,6 +87,8 @@ export default {
         userApi
           .profile(jwtKey)
           .then((response) => {
+            console.log(response.name)
+            console.log(response)
             this.userName = response.name;
           })
           .catch((error) => {

@@ -1,123 +1,162 @@
-<template>
-  <b-container fluid>
-    <b-row>
-      <div class="col-lg-6 col-md-12 col-sm-12">
-        <img  :src="product.color[0].image[0].fileDownloadUri"/>
+<template >
+  <b-container fluid >
+    <b-row >
+      <div class="col-lg-6 col-md-12 col-sm-12" >
+        <image-magnifier
+          :src="product.color[0].image[0].fileDownloadUri"
+          :zoom-src="product.color[0].image[0].fileDownloadUri"
+          width="100%"
+          height="100%"
+          zoom-width="450"
+          zoom-height="350"
+        />
       </div>
-      <div class="col-lg-6 col-md-12 col-sm-12">
-        <div class="wrapper">
-          <div class="outer">
-            <div class="content">
-              <span class="bg">Khuyến mãi</span><br>
-              <span class="product__content">{{product.name}}</span>
-              <p>
-                {{product.introduce}}
-              </p>
-              <h6>Color:</h6>
-              <div class="colors-wrap">
-                <span class="colors" v-for="(colorItem, colorIndex) in colors" :key="colorIndex"
-                :style="{ background:colorItem.code}" @click="ColorActive(colorItem)"
-                :class="colorActive.code==colorItem.code ? 'selected' : ''"></span>
-              </div>
-              <h6>Size:</h6>
-              <div class="size-wrap">
-                <span class="size" v-for="(itemSize,itemIndex) in sizes" 
-                :key="itemIndex" 
-                :value="itemSize" @click="SizeActive(itemSize)"
-                :class="sizeAcive.id==itemSize.id ? 'selected' : ''">{{itemSize.name}}</span>
-              </div>
-              <h6>Quantity:</h6>
-              <b-form-input
-                id="input-amount"
-                v-model="amount"
-                type="number"
-                min="1"
-                required
-              ></b-form-input>
-              <div class="button">
-                <a href="#">
-                  {{product.discount.toLocaleString()}}
-                  </a
-                ><a class="cart-btn"
-                  ><i class="fa fa-plus cart-icon"></i> Thêm vào giỏ</a
+      <div class="col-lg-6 col-md-12 col-sm-12" >
+        <div class="wrapper" >
+          <div class="outer" >
+            <div class="content" >
+              <span class="bg" >Khuyến mãi</span><br />
+              <span class="product__content"> {{ product.name }}</span>
+
+              <h6>Color: </h6>
+              <div class="colors-wrap" >
+                <span
+                  class="colors"
+                  v-for="(colorItem, colorIndex) in colors"
+                  :key="colorIndex"
+                  :style="{ background: colorItem.code }"
+                  @click="ColorActive(colorItem)"
+                  :class="colorActive.code == colorItem.code ? 'selected' : ''"
+                ></span>
+              </div >
+              <h6>Size: </h6>
+              <div class="size-wrap" >
+                <span
+                  class="size"
+                  v-for="(itemSize, itemIndex) in sizes"
+                  :key="itemIndex"
+                  :value="itemSize"
+                  @click="SizeActive(itemSize)"
+                  :class="sizeAcive.id == itemSize.id ? 'selected' : ''"
+                  >{{ itemSize.name }}</span
                 >
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              <div class="button" >
+                <a href="#" > {{ product.discount.toLocaleString() }} </a
+                ><a @click="add(product)" class="cart-btn" v-on:click="alertDisplay"
+                  ><i class="fa fa-plus cart-icon" ></i>Thêm vào giỏ</a
+                >
+              </div >
+            </div >
+          </div >
+        </div >
+        
+      </div >
       
-    </b-row>
-  </b-container>
+    </b-row >
+    <!-- <div>
+      <b-card no-body>
+        <b-tabs pills card>
+          <b-tab title="Tab 1" active
+            ><b-card-text></b-card-text></b-tab
+          >
+          <b-tab title="Tab 2"><b-card-text>Tab contents 2</b-card-text></b-tab>
+        </b-tabs>
+      </b-card>
+    </div>
+    <div>
+      <b-tabs content-class="mt-3">
+        <b-tab title="First" active><p>I'm the first tab</p></b-tab>
+        <b-tab title="Second"><p>I'm the second tab</p></b-tab>
+        <b-tab title="Disabled"><p>I'm a disabled tab!</p></b-tab>
+      </b-tabs>
+    </div> -->
+    <div >
+      <b-tabs
+        active-nav-item-class="font-weight-bold text-uppercase text-danger"
+        active-tab-class="font-weight-bold text-success"
+        content-class="mt-3">
+        <b-tab title="Mô tả" active><p>{{product.introduce}}</p></b-tab>
+        <b-tab title="Đánh giá"><p>0 ĐÁNH GIÁ CHO {{product.name}}</p></b-tab>
+        <b-tab title="Bình luận" ><p>0 BÌNH LUẬN CHO {{product.name}}</p></b-tab>
+      </b-tabs>
+    </div >
+  </b-container >
 </template>
 
 <script>
-import productAPI from'../api/productAPI'
+import productAPI from "../api/productAPI";
 export default {
-  name: "Productdetail",
-  data(){
+  name: "Productdetail" ,
+  data() {
     return {
-      amount: 1,
-      colors:[],
-      sizes:[],
-      colorActive:{
-      },
-      sizeAcive:{
-      },
-      product:{
-        name:'',
-        price:0,
-        introduce:'',
-        color:[
+      colors: [],
+      sizes: [],
+      colorActive: {},
+      sizeAcive: {},
+      product: {
+        name: "",
+        price: 0,
+        introduce: "",
+        color: [
           {
-            name:'',
-            code: '',
-            size:[
-            {
-              name:'',
-              amount:0
-            }
+            name: "",
+            code: "",
+            size: [
+              {
+                name: "",
+                amount: 0,
+              },
             ],
-          image:[
-            {
-              fileDownloadUri:''
-            }
-          ]
-          
-          }
-        ],        
-      }
-    }
+            image: [
+              {
+                fileDownloadUri: "",
+              },
+            ],
+          },
+        ],
+      },
+    };
   },
-  methods: {
-    SizeActive: function (itemSize) {
-      // console.log(itemSize);
-      this.sizeAcive = itemSize;
+  methods:{
+    alertDisplay() {
+     // Hàm $swal gọi SweetAlert vào ứng dụng với cấu hình được chỉ định
+      this.$swal({
+        title: "Thành công!",
+        text: "Sản phẩm đã được thêm vào giỏ hàng!",
+        icon: "success",
+        button: "OK",
+      });
+      //this.$swal('Thành công!', 'Mã giảm của bạn đang được áp dụng. </br>Hãy mua sắm thật nhiều để nhận được nhiều sự ưu đãi hơn nhé!', 'OK');
     },
-    ColorActive: function (colorItem) {
-      // console.log(colorItem);
-      this.colorActive = colorItem;
+    ColorActive: function(colorItem){
+      this.ColorActive = colorItem;
     },
-    add(product){
+    SizeActive: function(itemSize){
+      this.SizeActive = itemSize;
+    },
+    
+    add(product) {
       const cartItem = {
-            product:product,
-            amount:1,
-            price:product.price
-        };
-      this.$store.commit('addToCart',cartItem);
+        product: product,
+        amount: 1,
+        price: product.price,
+      };
+      this.$store.commit("addToCart", cartItem);
     },
   },
-  mounted(){
-    productAPI.find(
-    this.$route.params.url).then((response)=>{
-    // console.log(response);
-    this.product = response;
-    this.colors = this.product.color;
-    this.sizes = this.product.color[0].size
-    // console.log(this.colors);
-    }).catch(()=>{
-    })
-    },
+  mounted() {
+    productAPI
+      .find(this.$route.params.url)
+      .then((response) => {
+       
+        this.product = response;
+        this.colors = this.product.color;
+        this.sizes = this.product.color[0].size;
+  
+      })
+      .catch(() => {});
+  },
 };
 </script>
 
@@ -171,10 +210,6 @@ img {
   font-size: 1em;
   margin-bottom: 20px;
 }
-#input-amount{
-  width: 80px;
-  border: 1px solid  #aaa;
-}
 .button {
   width: fit-content;
   height: fit-content;
@@ -204,8 +239,8 @@ img {
   transform: skew(-25deg);
   transform-origin: right;
 }
-.product__content{
-  font-size:2.5em
+.product__content {
+  font-size: 2.5em;
 }
 .button a:hover:after {
   width: 150%;
@@ -240,50 +275,52 @@ img {
     width: 100%;
     margin-top: 0px !important;
   }
-  .product__content{
-  font-size: 1.0em
+  .product__content {
+    font-size: 1em;
   }
 }
-.colors{
-    width:20px;
-    height:20px;
-    display:inline-block;
-    transition:0.3s all;
-    border-radius:50%;
-    border: 1px solid black;
-    margin: 0 15px;
+.colors
+{
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  transition: 0.3s all;
+  border-radius: 50%;
+  border: 1px solid black;
+  margin: 0 15px;
 }
-.colors:hover, .size:hover{
-    transform: scale(1.2);
-    box-shadow: 0 0 0 8px rgba(173, 173, 170, .3);
-    cursor: pointer;
+.colors:hover,
+.size:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 8px rgba(173, 173, 170, 0.3);
+  cursor: pointer;
 }
-.colors:active, .size:active{
-    transform: scale(.8);
+.colors:active,
+.size:active {
+  transform: scale(0.8);
 }
-.selected{
-    box-shadow: 0 0 0 4px #fff, 0 0 0 8px rgba(173, 173, 170, .3);
+.selected {
+  box-shadow: 0 0 0 4px #fff, 0 0 0 8px rgba(173, 173, 170, 0.3);
 }
-.colors-wrap, .size-wrap{
-    width: 100%;
-    margin: 5px auto;
-    padding: 10px;
-    border-radius: 70px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+.colors-wrap,
+.size-wrap {
+  width: 100%;
+  margin: 5px auto;
+  padding: 10px;
+  border-radius: 70px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
-.size{
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 15px;
-    cursor: pointer;
-    transition: all .3s;
+.size {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 15px;
+  cursor: pointer;
+  transition: all 0.3s;
 }
-
-
 </style>

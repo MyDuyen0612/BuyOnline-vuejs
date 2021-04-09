@@ -56,7 +56,6 @@
                   v-show="!messageAlter.showLoad"
                   >Login</b-button
                 >
-
                 <b-button
                   variant="primary"
                   disabled
