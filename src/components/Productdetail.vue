@@ -9,7 +9,7 @@
           height="100%"
           zoom-width="450"
           zoom-height="350"
-        />
+        /> 
       </div>
       <div class="col-lg-6 col-md-12 col-sm-12" >
         <div class="wrapper" >
@@ -42,7 +42,7 @@
                 >
               </div>
               <div class="button" >
-                <a href="#" > {{ product.discount.toLocaleString() }} </a
+                <a href="#" > {{ product.discount.toLocaleString() }} đ  </a
                 ><a @click="add(product)" class="cart-btn" v-on:click="alertDisplay"
                   ><i class="fa fa-plus cart-icon" ></i>Thêm vào giỏ</a
                 >
@@ -97,6 +97,7 @@ export default {
       product: {
         name: "",
         price: 0,
+        discount:0,
         introduce: "",
         color: [
           {

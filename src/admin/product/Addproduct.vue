@@ -331,6 +331,7 @@ export default {
             });
           })
           .catch((error) => {
+            console.log(error.response);
             alert("that bai", error);
           });
       }
