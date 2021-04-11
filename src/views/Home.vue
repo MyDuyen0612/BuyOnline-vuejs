@@ -65,6 +65,7 @@ export default {
     },
     logOut: function () {
       localStorage.removeItem("jwt");
+      localStorage.removeItem("date");
       this.$router.push({ name: "index" });
       this.userName = "";
     },
@@ -80,12 +81,8 @@ export default {
       
     }
     if (localStorage.getItem("jwt")) {
-      const jwtKey = {
-        jwt : localStorage.getItem("jwt")
-      } 
-      if (jwtKey != null) {
         userApi
-          .profile(jwtKey)
+          .profile()
           .then((response) => {
             this.userName = response.name;
           })
@@ -93,25 +90,20 @@ export default {
             this.userName = "";
             console.log(error);
           });
-      }
     }
   },
   updated() {
     if (localStorage.getItem("jwt")) {
-       const jwt = {
-        jwt : localStorage.getItem("jwt")
-      } 
-      if (jwt != null) {
         userApi
-          .profile(jwt)
+          .profile()
           .then((response) => {
             this.userName = response.name;
-            console.log(this.userName);
+            console.log(response);
           })
           .catch(() => {
             this.userName = "";
           });
-      }
+      
     }
   },
 };

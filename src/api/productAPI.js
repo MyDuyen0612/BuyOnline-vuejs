@@ -7,15 +7,30 @@ class ProductApi {
     };
     save = (params) => {
         const url = '/product';
-        return axiosClient.post(url, params);
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('jwt')
+            }
+        }
+        return axiosClient.post(url, params, config);
     };
     edit = (params) => {
         const url = '/product';
-        return axiosClient.post(url, params);
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('jwt')
+            }
+        }
+        return axiosClient.put(url, params, config);
     }
     remove = (params) => {
         const url = '/product';
-        return axiosClient.post(url, params);
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('jwt')
+            }
+        }
+        return axiosClient.delete(url, params, config);
     }
     find = (params) => {
         const url = '/product/' + params;

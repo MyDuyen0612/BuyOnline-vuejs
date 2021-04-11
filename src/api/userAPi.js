@@ -14,9 +14,14 @@ class UserApi {
         return axiosClient.post(url, params);
     }
 
-    profile = (params) => {
+    profile = () => {
         const url = '/profile';
-        return axiosClient.post(url, params);
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('jwt')
+            }
+        }
+        return axiosClient.get(url, config);
     }
 }
 const userApi = new UserApi();

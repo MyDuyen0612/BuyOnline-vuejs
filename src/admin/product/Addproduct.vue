@@ -133,73 +133,85 @@
                         label="Tên màu sắc:"
                         label-for="input-color"
                       >
-                    </b-form-group>
-                  </b-col>
-                  <b-col>
-                    <b-button
-                      variant="danger"
-                      @click="deleteColor(indexColor)"
-                      style="margin-top: 2em"
-                      >Xoá màu sắc</b-button
-                    >
-                  </b-col>
-                </b-row>
-                <b-row cols-md="3">
-                  <b-col> 
-                    <b-form-group
-                      id="input-color-code"
-                      label="Mã màu sắc:"
-                      label-for="input-color-code"
-                    >
-                      <b-form-input
-                        v-model="itemColor.code"
-                        id="input-color-code"
-                        type="color"
-                        required
-                      >
-                      </b-form-input>
-                    </b-form-group>
+                        <b-form-input
+                          v-model="itemColor.name"
+                          id="input-color"
+                          type="text"
+                          required
+                        >
+                        </b-form-input>
+                      </b-form-group>
                     </b-col>
-                  {{itemColor.code}}    
-                </b-row>
-                <b-row>
-                  <b-col>
-                    <b-form-file class="mt-3" plain 
-                      @change="imageChange(indexColor, $event)"
-                      multiple
-                      accept="image/jpeg, image/jpeg, image/png, image/gif"
-                      required></b-form-file>
-                    <!-- <input
+                    <b-col>
+                      <b-button
+                        variant="danger"
+                        @click="deleteColor(indexColor)"
+                        style="margin-top: 2em"
+                        >Xoá màu sắc</b-button
+                      >
+                    </b-col>
+                  </b-row>
+                  <b-row cols-md="3">
+                    <b-col>
+                      <b-form-group
+                        id="input-color-code"
+                        label="Mã màu sắc:"
+                        label-for="input-color-code"
+                      >
+                        <b-form-input
+                          v-model="itemColor.code"
+                          id="input-color-code"
+                          type="color"
+                          required
+                        >
+                        </b-form-input>
+                      </b-form-group>
+                    </b-col>
+                    {{ itemColor.code }}
+                  </b-row>
+                  <b-row>
+                    <b-col>
+                      <b-form-file
+                        class="mt-3"
+                        plain
+                        @change="imageChange(indexColor, $event)"
+                        multiple
+                        accept="image/jpeg, image/jpeg, image/png, image/gif"
+                        required
+                      ></b-form-file>
+                      <!-- <input
                       type="file"
                       @change="imageChange(indexColor, $event)"
                       multiple
                     /> -->
-                  </b-col>
-                </b-row>
-              </b-container>
-                <b-container >  
-                  <b-row v-for="(itemSize,indexSize) in itemColor.size" :key="indexSize">
-                    <b-col>          
+                    </b-col>
+                  </b-row>
+                </b-container>
+                <b-container>
+                  <b-row
+                    v-for="(itemSize, indexSize) in itemColor.size"
+                    :key="indexSize"
+                  >
+                    <b-col>
                       <b-form-group
                         id="input-size"
                         label="Tên Size:"
                         label-for="input-size"
                       >
-                      <b-form-input
-                        id="input-size"
-                        type="text"
-                        required
-                        v-model="itemSize.name"
-                      ></b-form-input> </b-form-group
+                        <b-form-input
+                          id="input-size"
+                          type="text"
+                          required
+                          v-model="itemSize.name"
+                        ></b-form-input> </b-form-group
                     ></b-col>
 
-                  <b-col>
-                    <b-form-group
-                      id="input-soluong"
-                      label="Số lượng của size:"
-                      label-for="input-soluong"
-                    >
-
+                    <b-col>
+                      <b-form-group
+                        id="input-soluong"
+                        label="Số lượng của size:"
+                        label-for="input-soluong"
+                      >
                         <b-form-input
                           id="input-soluong"
                           type="number"
@@ -332,7 +344,7 @@ export default {
           })
           .catch((error) => {
             this.show = false;
-            alert(error.message);
+            console.log(error);
           });
       }
     },

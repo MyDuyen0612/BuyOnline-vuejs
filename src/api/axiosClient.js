@@ -18,14 +18,7 @@ const axiosClient = axios.create({
 });
 axiosClient.interceptors.request.use(async (config) => {
 
-    if (localStorage.getItem('jwt')) {
-        if (localStorage.getItem('date') == Date.now() || !localStorage.getItem('date')) {
-            localStorage.removeItem('jwt');
-            localStorage.removeItem('date')
-        } else {
-            config.headers.Authorization = 'Bearer ' + localStorage.getItem('jwt');
-        }
-    }
+
     return config;
 })
 axiosClient.interceptors.response.use((response) => {
