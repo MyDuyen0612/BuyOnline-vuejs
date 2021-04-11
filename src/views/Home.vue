@@ -77,6 +77,7 @@ export default {
     if (localStorage.getItem("cart")) {
       const cart = JSON.parse(localStorage.getItem("cart"));
       this.$store.state = cart;
+      
     }
     if (localStorage.getItem("jwt")) {
       const jwtKey = {
