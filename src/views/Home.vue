@@ -82,7 +82,7 @@ export default {
     if (localStorage.getItem("jwt")) {
       const jwtKey = {
         jwt : localStorage.getItem("jwt")
-      } 
+      }
       if (jwtKey != null) {
         userApi
           .profile(jwtKey)
