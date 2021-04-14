@@ -42,10 +42,8 @@ export default {
     return {
       errors: [],
       category:{
-
-
-      name: '',
-      product:null
+        name: '',
+        product:null
 
       }
     };

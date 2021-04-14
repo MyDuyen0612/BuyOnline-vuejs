@@ -84,8 +84,6 @@ export default {
         userApi
           .profile()
           .then((response) => {
-            console.log(response.name)
-            console.log(response)
             this.userName = response.name;
           })
           .catch((error) => {
@@ -100,7 +98,6 @@ export default {
           .profile()
           .then((response) => {
             this.userName = response.name;
-            console.log(response);
           })
           .catch(() => {
             this.userName = "";

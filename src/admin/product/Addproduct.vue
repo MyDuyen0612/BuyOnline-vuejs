@@ -340,10 +340,9 @@ export default {
               name: "ProductDetail",
               params: { url: response.url },
             });
-          }).save(formdata)
-         
+          }).save(formdata)        
           .catch((error) => {
-            this.show = false;
+            // this.show = false;
             console.log(error);
           });
       }
