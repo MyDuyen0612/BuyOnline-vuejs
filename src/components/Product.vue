@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-3 col-6 mt-4">
+  <div class="col-md-3 col-6 mt-4" >
     <div class="product-grid">
       <div class="product-image">
         <router-link
@@ -10,7 +10,7 @@
         <div  v-if="indexColor == 0">
             <img
               class="pic-1"
-              :src="product.color[indexColor].image[0].fileDownloadUri"
+              :src="product.color[indexColor].image[0].fileDownloadUri!='undefined'?product.color[indexColor].image[0].fileDownloadUri:''"
             />
         </div>
         </router-link>

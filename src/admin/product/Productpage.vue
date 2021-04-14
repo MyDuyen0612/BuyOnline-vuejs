@@ -54,12 +54,6 @@ export default {
           label: "Hành động",
         },
       ],
-      infoModal: {
-        id: "add-modal",
-        title: "Thêm mới",
-        content: "abc ",
-      },
-      resetInfoModal() {},
     };
   },
   methods: {},

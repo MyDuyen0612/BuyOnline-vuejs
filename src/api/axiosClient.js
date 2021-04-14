@@ -17,15 +17,8 @@ const axiosClient = axios.create({
     paramsSerializer: params => queryString.stringify(params),
 });
 axiosClient.interceptors.request.use(async (config) => {
-   
-    if (localStorage.getItem('jwt')) {
-        if (localStorage.getItem('date') == Date.now() || !localStorage.getItem('date')) {
-            localStorage.removeItem('jwt');
-        } else {
-            // console.log("tao ne")
-            config.headers.Authorization = 'Bearer ' + localStorage.getItem('jwt');
-        }
-    }
+
+
     return config;
 })
 axiosClient.interceptors.response.use((response) => {
@@ -36,6 +29,6 @@ axiosClient.interceptors.response.use((response) => {
     return response;
 }, (error) => {
     // Handle errors
-    throw error;
+    throw error.response.data;
 });
 export default axiosClient;

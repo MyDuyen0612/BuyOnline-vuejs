@@ -3,6 +3,7 @@
     <div class="py-4 px-3 mb-4">
       <div class="media-body">
         <h4 class="m-0 text-center">
+ 
           {{ name == "" || name == null ? "Đăng nhập" : name }}
         </h4>
       </div>
@@ -50,9 +51,9 @@
         <b-nav-item
           v-for="(itemCategory, indexCategory) in category"
           :key="indexCategory"
-          :to="{ name: 'Category', params: {urlCategory:itemCategory.url} }"
+          :to="{ name: 'Category', params: { urlCategory: itemCategory.url } }"
           class="item"
-          v-show="itemCategory.product.length >0"
+          v-show="itemCategory.product.length > 0"
           >{{ itemCategory.name.toUpperCase() }}</b-nav-item
         >
         <b-nav-item to="/shop" class="item">CỬA HÀNG</b-nav-item>

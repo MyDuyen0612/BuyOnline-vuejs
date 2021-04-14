@@ -1,244 +1,256 @@
 <template>
   <div class="addproduct">
-    <h3 class="text-center text-primary">Thêm sản phẩm</h3>
-    <b-form @submit="submit">
-      <b-container fluid>
-        <b-row>
-          <b-col>
-            <b-row>
-              <b-col sm="12">
-                <b-form-group id="name" label="Tên sản phẩm:" label-for="name">
-                  <b-form-input
+    <b-overlay :show="show" rounded="sm">
+      <h3 class="text-center text-primary">Thêm sản phẩm</h3>
+      <b-form @submit="submit">
+        <b-container fluid>
+          <b-row>
+            <b-col>
+              <b-row>
+                <b-col sm="12">
+                  <b-form-group
                     id="name"
-                    v-model="product.name"
-                    name="name"
-                    type="text"
-                    required
-                    placeholder="Nhập tên sản phẩm"
-                    trim
-                  ></b-form-input>
-                </b-form-group>
-              </b-col>
-            </b-row>
-            <b-row>
-              <b-col sm="12">
-                <b-form-group id="name" label="Danh mục :" label-for="name">
-                  <b-form-select
-                    v-model="selectCategory"
-                    size="sm"
-                    class="mt-3"
-                    required
+                    label="Tên sản phẩm:"
+                    label-for="name"
                   >
-                    <b-form-select-option
-                      v-for="(itemCategory, index) in categorys"
-                      :key="index"
-                      :value="itemCategory"
-                      >{{ itemCategory.name }}</b-form-select-option
+                    <b-form-input
+                      id="name"
+                      v-model="product.name"
+                      name="name"
+                      type="text"
+                      required
+                      placeholder="Nhập tên sản phẩm"
+                      trim
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col sm="12">
+                  <b-form-group id="name" label="Danh mục :" label-for="name">
+                    <b-form-select
+                      v-model="selectCategory"
+                      size="sm"
+                      class="mt-3"
+                      required
                     >
-                  </b-form-select>
-                </b-form-group>
+                      <b-form-select-option
+                        v-for="(itemCategory, index) in categorys"
+                        :key="index"
+                        :value="itemCategory"
+                        >{{ itemCategory.name }}</b-form-select-option
+                      >
+                    </b-form-select>
+                  </b-form-group>
 
-                <b-button variant="primary" @click="themCategory"
-                  >Thêm danh mục</b-button
-                >
+                  <b-button variant="primary" @click="themCategory"
+                    >Thêm danh mục</b-button
+                  >
 
-                <div
-                  v-for="(itemCategory, index) in product.category"
-                  :key="index"
-                >
-                  {{ itemCategory.name }}
-                </div>
-              </b-col>
-            </b-row>
-            <b-row>
-              <b-col sm="6">
-                <b-form-group id="price" label="Đơn giá:" label-for="price">
-                  <b-form-input
-                    id="price"
-                    v-model="product.price"
-                    type="number"
-                    name="price"
-                    placeholder="Nhập giá sản phẩm"
-                    required
-                    min="50000"
-                  ></b-form-input>
-                </b-form-group>
-              </b-col>
+                  <div
+                    v-for="(itemCategory, index) in product.category"
+                    :key="index"
+                  >
+                    {{ itemCategory.name }}
+                  </div>
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col sm="6">
+                  <b-form-group id="price" label="Đơn giá:" label-for="price">
+                    <b-form-input
+                      id="price"
+                      v-model="product.price"
+                      type="number"
+                      name="price"
+                      placeholder="Nhập giá sản phẩm"
+                      required
+                      min="50000"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
 
-              <b-col sm="6">
-                <b-form-group
-                  id="discount"
-                  label="Giá khuyến mãi:"
-                  label-for="discount"
-                >
-                  <b-form-input
+                <b-col sm="6">
+                  <b-form-group
                     id="discount"
-                    v-model="product.discount"
-                    type="number"
-                    name="discount"
-                    placeholder="Nhập giá khuyến mãi"
+                    label="Giá khuyến mãi:"
+                    label-for="discount"
+                  >
+                    <b-form-input
+                      id="discount"
+                      v-model="product.discount"
+                      type="number"
+                      name="discount"
+                      placeholder="Nhập giá khuyến mãi"
+                      required
+                      min="5000"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col>
+                  <b-form-textarea
+                    id="shortIntroduction"
+                    v-model="product.shortIntroduction"
+                    type="text"
+                    placeholder="Mô tả ngắn"
                     required
-                    min="5000"
-                  ></b-form-input>
-                </b-form-group>
-              </b-col>
-            </b-row>
-            <b-row>
-              <b-col>
-                <b-form-textarea
-                  id="shortIntroduction"
-                  v-model="product.shortIntroduction"
-                  type="text"
-                  placeholder="Mô tả ngắn"
-                  required
-                  rows="3"
-                  max-rows="6"
-                ></b-form-textarea>
-              </b-col>
-            </b-row>
-            <b-row>
-              <b-col>
-                <b-form-textarea
-                  id="introduce"
-                  v-model="product.introduce"
-                  type="text"
-                  placeholder="Mô tả"
-                  required
-                  rows="3"
-                  max-rows="6"
-                ></b-form-textarea>
-              </b-col>
-            </b-row>
-            <b-row>
-              <b-button id="btnThem" type="submit" variant="primary"
-                >Thêm sản phẩm</b-button
+                    rows="3"
+                    max-rows="6"
+                  ></b-form-textarea>
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col>
+                  <b-form-textarea
+                    id="introduce"
+                    v-model="product.introduce"
+                    type="text"
+                    placeholder="Mô tả"
+                    required
+                    rows="3"
+                    max-rows="6"
+                  ></b-form-textarea>
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-button id="btnThem" type="submit" variant="primary"
+                  >Thêm sản phẩm</b-button
+                >
+              </b-row>
+            </b-col>
+            <b-col>
+              <b-row
+                v-for="(itemColor, indexColor) in product.color"
+                :key="indexColor"
               >
-            </b-row>
-          </b-col>
-          <b-col>
-            <b-row
-              v-for="(itemColor, indexColor) in product.color"
-              :key="indexColor"
-            >
-              <b-container>
-                <b-row>
-                  <b-col>
-                    <b-form-group
-                      id="input-color"
-                      label="Tên màu sắc:"
-                      label-for="input-color"
-                    >
-                      <b-form-input
-                        v-model="itemColor.name"
+                <b-container>
+                  <b-row>
+                    <b-col>
+                      <b-form-group
                         id="input-color"
-                        type="text"
-                        required
+                        label="Tên màu sắc:"
+                        label-for="input-color"
                       >
-                      </b-form-input>
-                    </b-form-group>
-                  </b-col>
-                  <b-col>
-                    <b-button
-                      variant="danger"
-                      @click="deleteColor(indexColor)"
-                      style="margin-top: 2em"
-                      >Xoá màu sắc</b-button
-                    >
-                  </b-col>
-                </b-row>
-                <b-row cols-md="3">
-                  <b-col> 
-                    <b-form-group
-                      id="input-color-code"
-                      label="Mã màu sắc:"
-                      label-for="input-color-code"
-                    >
-                      <b-form-input
-                        v-model="itemColor.code"
-                        id="input-color-code"
-                        type="color"
-                        required
-                      >
-                      </b-form-input>
-                    </b-form-group>
+                        <b-form-input
+                          v-model="itemColor.name"
+                          id="input-color"
+                          type="text"
+                          required
+                        >
+                        </b-form-input>
+                      </b-form-group>
                     </b-col>
-                  {{itemColor.code}}    
-                </b-row>
-                <b-row>
-                  <b-col>
-                    <b-form-file class="mt-3" plain 
-                      @change="imageChange(indexColor, $event)"
-                      multiple
-                      accept="image/jpeg, image/jpeg, image/png, image/gif"
-                      required></b-form-file>
-                    <!-- <input
+                    <b-col>
+                      <b-button
+                        variant="danger"
+                        @click="deleteColor(indexColor)"
+                        style="margin-top: 2em"
+                        >Xoá màu sắc</b-button
+                      >
+                    </b-col>
+                  </b-row>
+                  <b-row cols-md="3">
+                    <b-col>
+                      <b-form-group
+                        id="input-color-code"
+                        label="Mã màu sắc:"
+                        label-for="input-color-code"
+                      >
+                        <b-form-input
+                          v-model="itemColor.code"
+                          id="input-color-code"
+                          type="color"
+                          required
+                        >
+                        </b-form-input>
+                      </b-form-group>
+                    </b-col>
+                    {{ itemColor.code }}
+                  </b-row>
+                  <b-row>
+                    <b-col>
+                      <b-form-file
+                        class="mt-3"
+                        plain
+                        @change="imageChange(indexColor, $event)"
+                        multiple
+                        accept="image/jpeg, image/jpeg, image/png, image/gif"
+                        required
+                      ></b-form-file>
+                      <!-- <input
                       type="file"
                       @change="imageChange(indexColor, $event)"
                       multiple
                     /> -->
-                  </b-col>
-                </b-row>
-              </b-container>
-                <b-container >  
-                  <b-row v-for="(itemSize,indexSize) in itemColor.size" :key="indexSize">
-                    <b-col>          
+                    </b-col>
+                  </b-row>
+                </b-container>
+                <b-container>
+                  <b-row
+                    v-for="(itemSize, indexSize) in itemColor.size"
+                    :key="indexSize"
+                  >
+                    <b-col>
                       <b-form-group
                         id="input-size"
                         label="Tên Size:"
                         label-for="input-size"
                       >
-                      <b-form-input
-                        id="input-size"
-                        type="text"
-                        required
-                        v-model="itemSize.name"
-                      ></b-form-input> </b-form-group
+                        <b-form-input
+                          id="input-size"
+                          type="text"
+                          required
+                          v-model="itemSize.name"
+                        ></b-form-input> </b-form-group
                     ></b-col>
 
-                  <b-col>
-                    <b-form-group
-                      id="input-soluong"
-                      label="Số lượng của size:"
-                      label-for="input-soluong"
-                    >
-                      <b-form-input
+                    <b-col>
+                      <b-form-group
                         id="input-soluong"
-                        type="number"
-                        min="1"
-                        required
-                        v-model="itemSize.amount"
-                      ></b-form-input>
-                    </b-form-group>
-                  </b-col>
-                  <b-col>
-                    <b-button
-                      variant="danger"
-                      @click="deleteSize(indexSize, indexColor)"
-                      style="margin-top: 2em"
-                      >Xoá size</b-button
-                    >
-                  </b-col>
-                </b-row>
-                <b-row>
-                  <b-col>
-                    <b-button variant="primary" @click="newSize(indexColor)"
-                      >Thêm Size</b-button
-                    >
-                  </b-col>
-                </b-row>
-              </b-container>
-            </b-row>
-            <b-row class="mt-3">
-              <b-col>
-                <b-button variant="primary" @click="newColor()"
-                  >Thêm màu sắc</b-button
-                >
-              </b-col>
-            </b-row>
-          </b-col>
-        </b-row>
-      </b-container>
-    </b-form>
+                        label="Số lượng của size:"
+                        label-for="input-soluong"
+                      >
+                        <b-form-input
+                          id="input-soluong"
+                          type="number"
+                          min="1"
+                          required
+                          v-model="itemSize.amount"
+                        ></b-form-input>
+                      </b-form-group>
+                    </b-col>
+                    <b-col>
+                      <b-button
+                        variant="danger"
+                        @click="deleteSize(indexSize, indexColor)"
+                        style="margin-top: 2em"
+                        >Xoá size</b-button
+                      >
+                    </b-col>
+                  </b-row>
+                  <b-row>
+                    <b-col>
+                      <b-button variant="primary" @click="newSize(indexColor)"
+                        >Thêm Size</b-button
+                      >
+                    </b-col>
+                  </b-row>
+                </b-container>
+              </b-row>
+              <b-row class="mt-3">
+                <b-col>
+                  <b-button variant="primary" @click="newColor()"
+                    >Thêm màu sắc</b-button
+                  >
+                </b-col>
+              </b-row>
+            </b-col>
+          </b-row>
+        </b-container>
+      </b-form>
+    </b-overlay>
   </div>
 </template>
 
@@ -275,6 +287,7 @@ export default {
         name: "",
       },
       selectCategory: {},
+      show: false,
     };
   },
   methods: {
@@ -306,7 +319,7 @@ export default {
     },
     submit: function (e) {
       e.preventDefault();
-
+      this.show = true;
       if (
         this.product.name &&
         this.product.price &&
@@ -321,18 +334,17 @@ export default {
           formdata.append("file", this.image[index]);
         }
         productAPI
-          .save(formdata)
-          .then((response) => {
+           .then((response) => {
             alert("thanh cong");
-            this.image = [];
-            this.$route.push({
+            this.$router.push({
               name: "ProductDetail",
               params: { url: response.url },
             });
-          })
+          }).save(formdata)
+         
           .catch((error) => {
-            console.log(error.response);
-            alert("that bai", error);
+            this.show = false;
+            console.log(error);
           });
       }
     },

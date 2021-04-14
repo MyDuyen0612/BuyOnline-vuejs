@@ -82,7 +82,7 @@ const routes = [
     {
       path: 'sanpham/:url',
       name: 'ProductDetail',
-      component:  Productdetail
+      component: Productdetail
     },
     {
       path: 'search/:search',

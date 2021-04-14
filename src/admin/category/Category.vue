@@ -39,7 +39,11 @@ export default {
         {
           key: "name",
           label: "Tên Danh mục",
-        }
+        },
+        {
+          key: "action",
+          label: "Hành động",
+        },
       ],
     };
   },
