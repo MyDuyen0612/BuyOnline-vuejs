@@ -4,10 +4,9 @@
       <Carousel />
     </b-row>
     <b-row>
-      <Product 
+      <Product
         v-for="product in products"
         :key="product.id"
-        
         :product="product"
       />
     </b-row>
@@ -17,9 +16,9 @@
 <script>
 import Carousel from "../components/Carousel.vue";
 import Product from "../components/Product.vue";
-import productAPI from '../api/productAPI';
+import productAPI from "../api/productAPI";
 export default {
-  components: { Carousel, Product},
+  components: { Carousel, Product },
   data() {
     return {
       isActive: true,
@@ -31,13 +30,16 @@ export default {
       this.isActive = !this.isActive;
     },
   },
-   mounted(){
-      productAPI.getAll().then((response)=>{
-          this.products = response;
-      }).catch((error)=>{
-          console.log(error);
+  mounted() {
+    productAPI
+      .getAll()
+      .then((response) => {
+        this.products = response;
+      })
+      .catch((error) => {
+        console.log(error);
       });
-  }
+  },
 };
 </script>
 

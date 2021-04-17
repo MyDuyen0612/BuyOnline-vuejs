@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import categoryAPI from '../api/categoryAPI';
-import Product from '../components/Product.vue';
+import categoryAPI from "../api/categoryAPI";
+import Product from "../components/Product.vue";
 
 export default {
   components: { Product },
@@ -38,16 +38,16 @@ export default {
         console.log(error);
       });
   },
-  beforeUpdate(){
-       categoryAPI
+  beforeUpdate() {
+    categoryAPI
       .find(this.$route.params.urlCategory)
       .then((response) => {
-        this.products = response.product;
+        this.categorys = response.product;
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  },
 };
 </script>
 

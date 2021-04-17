@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-3 col-6 mt-4" >
+  <div class="col-md-3 col-6 mt-4">
     <div class="product-grid">
       <div class="product-image">
         <router-link
@@ -7,12 +7,17 @@
           v-for="(itemColor, indexColor) in product.color"
           :key="indexColor"
         >
-        <div  v-if="indexColor == 0">
+          <div v-if="indexColor == 0">
             <img
               class="pic-1"
-              :src="product.color[indexColor].image[0].fileDownloadUri!='undefined'?product.color[indexColor].image[0].fileDownloadUri:''"
+              :src="
+                product.color[indexColor].image[0].fileDownloadUri !=
+                'undefined'
+                  ? product.color[indexColor].image[0].fileDownloadUri
+                  : ''
+              "
             />
-        </div>
+          </div>
         </router-link>
         <ul class="social">
           <li>
@@ -28,9 +33,13 @@
             ></router-link>
           </li>
           <li>
-            <button v-on:click="alertDisplay" @click="add(product)" data-tip="Thêm vào giỏ"
-              ><i class="fa fa-shopping-cart"></i
-            ></button>
+            <button
+              v-on:click="alertDisplay"
+              @click="add(product)"
+              data-tip="Thêm vào giỏ"
+            >
+              <i class="fa fa-shopping-cart"></i>
+            </button>
           </li>
         </ul>
         <!-- <span class="product-new-label">Sale</span> -->
@@ -48,11 +57,13 @@
           <a href="#">{{ product.name }}</a>
         </h3>
         <div class="price">
-          {{ product.discount.toLocaleString() }} đ     
-          <span>  {{ product.price.toLocaleString() }} đ</span>
-        </div >
-        <a v-on:click="alertDisplay" class="add-to-cart"  @click="add(product)">+ Thêm vào giỏ</a>
-      </div >
+          {{ product.discount.toLocaleString() }} đ
+          <span> {{ product.price.toLocaleString() }} đ</span>
+        </div>
+        <a v-on:click="alertDisplay" class="add-to-cart" @click="add(product)"
+          >+ Thêm vào giỏ</a
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -62,7 +73,7 @@ export default {
   props: ["product"],
   methods: {
     alertDisplay() {
-     // Hàm $swal gọi SweetAlert vào ứng dụng với cấu hình được chỉ định
+      // Hàm $swal gọi SweetAlert vào ứng dụng với cấu hình được chỉ định
 
       this.$swal({
         title: "Thành công!",
@@ -72,15 +83,15 @@ export default {
       });
       //this.$swal('Thành công!', 'Mã giảm của bạn đang được áp dụng. </br>Hãy mua sắm thật nhiều để nhận được nhiều sự ưu đãi hơn nhé!', 'OK');
     },
-    add(product){
+    add(product) {
       const cartItem = {
-            product:product,
-            amount:1,
-            price:product.price
-        };
-      this.$store.commit('addToCart',cartItem);
+        product: product,
+        amount: 1,
+        price: product.price,
+      };
+      this.$store.commit("addToCart", cartItem);
     },
-  }
+  },
 };
 </script>
 <style>

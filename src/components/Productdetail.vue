@@ -1,7 +1,7 @@
 <template >
-  <b-container fluid >
-    <b-row >
-      <div class="col-lg-6 col-md-12 col-sm-12" >
+  <b-container fluid>
+    <b-row>
+      <div class="col-lg-6 col-md-12 col-sm-12">
         <image-magnifier
           :src="product.color[0].image[0].fileDownloadUri"
           :zoom-src="product.color[0].image[0].fileDownloadUri"
@@ -11,17 +11,16 @@
           zoom-height="350"
         />
       </div>
-      <div class="col-lg-6 col-md-12 col-sm-12" >
-        <div class="wrapper" >
-          <div class="outer" >
-            <div class="content" >
-              <span class="bg" >Khuyến mãi</span><br />
+      <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="wrapper">
+          <div class="outer">
+            <div class="content">
+              <span class="bg">Khuyến mãi</span><br />
 
               <span class="product__content"> {{ product.name }}</span>
 
-
-              <h6>Color: </h6>
-              <div class="colors-wrap" >
+              <h6>Color:</h6>
+              <div class="colors-wrap">
                 <span
                   class="colors"
                   v-for="(colorItem, colorIndex) in colors"
@@ -30,9 +29,9 @@
                   @click="ColorActive(colorItem)"
                   :class="colorActive.code == colorItem.code ? 'selected' : ''"
                 ></span>
-              </div >
-              <h6>Size: </h6>
-              <div class="size-wrap" >
+              </div>
+              <h6>Size:</h6>
+              <div class="size-wrap">
                 <span
                   class="size"
                   v-for="(itemSize, itemIndex) in sizes"
@@ -40,24 +39,23 @@
                   :value="itemSize"
                   @click="SizeActive(itemSize)"
                   :class="sizeAcive.id == itemSize.id ? 'selected' : ''"
-
                   >{{ itemSize.name }}</span
                 >
               </div>
-              <div class="button" >
-                <a href="#" > {{ product.discount.toLocaleString() }} </a
-                ><a @click="add(product)" class="cart-btn" v-on:click="alertDisplay"
-                  ><i class="fa fa-plus cart-icon" ></i>Thêm vào giỏ</a
+              <div class="button">
+                <a href="#"> {{ product.discount.toLocaleString() }} </a
+                ><a
+                  @click="add(product)"
+                  class="cart-btn"
+                  v-on:click="alertDisplay"
+                  ><i class="fa fa-plus cart-icon"></i>Thêm vào giỏ</a
                 >
-
-              </div >
-            </div >
-          </div >
-        </div >
-        
-      </div >
-      
-    </b-row >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </b-row>
     <!-- <div>
       <b-card no-body>
         <b-tabs pills card>
@@ -75,26 +73,41 @@
         <b-tab title="Disabled"><p>I'm a disabled tab!</p></b-tab>
       </b-tabs>
     </div> -->
-    <div >
+    <div>
       <b-tabs
         active-nav-item-class="font-weight-bold text-uppercase text-danger"
         active-tab-class="font-weight-bold text-success"
-        content-class="mt-3">
-        <b-tab title="Mô tả" active><p>{{product.introduce}}</p></b-tab>
-        <b-tab title="Đánh giá"><p>0 ĐÁNH GIÁ CHO {{product.name}}</p></b-tab>
-        <b-tab title="Bình luận" ><p>0 BÌNH LUẬN CHO {{product.name}}</p></b-tab>
+        content-class="mt-3"
+      >
+        <b-tab title="Mô tả" active
+          ><p>{{ product.introduce }}</p></b-tab
+        >
+        <b-tab title="Đánh giá"
+          ><p>0 ĐÁNH GIÁ CHO {{ product.name }}</p></b-tab
+        >
+        <b-tab title="Bình luận"
+          ><p>0 BÌNH LUẬN CHO {{ product.name }}</p></b-tab
+        >
       </b-tabs>
-    </div >
-  </b-container >
+    </div>
+    <div>
+      <Product
+        v-for="product in categorys"
+        :key="product.id"
+        :product="product"
+      />
+    </div>
+  </b-container>
 </template>
 
 <script>
-
-import productAPI from '../api/productAPI';
-
+import productAPI from "../api/productAPI";
+import categoryAPI from "../api/categoryAPI";
+import Product from "../components/Product.vue";
 
 export default {
-  name: "Productdetail" ,
+  components: { Product },
+  name: "Productdetail",
 
   data() {
     return {
@@ -103,36 +116,38 @@ export default {
       colorActive: {},
       sizeAcive: {},
       product: {
-
-        name: '',
+        name: "",
         price: 0,
-        introduce: '',
+        introduce: "",
         color: [
           {
-            name: '',
-            code: '',
+            name: "",
+            code: "",
             size: [
               {
-                name: '',
+                name: "",
 
                 amount: 0,
               },
             ],
             image: [
               {
-
-                fileDownloadUri: '',
-
+                fileDownloadUri: "",
               },
             ],
           },
         ],
       },
+      isActive: true,
+      categorys: null,
     };
   },
-  methods:{
+  methods: {
+    activeMenu: function () {
+      this.isActive = !this.isActive;
+    },
     alertDisplay() {
-     // Hàm $swal gọi SweetAlert vào ứng dụng với cấu hình được chỉ định
+      // Hàm $swal gọi SweetAlert vào ứng dụng với cấu hình được chỉ định
 
       this.$swal({
         title: "Thành công!",
@@ -142,15 +157,13 @@ export default {
       });
       //this.$swal('Thành công!', 'Mã giảm của bạn đang được áp dụng. </br>Hãy mua sắm thật nhiều để nhận được nhiều sự ưu đãi hơn nhé!', 'OK');
     },
-    ColorActive: function(colorItem){
+    ColorActive: function (colorItem) {
       this.ColorActive = colorItem;
     },
-    SizeActive: function(itemSize){
+    SizeActive: function (itemSize) {
       this.SizeActive = itemSize;
     },
 
-   
-    
     add(product) {
       const cartItem = {
         product: product,
@@ -165,18 +178,33 @@ export default {
     productAPI
       .find(this.$route.params.url)
       .then((response) => {
-
-       
         this.product = response;
+
         this.colors = this.product.color;
         this.sizes = this.product.color[0].size;
-  
+        productAPI
+          .findCategory(this.product.url)
+          .then((response) => {
+            this.categorys = response[0].product;
+            console.log(this.categorys);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
 
-      .catch(() => {})
-
+      .catch(() => {});
   },
-
+  beforeUpdate() {
+    categoryAPI
+      .find(this.$route.params.urlCategory)
+      .then((response) => {
+        this.categorys = response.product;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 </script>
 
@@ -296,12 +324,10 @@ img {
     margin-top: 0px !important;
   }
   .product__content {
-
-    font-size: 1.0em;
+    font-size: 1em;
+  }
 }
-}
-.colors
-{
+.colors {
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -318,9 +344,7 @@ img {
 }
 .colors:active,
 .size:active {
-
-  transform: scale(.8);
-
+  transform: scale(0.8);
 }
 .selected {
   box-shadow: 0 0 0 4px #fff, 0 0 0 8px rgba(173, 173, 170, 0.3);
