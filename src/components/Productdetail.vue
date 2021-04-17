@@ -11,16 +11,15 @@
           zoom-height="350"
         />
       </div>
+
       <div class="col-lg-6 col-md-12 col-sm-12">
         <div class="wrapper">
           <div class="outer">
             <div class="content">
-              <span class="bg">Khuyến mãi</span><br />
-
               <span class="product__content"> {{ product.name }}</span>
 
-              <h6>Color:</h6>
               <div class="colors-wrap">
+                <h6>Color:</h6>
                 <span
                   class="colors"
                   v-for="(colorItem, colorIndex) in colors"
@@ -30,8 +29,9 @@
                   :class="colorActive.code == colorItem.code ? 'selected' : ''"
                 ></span>
               </div>
-              <h6>Size:</h6>
+
               <div class="size-wrap">
+                <h6>Size:</h6>
                 <span
                   class="size"
                   v-for="(itemSize, itemIndex) in sizes"
@@ -43,16 +43,38 @@
                 >
               </div>
               <div class="button">
-                <a href="#"> {{ product.discount.toLocaleString() }} </a
-                ><a
-                  @click="add(product)"
-                  class="cart-btn"
-                  v-on:click="alertDisplay"
-                  ><i class="fa fa-plus cart-icon"></i>Thêm vào giỏ</a
-                >
+                <span class="bg">Khuyến mãi</span>
+                <span
+                  >&emsp;
+                  <a href="#"> {{ product.discount.toLocaleString() }} </a>
+                  <a
+                    @click="add(product)"
+                    class="cart-btn"
+                    v-on:click="alertDisplay"
+                  >
+                    <i class="fa fa-plus cart-icon"></i>Thêm vào giỏ</a
+                  >
+                </span>
               </div>
             </div>
           </div>
+        </div>
+        <div class="content2">
+          <b-tabs
+            active-nav-item-class="font-weight-bold text-uppercase text-danger"
+            active-tab-class="font-weight-bold text-success"
+            content-class="mt-3"
+          >
+            <b-tab title="Mô tả" active
+              ><p>{{ product.introduce }}</p></b-tab
+            >
+            <b-tab title="Đánh giá"
+              ><p>0 ĐÁNH GIÁ CHO {{ product.name }}</p></b-tab
+            >
+            <b-tab title="Bình luận"
+              ><p>0 BÌNH LUẬN CHO {{ product.name }}</p></b-tab
+            >
+          </b-tabs>
         </div>
       </div>
     </b-row>
@@ -73,40 +95,14 @@
         <b-tab title="Disabled"><p>I'm a disabled tab!</p></b-tab>
       </b-tabs>
     </div> -->
-    <div>
-      <b-tabs
-        active-nav-item-class="font-weight-bold text-uppercase text-danger"
-        active-tab-class="font-weight-bold text-success"
-        content-class="mt-3"
-      >
-        <b-tab title="Mô tả" active
-          ><p>{{ product.introduce }}</p></b-tab
-        >
-        <b-tab title="Đánh giá"
-          ><p>0 ĐÁNH GIÁ CHO {{ product.name }}</p></b-tab
-        >
-        <b-tab title="Bình luận"
-          ><p>0 BÌNH LUẬN CHO {{ product.name }}</p></b-tab
-        >
-      </b-tabs>
-    </div>
-    <div>
-      <Product
-        v-for="product in categorys"
-        :key="product.id"
-        :product="product"
-      />
-    </div>
   </b-container>
 </template>
 
 <script>
 import productAPI from "../api/productAPI";
 import categoryAPI from "../api/categoryAPI";
-import Product from "../components/Product.vue";
 
 export default {
-  components: { Product },
   name: "Productdetail",
 
   data() {
@@ -214,7 +210,8 @@ export default {
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  height: 100vh;
+  height: 60vh;
+  margin-top: 10%;
 }
 .outer {
   position: relative;
@@ -237,7 +234,7 @@ p {
 img {
   /* position: absolute; */
   top: 0px;
-  right: -30px;
+  right: 0px;
   z-index: 0;
   width: 100%;
   margin-top: -15px;
@@ -248,15 +245,23 @@ img {
   left: 20px;
   z-index: 3;
   margin-top: -20%;
+  text-align: left;
+}
+content2 b b {
 }
 .bg {
   display: inline-block;
+  overflow: hidden;
+  position: relative;
+  font-size: 15px;
+
   color: #fff;
   background-color: red;
-  padding: 5px 10px;
-  border-radius: 50px;
-  font-size: 1em;
-  margin-bottom: 20px;
+  text-decoration: none;
+  padding: 10px 10px;
+  border: 1px solid #aaa;
+  font-weight: bold;
+  border-radius: 25px;
 }
 .button {
   width: fit-content;
@@ -318,6 +323,7 @@ img {
     left: 50%;
     transform: translateX(-40%);
   }
+
   img {
     /* display: none; */
     width: 100%;
@@ -352,6 +358,7 @@ img {
 .colors-wrap,
 .size-wrap {
   width: 100%;
+  height: auto;
   margin: 5px auto;
   padding: 10px;
   border-radius: 70px;

@@ -86,9 +86,8 @@ export default {
           .then((response) => {
             this.userName = response.name;
           })
-          .catch((error) => {
+          .catch(() => {
             this.userName = "";
-            console.log(error);
           });
     }
   },
@@ -98,7 +97,7 @@ export default {
           .profile()
           .then((response) => {
             this.userName = response.name;
-            console.log(response);
+           
           })
           .catch(() => {
             this.userName = "";

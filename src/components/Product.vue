@@ -105,6 +105,7 @@ export default {
   z-index: 1;
   box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
 }
+
 .product-grid .product-image {
   position: relative;
   transition: all 0.3s ease 0s;
@@ -115,6 +116,12 @@ export default {
 .product-grid .product-image img {
   width: 100%;
   height: auto;
+}
+.product-image:hover img {
+  width:130%;
+  height:auto;
+  margin:-30% 0 -15% -15%;
+
 }
 .product-grid .pic-1 {
   opacity: 1;

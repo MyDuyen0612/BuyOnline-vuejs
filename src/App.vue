@@ -9,7 +9,9 @@
 export default ({
  created() {
    const date = localStorage.getItem('date');
-   if(date == Date.now){
+   const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
+   if(today.toISOString()>date){
      localStorage.removeItem('date');
      localStorage.removeItem('jwt');
    }

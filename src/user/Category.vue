@@ -32,7 +32,6 @@ export default {
       .find(this.$route.params.urlCategory)
       .then((response) => {
         this.products = response.product;
-        console.log(this.products);
       })
       .catch((error) => {
         console.log(error);
@@ -42,7 +41,7 @@ export default {
     categoryAPI
       .find(this.$route.params.urlCategory)
       .then((response) => {
-        this.categorys = response.product;
+        this.products = response.product;
       })
       .catch((error) => {
         console.log(error);
