@@ -86,9 +86,8 @@ export default {
           .then((response) => {
             this.userName = response.name;
           })
-          .catch((error) => {
+          .catch(() => {
             this.userName = "";
-            console.log(error);
           });
     }
   },

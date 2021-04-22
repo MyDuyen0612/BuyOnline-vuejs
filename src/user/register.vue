@@ -41,9 +41,7 @@
                   )
                     ? true
                     : false
-                "
-                event:blur
-              
+                "                
                 :formatter="format"
                 type="email"
                 placeholder="Enter email"
@@ -55,8 +53,8 @@
                 id="input-name"
                 v-model="form.name"
                 type="text"
-                
-                placeholder="Enter Name"
+                :state="form.name.length > 5"
+                placeholder="Enter Name (6 key)"
                 required
               ></b-form-input>
             </b-form-group>
@@ -68,10 +66,10 @@
               <b-form-input
                 id="input-username"
                 v-model="form.userName"
-                :state="form.userName.length > 6"
+                :state="form.userName.length > 5"
                 :formatter="format"
                 type="text"
-                placeholder="Enter username"
+                placeholder="Enter username (6 key)"
                 required
               ></b-form-input>
             </b-form-group>
@@ -86,6 +84,20 @@
                 type="password"
                 v-model="form.password"
                 placeholder="Enter password"
+                required
+                
+              ></b-form-input>
+            </b-form-group>
+            <b-form-group
+              id="password 2"
+              label="Nhap lai password :"
+              label-for="input-password2"
+            >
+              <b-form-input
+                id="input-password2"
+                type="password"
+                v-model="form.password2"
+                placeholder="Enter password2"
                 required
               ></b-form-input>
             </b-form-group>
@@ -106,6 +118,9 @@
               </div>
               <div  class="btn">
                 <b-button type="reset" variant="danger">Reset</b-button>
+              </div>
+              <div class="btn">
+                <b-button to="login" variant="info">Login</b-button>
               </div>
             </div>
           </b-form>
@@ -143,6 +158,46 @@ export default {
     async onSubmit(event) {
       event.preventDefault();
       this.isActive = !this.isActive;
+        if (this.form.userName.length < 6) {
+          alert("Username ít gì cũng 6 ký tự chứ nhở");
+          this.isActive = !this.isActive;
+          return ;
+        }
+        if (this.form.name.length < 6) {
+          alert("Name ít gì cũng 6 ký tự chứ nhở");
+          this.isActive = !this.isActive;
+          return ;
+        }
+        if (this.form.password.length < 6) {
+          alert("Password ít gì cũng 6 ký tự chứ nhở");
+          this.isActive = !this.isActive;
+          return ;
+        }
+        if (this.form.password2 != this.form.password) {
+          alert("Password Khong trung khop");
+          this.isActive = !this.isActive;
+          return ;
+        }
+        
+        var re = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/; 
+        if(re.test(this.form.password)!=true){
+          alert("Password phai co chu hoa, thuong va so");
+          this.isActive = !this.isActive;
+          return ;
+        }
+        
+        await userApi.register(this.form).then((response) => {
+        this.isActive = !this.isActive;
+        if (response != null) {
+          alert("Bạn đăng ký thành công");
+          this.$router.push('../Login')
+        }
+        
+      }).catch((error)=>{
+        alert(error.response.data.message);
+        this.isActive = !this.isActive;
+      });
+      
       await userApi.register(this.form).then((response) => {
         this.isActive = !this.isActive;
         if (response != null) {

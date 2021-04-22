@@ -36,6 +36,10 @@ class ProductApi {
         const url = '/product/' + params;
         return axiosClient.get(url);
     }
+    findCategory = (params) => {
+        const url = '/product/category/' + params;
+        return axiosClient.get(url);
+    }
 }
 const productApi = new ProductApi();
 export default productApi;

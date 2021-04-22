@@ -69,6 +69,12 @@
               <div class="btn">
                 <b-button to="register" variant="info">Signup</b-button>
               </div>
+              
+            </div>
+            <div class="star">
+              <a href="#"><b-icon icon="facebook" scale="2"> </b-icon><label>facebook</label></a>
+              <a href="#"><b-icon icon="at" scale="2.5"></b-icon><label>Gmail</label></a>
+              <a href="#"><b-icon icon="linkedin" scale="2"></b-icon><label>Linkedin</label></a>
             </div>
           </b-form>
         </b-col>
@@ -149,7 +155,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 60%;
-  height: 370px;
+  height: auto;
   top: 50%;
   margin-top: 20%;
   background: rgba(0, 0, 0, 0.1);
@@ -169,5 +175,21 @@ body {
   margin-left: 10px;
   margin-right: 50px;
   margin-top: 5px;
+}
+.star{
+  margin-top:20px;
+  margin-bottom:20px; 
+  text-align:center;
+  size:50px;
+}
+
+.star a{
+  margin-left:20px;
+  margin-right:20px;
+  color:#656565;
+}
+.star a label{
+  margin-left:10px;
+  font-size:15px;
 }
 </style>

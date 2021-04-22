@@ -2,12 +2,6 @@
   <div class="addproduct">
     <b-overlay :show="show" rounded="sm">
       <h3 class="text-center text-primary">Thêm sản phẩm</h3>
-      <p v-if="errors.length">
-    <b style="color: red">ERROR</b>
-    <ul>
-      <li v-for="item in errors" :key="item" style="color: red">{{ item}}</li>
-    </ul>
-  </p>
       <b-form @submit="submit">
         <b-container fluid>
           <b-row>
@@ -267,7 +261,6 @@ export default {
   name: "Addproduct",
   data() {
     return {
-      errors: [],
       extension: [],
       image: [], //file
       product: {
@@ -360,11 +353,12 @@ export default {
       const Alowtype = ["image/jpeg","image/jpg", "image/png", "image/gif"];     
       for (let index = 0; index < event.target.files.length; index++) {
         if(!Alowtype.includes(event.target.files[index].type)){
-          this.errors.push('File ảnh bị sai'); 
-          // this.$router.go();        
-        } 
-        this.image.push(event.target.files[index]);
-            
+           alert("File anh sai. File anh la: jpg, png, gif, jpeg") 
+          this.$router.go();        
+        }
+        else{
+           this.image.push(event.target.files[index]);
+        }         
       }
       event.target.files.forEach((element) => {
         const file = {

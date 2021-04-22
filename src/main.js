@@ -18,15 +18,9 @@ import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 import ImageMagnifier from 'vue-image-magnifier'
 
-// const gauthOption = {
-//   clientId: 'AIzaSyCwSxJ34jYRegxB4-Ki8GvBxWtfYMgraFA.apps.googleusercontent.com',
-//   scope: 'profile email',
-//   prompt: 'select_account'
-// }
-// Vue.use(GAuth, gauthOption)
+
 
 Vue.use(VueSidebarMenu)
-
 Vue.use(BootstrapVueIcons)
 Vue.config.productionTip = false
 
