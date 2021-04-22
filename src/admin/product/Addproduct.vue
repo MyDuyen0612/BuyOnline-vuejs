@@ -2,6 +2,12 @@
   <div class="addproduct">
     <b-overlay :show="show" rounded="sm">
       <h3 class="text-center text-primary">Thêm sản phẩm</h3>
+      <p v-if="errors.length">
+    <b style="color: red">ERROR</b>
+    <ul>
+      <li v-for="item in errors" :key="item" style="color: red">{{ item}}</li>
+    </ul>
+  </p>
       <b-form @submit="submit">
         <b-container fluid>
           <b-row>
@@ -261,6 +267,8 @@ export default {
   name: "Addproduct",
   data() {
     return {
+      errors: [],
+      extension: [],
       image: [], //file
       product: {
         name: "",
@@ -326,30 +334,37 @@ export default {
         this.product.discount &&
         this.product.shortIntroduction &&
         this.product.introduce &&
-        this.product.category
-      ) {
+        this.product.category 
+      ) 
+      {
         const formdata = new FormData();
         formdata.append("product", JSON.stringify(this.product));
         for (let index = 0; index < this.image.length; index++) {
           formdata.append("file", this.image[index]);
         }
-        productAPI
+        productAPI.save(formdata)
            .then((response) => {
             alert("thanh cong");
             this.$router.push({
               name: "ProductDetail",
               params: { url: response.url },
             });
-          }).save(formdata)        
+          })        
           .catch((error) => {
-            // this.show = false;
+            this.show = false;
             console.log(error);
           });
       }
     },
     imageChange: function (indexColor, event) {
+      const Alowtype = ["image/jpeg","image/jpg", "image/png", "image/gif"];     
       for (let index = 0; index < event.target.files.length; index++) {
+        if(!Alowtype.includes(event.target.files[index].type)){
+          this.errors.push('File ảnh bị sai'); 
+          // this.$router.go();        
+        } 
         this.image.push(event.target.files[index]);
+            
       }
       event.target.files.forEach((element) => {
         const file = {
